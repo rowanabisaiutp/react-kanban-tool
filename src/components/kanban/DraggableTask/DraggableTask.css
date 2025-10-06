@@ -1,0 +1,23 @@
+.draggable-task {
+  cursor: grab;
+  transition: all 0.2s ease;
+}
+
+.draggable-task:active {
+  cursor: grabbing;
+}
+
+.draggable-task--dragging {
+  z-index: 10;
+  transform: rotate(5deg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.draggable-task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.draggable-task--dragging:hover {
+  transform: rotate(5deg) translateY(-2px);
+}

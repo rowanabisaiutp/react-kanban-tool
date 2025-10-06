@@ -1,0 +1,178 @@
+/* Modal Component Styles */
+.modal-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background-color: var(--color-overlay) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 999999 !important;
+  padding: 1rem !important;
+  isolation: isolate !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+.modal {
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: hidden;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  border: 1px solid var(--color-border);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Scroll personalizado para el modal-content */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: var(--color-background-secondary);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Para Firefox */
+.modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-background-secondary);
+}
+
+/* Sizes */
+.modal--sm {
+  max-width: 24rem; /* 384px */
+}
+
+.modal--md {
+  max-width: 32rem; /* 512px */
+}
+
+.modal--lg {
+  max-width: 48rem; /* 768px */
+}
+
+.modal--xl {
+  max-width: 64rem; /* 1024px */
+}
+
+
+.modal-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  scroll-behavior: smooth;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    max-width: 95%;
+    max-height: 95vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .modal-backdrop {
+    padding: 0.5rem;
+  }
+  
+  .modal {
+    max-height: 95vh;
+  }
+  
+  .modal-content {
+    padding: 1rem;
+  }
+}
+
+/* Animaciones */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal {
+  animation: modalFadeIn 150ms ease-out;
+}
+
+/* Asegurar que el modal esté por encima de elementos drag & drop */
+[data-dnd-kit-context] {
+  z-index: 1000 !important;
+}
+
+/* Forzar que el modal esté por encima de todos los elementos */
+.modal-backdrop {
+  z-index: 999999 !important;
+}
+
+/* Asegurar que ningún elemento interfiera con el modal */
+.modal-backdrop * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Específicamente para elementos drag & drop */
+[data-dnd-kit-context] * {
+  z-index: 1000 !important;
+}
+
+/* Para elementos con transform que crean stacking context */
+[style*="transform"] {
+  z-index: 1000 !important;
+}
+
+/* Específicamente para el contenedor del board */
+.board,
+.board *,
+.kanban-page__content,
+.kanban-page__content * {
+  z-index: 1000 !important;
+}
+
+/* Asegurar que el modal esté por encima de todo */
+.modal-backdrop {
+  z-index: 999999 !important;
+  position: fixed !important;
+}
+
+/* Animación de fade in centrado */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

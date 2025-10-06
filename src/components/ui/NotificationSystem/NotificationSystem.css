@@ -1,0 +1,278 @@
+.notification-system {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  pointer-events: none;
+}
+
+.notification {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  background: var(--notification-bg, #ffffff);
+  border-left: 4px solid;
+  pointer-events: auto;
+  animation: slideIn 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--notification-border, rgba(255, 255, 255, 0.2));
+  transition: all 0.3s ease;
+}
+
+.notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.notification--success {
+  border-left-color: var(--success-color, #10b981);
+  background: var(--success-bg, linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%));
+}
+
+.notification--error {
+  border-left-color: var(--error-color, #ef4444);
+  background: var(--error-bg, linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%));
+}
+
+.notification--warning {
+  border-left-color: var(--warning-color, #f59e0b);
+  background: var(--warning-bg, linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%));
+}
+
+.notification--info {
+  border-left-color: var(--info-color, #3b82f6);
+  background: var(--info-bg, linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%));
+}
+
+.notification__icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification__icon-svg {
+  color: inherit;
+}
+
+.notification__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--notification-title-color, #1f2937);
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+
+.notification__message {
+  font-size: 13px;
+  color: var(--notification-message-color, #6b7280);
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.notification__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.notification__action {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.notification__action--primary {
+  background: var(--primary-color, #3b82f6);
+  color: var(--primary-text, white);
+}
+
+.notification__action--secondary {
+  background: var(--secondary-bg, rgba(107, 114, 128, 0.1));
+  color: var(--secondary-text, #6b7280);
+  border: 1px solid var(--secondary-border, rgba(107, 114, 128, 0.2));
+}
+
+.notification__action--primary:hover {
+  background: var(--primary-hover, #2563eb);
+  transform: translateY(-1px);
+}
+
+.notification__action--secondary:hover {
+  background: var(--secondary-hover, #e5e7eb);
+  transform: translateY(-1px);
+}
+
+.notification__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--close-color, #9ca3af);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification__close:hover {
+  color: var(--close-hover-color, #6b7280);
+  background: var(--close-hover-bg, rgba(0, 0, 0, 0.05));
+  transform: scale(1.1);
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .notification-system {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .notification {
+    padding: 12px;
+  }
+  
+  .notification__title {
+    font-size: 13px;
+  }
+  
+  .notification__message {
+    font-size: 12px;
+  }
+  
+  .notification__actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .notification__action {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --notification-bg: rgba(31, 41, 55, 0.95);
+  --notification-border: rgba(255, 255, 255, 0.1);
+  --notification-title-color: #f9fafb;
+  --notification-message-color: #d1d5db;
+  
+  --success-color: #10b981;
+  --success-bg: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  
+  --error-color: #ef4444;
+  --error-bg: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  
+  --warning-color: #f59e0b;
+  --warning-bg: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+  
+  --info-color: #3b82f6;
+  --info-bg: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-text: white;
+  
+  --secondary-bg: rgba(55, 65, 81, 0.8);
+  --secondary-text: #d1d5db;
+  --secondary-border: rgba(75, 85, 99, 0.5);
+  --secondary-hover: #4b5563;
+  
+  --close-color: #9ca3af;
+  --close-hover-color: #d1d5db;
+  --close-hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* Light mode */
+[data-theme="light"] {
+  --notification-bg: rgba(255, 255, 255, 0.95);
+  --notification-border: rgba(0, 0, 0, 0.1);
+  --notification-title-color: #1f2937;
+  --notification-message-color: #6b7280;
+  
+  --success-color: #10b981;
+  --success-bg: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  
+  --error-color: #ef4444;
+  --error-bg: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  
+  --warning-color: #f59e0b;
+  --warning-bg: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  
+  --info-color: #3b82f6;
+  --info-bg: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-text: white;
+  
+  --secondary-bg: rgba(107, 114, 128, 0.1);
+  --secondary-text: #6b7280;
+  --secondary-border: rgba(107, 114, 128, 0.2);
+  --secondary-hover: #e5e7eb;
+  
+  --close-color: #9ca3af;
+  --close-hover-color: #6b7280;
+  --close-hover-bg: rgba(0, 0, 0, 0.05);
+}
+
+
+

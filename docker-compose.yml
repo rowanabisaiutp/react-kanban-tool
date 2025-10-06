@@ -1,0 +1,18 @@
+services:
+  # Aplicación React Kanban
+  kanban-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev
+    stdin_open: true
+    tty: true
+

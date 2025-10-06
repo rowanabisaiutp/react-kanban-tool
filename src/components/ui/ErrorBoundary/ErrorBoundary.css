@@ -1,0 +1,177 @@
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2rem;
+  background: var(--background-primary, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.error-boundary__content {
+  text-align: center;
+  max-width: 500px;
+  padding: 2rem;
+}
+
+.error-boundary__icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.error-boundary__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+  margin-bottom: 0.5rem;
+}
+
+.error-boundary__message {
+  font-size: 1rem;
+  color: var(--text-secondary, #6b7280);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.error-boundary__details {
+  margin: 1.5rem 0;
+  text-align: left;
+  background: var(--background-secondary, #f9fafb);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.error-boundary__details summary {
+  font-weight: 500;
+  color: var(--text-primary, #1f2937);
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.error-boundary__stack {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-error, #dc2626);
+  background: var(--background-error, #fef2f2);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.error-boundary__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-boundary__retry-btn,
+.error-boundary__reload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.error-boundary__retry-btn {
+  background: var(--primary, #3b82f6);
+  color: white;
+}
+
+.error-boundary__retry-btn:hover {
+  background: var(--primary-hover, #2563eb);
+  transform: translateY(-1px);
+}
+
+.error-boundary__reload-btn {
+  background: var(--background-secondary, #f3f4f6);
+  color: var(--text-primary, #1f2937);
+  border: 1px solid var(--border-color, #d1d5db);
+}
+
+.error-boundary__reload-btn:hover {
+  background: var(--surface-hover, #e5e7eb);
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .error-boundary {
+    padding: 1rem;
+    min-height: 300px;
+  }
+  
+  .error-boundary__content {
+    padding: 1rem;
+  }
+  
+  .error-boundary__icon {
+    font-size: 3rem;
+  }
+  
+  .error-boundary__title {
+    font-size: 1.25rem;
+  }
+  
+  .error-boundary__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .error-boundary__retry-btn,
+  .error-boundary__reload-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .error-boundary {
+    background: var(--background-primary, #1f2937);
+  }
+  
+  .error-boundary__title {
+    color: var(--text-primary, #f9fafb);
+  }
+  
+  .error-boundary__message {
+    color: var(--text-secondary, #d1d5db);
+  }
+  
+  .error-boundary__details {
+    background: var(--background-secondary, #374151);
+    border-color: var(--border-color, #4b5563);
+  }
+  
+  .error-boundary__details summary {
+    color: var(--text-primary, #f9fafb);
+  }
+  
+  .error-boundary__stack {
+    background: var(--background-error, #7f1d1d);
+    color: var(--text-error, #fca5a5);
+  }
+  
+  .error-boundary__reload-btn {
+    background: var(--background-secondary, #374151);
+    color: var(--text-primary, #f9fafb);
+    border-color: var(--border-color, #4b5563);
+  }
+  
+  .error-boundary__reload-btn:hover {
+    background: var(--surface-hover, #4b5563);
+  }
+}
+

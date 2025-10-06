@@ -1,0 +1,85 @@
+.markdown-preview {
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+.markdown-preview h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0.5rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.markdown-preview h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0.5rem 0 0.25rem 0;
+  padding-bottom: 0.125rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.markdown-preview h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.markdown-preview strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.markdown-preview em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.markdown-preview code {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+}
+
+.markdown-preview a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.markdown-preview a:hover {
+  border-bottom-color: var(--primary-color);
+  text-decoration: none;
+}
+
+.markdown-preview br {
+  margin: 0.25rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .markdown-preview {
+    font-size: 0.8rem;
+  }
+  
+  .markdown-preview h1 {
+    font-size: 1.25rem;
+  }
+  
+  .markdown-preview h2 {
+    font-size: 1.125rem;
+  }
+  
+  .markdown-preview h3 {
+    font-size: 1rem;
+  }
+}

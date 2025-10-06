@@ -1,0 +1,22 @@
+/* DraggableColumn Component Styles */
+.draggable-column {
+  transition: all 150ms ease-in-out;
+}
+
+.draggable-column--dragging {
+  opacity: 0.5;
+  transform: rotate(5deg);
+  z-index: 10;
+}
+
+.draggable-column--dragging .column {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .draggable-column--dragging {
+    transform: rotate(2deg);
+  }
+}
