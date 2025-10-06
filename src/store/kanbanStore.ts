@@ -716,17 +716,17 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
       storage: {
         getItem: (name) => {
           try {
-            console.log('📖 Leyendo desde localStorage...', name);
+            // console.log('📖 Leyendo desde localStorage...', name);
             const value = localStorage.getItem(name);
             if (value) {
               const parsed = JSON.parse(value);
-              console.log('✅ Datos leídos:', {
-                boards: parsed.state?.boards?.length || 0,
-                hasCurrentBoard: !!parsed.state?.currentBoard
-              });
+              // console.log('✅ Datos leídos:', {
+              //   boards: parsed.state?.boards?.length || 0,
+              //   hasCurrentBoard: !!parsed.state?.currentBoard
+              // });
               return parsed;
             } else {
-              console.log('⚠️ No hay datos guardados en localStorage');
+              // console.log('⚠️ No hay datos guardados en localStorage');
               return null;
             }
           } catch (error) {
@@ -740,13 +740,13 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
         },
         setItem: async (name, value) => {
           try {
-            console.log('💾 Guardando en localStorage...', name);
+            // console.log('💾 Guardando en localStorage...', name);
             const result = await safeSetItem(name, JSON.stringify(value));
             if (!result.success && result.error) {
               console.error('❌ Storage error:', result.error.message);
               throw new Error(result.error.message);
             }
-            console.log('✅ Datos guardados exitosamente en localStorage');
+            // console.log('✅ Datos guardados exitosamente en localStorage');
           } catch (error) {
             console.error('❌ Error writing to localStorage:', error);
             throw error;
