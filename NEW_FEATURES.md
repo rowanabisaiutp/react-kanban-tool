@@ -25,6 +25,51 @@ archiveTask(taskId);
 restoreTask(taskId);
 ```
 
+### 💬 Comment System
+**Implementation:** `src/components/kanban/TaskDetailModal/`
+
+- **Task Comments:** Add comments to tasks with timestamps
+- **Comment History:** View complete comment history for tasks
+- **Comment Management:** Edit and delete comments
+- **Comment Threading:** Reply to comments (prepared structure)
+- **Comment Notifications:** Notify users of new comments
+
+**Features:**
+- Real-time comment updates
+- Comment timestamps
+- User attribution for comments
+- Comment validation and moderation
+
+### ✅ Subtask Management
+**Implementation:** `src/components/kanban/SubtasksList/`
+
+- **Checklist Items:** Create subtasks within main tasks
+- **Progress Tracking:** Visual progress indicator for subtasks
+- **Subtask Operations:** Add, edit, delete, and reorder subtasks
+- **Completion Status:** Track individual subtask completion
+- **Subtask Validation:** Ensure subtask data integrity
+
+**Features:**
+- Drag-and-drop reordering of subtasks
+- Progress percentage calculation
+- Subtask completion animations
+- Bulk subtask operations
+
+### 📝 Markdown Support
+**Implementation:** `src/components/kanban/MarkdownPreview/`
+
+- **Rich Text:** Full Markdown support for task descriptions
+- **Live Preview:** Real-time Markdown rendering
+- **Syntax Highlighting:** Code syntax highlighting in descriptions
+- **Link Support:** Clickable links in task descriptions
+- **Formatting Options:** Bold, italic, lists, headers, code blocks
+
+**Markdown Features:**
+- Full CommonMark specification support
+- Custom styling for Markdown elements
+- Security filtering for user input
+- Export to HTML functionality
+
 ### 🎨 Enhanced Theme System
 **Implementation:** `src/hooks/useTheme.ts`
 
@@ -110,19 +155,56 @@ restoreTask(taskId);
 - Mobile-optimized forms
 - Gesture support
 
-### 🔔 Notification System
-**Implementation:** `src/hooks/useNotifications.ts`
+### 🔔 Advanced Notification System
+**Implementation:** `src/hooks/useNotifications.ts`, `src/hooks/useKanbanNotifications.ts`
 
 - **Real-time Notifications:** Toast notifications for user actions
 - **Notification Types:** Success, error, warning, and info notifications
-- **Notification History:** Track notification history
+- **Notification Actions:** Notifications with actionable buttons
+- **Notification Queue:** Manage multiple notifications simultaneously
+- **Persistent Notifications:** Important notifications that don't auto-dismiss
 - **Customizable Duration:** Configurable notification display time
 
 **Notification Types:**
-- Task creation/updates
-- Board changes
-- System errors
+- Task creation/updates/deletion
+- Board changes and modifications
+- System errors and warnings
 - Success confirmations
+- Archive/restore operations
+- Comment notifications
+
+### 🎯 Context Menu System
+**Implementation:** `src/hooks/useContextMenu.ts`, `src/hooks/useCommentContextMenu.ts`
+
+- **Right-click Menus:** Context menus for tasks and comments
+- **Quick Actions:** Fast access to common operations
+- **Keyboard Shortcuts:** Keyboard navigation for context menus
+- **Custom Actions:** Context-specific menu items
+- **Menu Positioning:** Smart positioning to avoid screen edges
+
+**Context Menu Features:**
+- Task context menus with edit, delete, archive options
+- Comment context menus with edit, delete options
+- Board and column context menus
+- Keyboard navigation support
+- Accessibility compliance
+
+### 🎨 Advanced Theme System
+**Implementation:** `src/hooks/useTheme.ts`, `src/hooks/useStyledTheme.tsx`
+
+- **System Theme Detection:** Automatically detect user's system theme preference
+- **Theme Persistence:** Save theme preference across browser sessions
+- **Smooth Transitions:** CSS transitions for theme switching
+- **Styled Components Integration:** Theme provider for styled-components
+- **Custom Theme Variables:** Extensible theme variable system
+- **High Contrast Support:** Accessibility-focused theme options
+
+**Theme Features:**
+- Light/Dark mode toggle with system detection
+- Persistent theme storage in localStorage
+- Smooth color and animation transitions
+- Styled-components theme integration
+- Custom theme variable overrides
 
 ### 💾 Enhanced Data Management
 **Implementation:** `src/store/kanbanStore.ts`
