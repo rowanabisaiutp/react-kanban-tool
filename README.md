@@ -104,4 +104,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 ---
 
 **Built with modern React practices and TypeScript for type safety.**
-** yes se emjora**client-side
+** implement**client-side
