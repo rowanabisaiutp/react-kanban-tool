@@ -104,4 +104,3 @@ MIT License - see [LICENSE](LICENSE) for details.
 ---
 
 **Built with modern React practices and TypeScript for type safety.**
-** new readme **client-side
