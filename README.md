@@ -17,6 +17,10 @@ A modern Kanban board application built with React 18 + TypeScript, featuring dr
 
 #### **📋 Advanced Task Management**
 - **💬 Comment System** - Add comments to tasks with timestamps and user attribution
+  - **@ Mentions** - Mention users with `@username` syntax and auto-complete dropdown
+  - **Reply System** - Reply to specific comments with `@originalAuthor` prefix
+  - **Mention Formatting** - Bold formatting for mentioned users in comments
+  - **Real-time Dropdown** - Smart user filtering as you type after `@`
 - **✅ Subtask Management** - Create checklists within tasks with progress tracking
 - **📝 Markdown Support** - Rich text descriptions with live preview and syntax highlighting
 - **🗃️ Archive System** - Archive completed tasks with restore and permanent delete options
@@ -66,7 +70,13 @@ src/components/kanban/
 ├── EditableColumnTitle/   # Inline column editing
 ├── DeleteBoardModal/      # Board deletion confirmation
 ├── DeleteColumnModal/     # Column deletion confirmation
-└── VirtualizedTaskList/   # Performance-optimized lists
+├── VirtualizedTaskList/   # Performance-optimized lists
+└── TaskDetailModal/       # Enhanced with @ mentions system
+    ├── @ Mention Detection    # Real-time @ symbol detection
+    ├── User Dropdown         # Auto-complete user selection
+    ├── Mention Formatting    # Bold formatting for mentions
+    └── Reply with Mentions   # Reply system with @ prefixes
+```
 
 src/components/dashboard/
 ├── DashboardFilterInterface/  # Advanced filtering UI
@@ -110,11 +120,48 @@ src/utils/
 └── storageManager.ts          # Advanced storage utilities
 ```
 
+### **💬 Advanced Comment System Features**
+
+#### **@ Mention System Implementation**
+```typescript
+// Real-time mention detection
+const mentionRegex = /^(@[^:]+):\s*(.*)$/;
+
+// Auto-complete dropdown with user filtering
+const handleCommentChange = (e) => {
+  const textBeforeCursor = value.substring(0, cursorPos);
+  const lastAtIndex = textBeforeCursor.lastIndexOf('@');
+  
+  if (lastAtIndex !== -1 && !textAfterAt.includes(' ')) {
+    setShowMentionDropdown(true);
+    setMentionFilter(textAfterAt);
+  }
+};
+
+// Bold formatting for mentions in comments
+const formatCommentWithMentions = (content) => (
+  <>
+    <strong className="comment-mention">@Usuario</strong>
+    {': '}{restOfContent}
+  </>
+);
+```
+
+#### **Comment System Features:**
+- **@ Mention Detection** - Real-time detection of `@` symbol
+- **User Auto-complete** - Dropdown with filtered user suggestions
+- **Mention Formatting** - Bold styling for mentioned users
+- **Reply System** - Reply to comments with `@originalAuthor` prefix
+- **Smart Positioning** - Dropdown appears at cursor position
+- **Keyboard Navigation** - Full keyboard support for mention selection
+- **User Filtering** - Filter users as you type after `@`
+- **Comment Threading** - Nested comment structure with replies
+
 ### **📊 Feature Comparison: Original vs Implemented**
 
 | Feature Category | Original Requirements | Actually Implemented | Enhancement Level |
 |------------------|----------------------|---------------------|-------------------|
-| **Task Management** | Basic CRUD | CRUD + Comments + Subtasks + Archive | 🚀 **Advanced** |
+| **Task Management** | Basic CRUD | CRUD + Comments + @ Mentions + Subtasks + Archive | 🚀 **Advanced** |
 | **Theming** | Light/Dark themes | System detection + Smooth transitions + Styled-components | 🚀 **Advanced** |
 | **Notifications** | Not specified | Toast system + Actions + Queues + Persistence | 🆕 **New** |
 | **Search** | Global search | Smart search + History + Saved filters + Multi-criteria | 🚀 **Advanced** |
@@ -124,6 +171,7 @@ src/utils/
 | **DevOps** | Not specified | Docker + Hot reload + Production config + Optimization | 🆕 **New** |
 | **Accessibility** | Basic compliance | Full keyboard nav + Focus management + Screen readers | 🚀 **Advanced** |
 | **Data Management** | localStorage | Auto-save + Validation + Cleanup + Migration utilities | 🚀 **Advanced** |
+| **Comment System** | Not specified | @ Mentions + Reply system + User dropdown + Formatting | 🆕 **New** |
 
 ## 🛠 Tech Stack & Justifications
 
