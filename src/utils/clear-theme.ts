@@ -12,11 +12,4 @@ const clearTheme = (): void => {
   }
 };
 
-// ❌ DESACTIVADO - No ejecutar automáticamente
-// Solo debe ejecutarse cuando se llama manualmente
-// if (typeof window !== 'undefined') {
-//   clearTheme();
-// }
-
 export default clearTheme;
-

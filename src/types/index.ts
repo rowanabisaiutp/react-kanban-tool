@@ -153,6 +153,3 @@ export interface StoredData {
   currentBoardId: string | null;
   lastUpdated: string;
 }
-
-// Tipos de usuarios detectados temporalmente deshabilitados
-// export { DetectedUser } from '../hooks/useUserDetection';

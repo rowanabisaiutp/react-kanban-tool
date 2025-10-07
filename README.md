@@ -1,133 +1,133 @@
-# 🎯 Kanban Project Management Tool
+# 🎯 Herramienta de Gestión de Proyectos Kanban
 
-A modern Kanban board application built with React 18 + TypeScript, featuring drag-and-drop functionality, comprehensive task management, and analytics dashboard.
+Una aplicación moderna de tablero Kanban construida con React 18 + TypeScript, que incluye funcionalidad de arrastrar y soltar, gestión integral de tareas y panel de análisis.
 
-## ✨ Key Features
+## ✨ Características Principales
 
-### **Core Features (From Original Requirements)**
-- **Multi-board Management** - Create and switch between multiple boards
-- **Drag & Drop** - Reorder columns and tasks with @dnd-kit
-- **Task Management** - Full CRUD with priority, tags, due dates, and subtasks
-- **Search & Filtering** - Global search with advanced filtering options
-- **Analytics Dashboard** - Data visualization with charts and metrics
-- **Theme Support** - Light/dark themes with smooth transitions
-- **Responsive Design** - Mobile, tablet, and desktop support
+### **Características Básicas (Requisitos Originales)**
+- **Gestión Multi-tablero** - Crear y cambiar entre múltiples tableros
+- **Arrastrar y Soltar** - Reordenar columnas y tareas con @dnd-kit
+- **Gestión de Tareas** - CRUD completo con prioridad, etiquetas, fechas de vencimiento y subtareas
+- **Búsqueda y Filtrado** - Búsqueda global con opciones de filtrado avanzadas
+- **Panel de Análisis** - Visualización de datos con gráficos y métricas
+- **Soporte de Temas** - Temas claro/oscuro con transiciones suaves
+- **Diseño Responsivo** - Soporte para móvil, tablet y escritorio
 
-### **🆕 Enhanced Features (Beyond Original Requirements)**
+### **🆕 Características Mejoradas (Más Allá de los Requisitos Originales)**
 
-#### **📋 Advanced Task Management**
-- **💬 Comment System** - Add comments to tasks with timestamps and user attribution
-  - **@ Mentions** - Mention users with `@username` syntax and auto-complete dropdown
-  - **Reply System** - Reply to specific comments with `@originalAuthor` prefix
-  - **Mention Formatting** - Bold formatting for mentioned users in comments
-  - **Real-time Dropdown** - Smart user filtering as you type after `@`
-- **✅ Subtask Management** - Create checklists within tasks with progress tracking
-- **📝 Markdown Support** - Rich text descriptions with live preview and syntax highlighting
-- **🗃️ Archive System** - Archive completed tasks with restore and permanent delete options
-- **⚡ Auto-save** - Automatic saving with debounced persistence and conflict resolution
+#### **📋 Gestión Avanzada de Tareas**
+- **💬 Sistema de Comentarios** - Agregar comentarios a tareas con marcas de tiempo y atribución de usuario
+  - **Menciones @** - Mencionar usuarios con sintaxis `@usuario` y dropdown de autocompletado
+  - **Sistema de Respuestas** - Responder a comentarios específicos con prefijo `@autorOriginal`
+  - **Formateo de Menciones** - Formato en negrita para usuarios mencionados en comentarios
+  - **Dropdown en Tiempo Real** - Filtrado inteligente de usuarios mientras escribes después de `@`
+- **✅ Gestión de Subtareas** - Crear listas de verificación dentro de tareas con seguimiento de progreso
+- **📝 Soporte Markdown** - Descripciones de texto enriquecido con vista previa en vivo y resaltado de sintaxis
+- **🗃️ Sistema de Archivo** - Archivar tareas completadas con opciones de restaurar y eliminar permanentemente
+- **⚡ Auto-guardado** - Guardado automático con persistencia debounceada y resolución de conflictos
 
-#### **🎯 Enhanced User Experience**
-- **🔔 Advanced Notifications** - Toast notifications with actions, queues, and persistent alerts
-- **🎯 Context Menus** - Right-click menus with quick actions and keyboard navigation
-- **🎨 Advanced Theming** - System theme detection, smooth transitions, and styled-components integration
-- **🎯 Focus Management** - Complete keyboard navigation with focus trapping and restoration
-- **🔄 Real-time Updates** - Optimistic updates with change detection and sync status
+#### **🎯 Experiencia de Usuario Mejorada**
+- **🔔 Notificaciones Avanzadas** - Notificaciones toast con acciones, colas y alertas persistentes
+- **🎯 Menús Contextuales** - Menús de clic derecho con acciones rápidas y navegación por teclado
+- **🎨 Temas Avanzados** - Detección de tema del sistema, transiciones suaves e integración con styled-components
+- **🎯 Gestión de Foco** - Navegación completa por teclado con captura y restauración de foco
+- **🔄 Actualizaciones en Tiempo Real** - Actualizaciones optimistas con detección de cambios y estado de sincronización
 
-#### **🛠️ Advanced Components**
-- **📝 Inline Editing** - Edit column titles and task properties directly in place
-- **🗑️ Confirmation Modals** - Smart confirmation dialogs for destructive actions
-- **📊 Advanced Analytics** - Time tracking, productivity metrics, and custom date ranges
-- **🔍 Smart Search** - Search history, saved filters, and multi-criteria filtering
-- **📱 Mobile Optimization** - Touch gestures, responsive layouts, and mobile-specific interactions
+#### **🛠️ Componentes Avanzados**
+- **📝 Edición en Línea** - Editar títulos de columnas y propiedades de tareas directamente en su lugar
+- **🗑️ Modales de Confirmación** - Diálogos de confirmación inteligentes para acciones destructivas
+- **📊 Análisis Avanzados** - Seguimiento de tiempo, métricas de productividad y rangos de fechas personalizados
+- **🔍 Búsqueda Inteligente** - Historial de búsqueda, filtros guardados y filtrado multi-criterio
+- **📱 Optimización Móvil** - Gestos táctiles, diseños responsivos e interacciones específicas para móvil
 
-#### **⚡ Performance & Optimization**
-- **🎯 Virtual Scrolling** - Efficient rendering of large task lists (50+ tasks)
-- **🧠 Memoization** - React.memo optimization for expensive components
-- **📦 Code Splitting** - Lazy loading with React.lazy and Suspense
-- **🔄 Debouncing** - Optimized search, auto-save, and API calls
-- **💾 Smart Caching** - Advanced localStorage management with cleanup utilities
+#### **⚡ Rendimiento y Optimización**
+- **🎯 Desplazamiento Virtual** - Renderizado eficiente de listas grandes de tareas (50+ tareas)
+- **🧠 Memoización** - Optimización React.memo para componentes costosos
+- **📦 División de Código** - Carga diferida con React.lazy y Suspense
+- **🔄 Debouncing** - Búsqueda optimizada, auto-guardado y llamadas API
+- **💾 Caché Inteligente** - Gestión avanzada de localStorage con utilidades de limpieza
 
-#### **🧪 Testing & Quality**
-- **⚡ Fast Testing** - Simple test variants (.simple.test.tsx) for rapid execution
-- **🔗 Integration Testing** - Comprehensive end-to-end workflow testing
-- **🎭 Advanced Mocking** - Sophisticated mock strategies for better test isolation
-- **📊 Coverage Reporting** - Detailed test coverage with performance metrics
+#### **🧪 Pruebas y Calidad**
+- **⚡ Pruebas Rápidas** - Variantes de pruebas simples (.simple.test.tsx) para ejecución rápida
+- **🔗 Pruebas de Integración** - Pruebas integrales de flujo de trabajo de extremo a extremo
+- **🎭 Mocking Avanzado** - Estrategias sofisticadas de mock para mejor aislamiento de pruebas
+- **📊 Reportes de Cobertura** - Cobertura detallada de pruebas con métricas de rendimiento
 
-#### **🐳 DevOps & Deployment**
-- **🐳 Docker Integration** - Complete containerization with optimized Dockerfile
-- **🔄 Hot Reload** - Fast development with Vite HMR in Docker environment
-- **📦 Bundle Optimization** - Tree shaking, dynamic imports, and asset optimization
-- **🚀 Production Ready** - Nginx configuration and production deployment setup
+#### **🐳 DevOps y Despliegue**
+- **🐳 Integración Docker** - Containerización completa con Dockerfile optimizado
+- **🔄 Recarga en Caliente** - Desarrollo rápido con Vite HMR en entorno Docker
+- **📦 Optimización de Paquetes** - Tree shaking, importaciones dinámicas y optimización de activos
+- **🚀 Listo para Producción** - Configuración de Nginx y configuración de despliegue en producción
 
-### **📁 New Components & Hooks Implemented**
+### **📁 Nuevos Componentes y Hooks Implementados**
 
-#### **🆕 New Components (Not in Original Requirements)**
+#### **🆕 Nuevos Componentes (No en los Requisitos Originales)**
 ```
 src/components/kanban/
-├── ArchivePanel/           # Task archiving and management
-├── MarkdownPreview/        # Rich text rendering
-├── SubtasksList/          # Checklist functionality
-├── EditableColumnTitle/   # Inline column editing
-├── DeleteBoardModal/      # Board deletion confirmation
-├── DeleteColumnModal/     # Column deletion confirmation
-├── VirtualizedTaskList/   # Performance-optimized lists
-└── TaskDetailModal/       # Enhanced with @ mentions system
-    ├── @ Mention Detection    # Real-time @ symbol detection
-    ├── User Dropdown         # Auto-complete user selection
-    ├── Mention Formatting    # Bold formatting for mentions
-    └── Reply with Mentions   # Reply system with @ prefixes
+├── ArchivePanel/           # Archivo y gestión de tareas
+├── MarkdownPreview/        # Renderizado de texto enriquecido
+├── SubtasksList/          # Funcionalidad de lista de verificación
+├── EditableColumnTitle/   # Edición en línea de títulos de columna
+├── DeleteBoardModal/      # Confirmación de eliminación de tablero
+├── DeleteColumnModal/     # Confirmación de eliminación de columna
+├── VirtualizedTaskList/   # Listas optimizadas para rendimiento
+└── TaskDetailModal/       # Mejorado con sistema de menciones @
+    ├── Detección de Menciones @    # Detección en tiempo real del símbolo @
+    ├── Dropdown de Usuarios        # Selección de usuario con autocompletado
+    ├── Formateo de Menciones       # Formato en negrita para menciones
+    └── Respuesta con Menciones     # Sistema de respuesta con prefijos @
 ```
 
 src/components/dashboard/
-├── DashboardFilterInterface/  # Advanced filtering UI
-├── DashboardFilters/         # Filter management
-├── MetricsCards/            # Real-time metrics display
-├── TasksByStatusChart/      # Status distribution charts
-├── TasksCompletedChart/     # Completion timeline charts
-└── TimeInColumnsChart/      # Time tracking analytics
+├── DashboardFilterInterface/  # UI de filtrado avanzado
+├── DashboardFilters/         # Gestión de filtros
+├── MetricsCards/            # Visualización de métricas en tiempo real
+├── TasksByStatusChart/      # Gráficos de distribución de estado
+├── TasksCompletedChart/     # Gráficos de línea de tiempo de finalización
+└── TimeInColumnsChart/      # Análisis de seguimiento de tiempo
 
 src/components/search/
-├── FilterPanel/            # Advanced search filters
-├── SearchInterface/        # Main search interface
-├── SearchBar/             # Enhanced search input
-└── NoResults/             # Empty state handling
+├── FilterPanel/            # Filtros de búsqueda avanzados
+├── SearchInterface/        # Interfaz principal de búsqueda
+├── SearchBar/             # Entrada de búsqueda mejorada
+└── NoResults/             # Manejo de estado vacío
 ```
 
-#### **🪝 New Custom Hooks (Not in Original Requirements)**
+#### **🪝 Nuevos Hooks Personalizados (No en los Requisitos Originales)**
 ```
 src/hooks/
-├── useAutoSave.ts              # Auto-save with debouncing
-├── useKanbanAutoSave.ts        # Kanban-specific auto-save
-├── useNotifications.ts         # Toast notification system
-├── useKanbanNotifications.ts   # Kanban notification integration
-├── useRealtimeUpdates.ts       # Real-time data synchronization
-├── useFocusManagement.ts       # Keyboard navigation & focus
-├── useContextMenu.ts           # Context menu functionality
-├── useCommentContextMenu.ts    # Comment-specific context menus
-├── useStyledTheme.tsx          # Styled-components theme integration
-├── useDebounce.ts              # Debounced function calls
-├── useDateUtils.ts             # Date formatting and validation
-└── useUnifiedFilters.tsx       # Advanced filtering system
+├── useAutoSave.ts              # Auto-guardado con debouncing
+├── useKanbanAutoSave.ts        # Auto-guardado específico de Kanban
+├── useNotifications.ts         # Sistema de notificaciones toast
+├── useKanbanNotifications.ts   # Integración de notificaciones Kanban
+├── useRealtimeUpdates.ts       # Sincronización de datos en tiempo real
+├── useFocusManagement.ts       # Navegación por teclado y foco
+├── useContextMenu.ts           # Funcionalidad de menú contextual
+├── useCommentContextMenu.ts    # Menús contextuales específicos de comentarios
+├── useStyledTheme.tsx          # Integración de temas styled-components
+├── useDebounce.ts              # Llamadas de función con debounce
+├── useDateUtils.ts             # Formateo y validación de fechas
+└── useUnifiedFilters.tsx       # Sistema de filtrado avanzado
 ```
 
-#### **🛠️ New Utility Functions (Not in Original Requirements)**
+#### **🛠️ Nuevas Funciones de Utilidad (No en los Requisitos Originales)**
 ```
 src/utils/
-├── clean-project-data.ts       # Project data cleanup
-├── clear-storage.ts           # Storage management
-├── clear-theme.ts             # Theme reset utilities
-├── reset-storage.ts           # Complete storage reset
-└── storageManager.ts          # Advanced storage utilities
+├── clean-project-data.ts       # Limpieza de datos del proyecto
+├── clear-storage.ts           # Gestión de almacenamiento
+├── clear-theme.ts             # Utilidades de restablecimiento de tema
+├── reset-storage.ts           # Restablecimiento completo de almacenamiento
+└── storageManager.ts          # Utilidades avanzadas de almacenamiento
 ```
 
-### **💬 Advanced Comment System Features**
+### **💬 Características Avanzadas del Sistema de Comentarios**
 
-#### **@ Mention System Implementation**
+#### **Implementación del Sistema de Menciones @**
 ```typescript
-// Real-time mention detection
+// Detección de menciones en tiempo real
 const mentionRegex = /^(@[^:]+):\s*(.*)$/;
 
-// Auto-complete dropdown with user filtering
+// Dropdown de autocompletado con filtrado de usuarios
 const handleCommentChange = (e) => {
   const textBeforeCursor = value.substring(0, cursorPos);
   const lastAtIndex = textBeforeCursor.lastIndexOf('@');
@@ -138,7 +138,7 @@ const handleCommentChange = (e) => {
   }
 };
 
-// Bold formatting for mentions in comments
+// Formateo en negrita para menciones en comentarios
 const formatCommentWithMentions = (content) => (
   <>
     <strong className="comment-mention">@Usuario</strong>
@@ -147,279 +147,280 @@ const formatCommentWithMentions = (content) => (
 );
 ```
 
-#### **Comment System Features:**
-- **@ Mention Detection** - Real-time detection of `@` symbol
-- **User Auto-complete** - Dropdown with filtered user suggestions
-- **Mention Formatting** - Bold styling for mentioned users
-- **Reply System** - Reply to comments with `@originalAuthor` prefix
-- **Smart Positioning** - Dropdown appears at cursor position
-- **Keyboard Navigation** - Full keyboard support for mention selection
-- **User Filtering** - Filter users as you type after `@`
-- **Comment Threading** - Nested comment structure with replies
+#### **Características del Sistema de Comentarios:**
+- **Detección de Menciones @** - Detección en tiempo real del símbolo `@`
+- **Autocompletado de Usuario** - Dropdown con sugerencias de usuario filtradas
+- **Formateo de Menciones** - Estilo en negrita para usuarios mencionados
+- **Sistema de Respuesta** - Responder a comentarios con prefijo `@autorOriginal`
+- **Posicionamiento Inteligente** - El dropdown aparece en la posición del cursor
+- **Navegación por Teclado** - Soporte completo de teclado para selección de menciones
+- **Filtrado de Usuarios** - Filtrar usuarios mientras escribes después de `@`
+- **Hilos de Comentarios** - Estructura de comentarios anidados con respuestas
 
-### **📊 Feature Comparison: Original vs Implemented**
+### **📊 Comparación de Características: Original vs Implementado**
 
-| Feature Category | Original Requirements | Actually Implemented | Enhancement Level |
+| Categoría de Característica | Requisitos Originales | Realmente Implementado | Nivel de Mejora |
 |------------------|----------------------|---------------------|-------------------|
-| **Task Management** | Basic CRUD | CRUD + Comments + @ Mentions + Subtasks + Archive | 🚀 **Advanced** |
-| **Theming** | Light/Dark themes | System detection + Smooth transitions + Styled-components | 🚀 **Advanced** |
-| **Notifications** | Not specified | Toast system + Actions + Queues + Persistence | 🆕 **New** |
-| **Search** | Global search | Smart search + History + Saved filters + Multi-criteria | 🚀 **Advanced** |
-| **Analytics** | Basic charts | Time tracking + Productivity metrics + Custom ranges | 🚀 **Advanced** |
-| **Performance** | Virtual scrolling | Virtual scrolling + Memoization + Code splitting + Debouncing | 🚀 **Advanced** |
-| **Testing** | Component tests | Fast tests + Integration + Advanced mocking + Coverage | 🚀 **Advanced** |
-| **DevOps** | Not specified | Docker + Hot reload + Production config + Optimization | 🆕 **New** |
-| **Accessibility** | Basic compliance | Full keyboard nav + Focus management + Screen readers | 🚀 **Advanced** |
-| **Data Management** | localStorage | Auto-save + Validation + Cleanup + Migration utilities | 🚀 **Advanced** |
-| **Comment System** | Not specified | @ Mentions + Reply system + User dropdown + Formatting | 🆕 **New** |
+| **Gestión de Tareas** | CRUD básico | CRUD + Comentarios + Menciones @ + Subtareas + Archivo | 🚀 **Avanzado** |
+| **Temas** | Temas claro/oscuro | Detección del sistema + Transiciones suaves + Styled-components | 🚀 **Avanzado** |
+| **Notificaciones** | No especificado | Sistema toast + Acciones + Colas + Persistencia | 🆕 **Nuevo** |
+| **Búsqueda** | Búsqueda global | Búsqueda inteligente + Historial + Filtros guardados + Multi-criterio | 🚀 **Avanzado** |
+| **Análisis** | Gráficos básicos | Seguimiento de tiempo + Métricas de productividad + Rangos personalizados | 🚀 **Avanzado** |
+| **Rendimiento** | Desplazamiento virtual | Desplazamiento virtual + Memoización + División de código + Debouncing | 🚀 **Avanzado** |
+| **Pruebas** | Pruebas de componentes | Pruebas rápidas + Integración + Mocking avanzado + Cobertura | 🚀 **Avanzado** |
+| **DevOps** | No especificado | Docker + Recarga en caliente + Config de producción + Optimización | 🆕 **Nuevo** |
+| **Accesibilidad** | Cumplimiento básico | Navegación completa por teclado + Gestión de foco + Lectores de pantalla | 🚀 **Avanzado** |
+| **Gestión de Datos** | localStorage | Auto-guardado + Validación + Limpieza + Utilidades de migración | 🚀 **Avanzado** |
+| **Sistema de Comentarios** | No especificado | Menciones @ + Sistema de respuestas + Dropdown de usuarios + Formateo | 🆕 **Nuevo** |
 
-## 🛠 Tech Stack & Justifications
+## 🛠 Stack Tecnológico y Justificaciones
 
-### **Core Technologies**
+### **Tecnologías Principales**
 
 #### **React 18 + TypeScript**
-- **React 18:** Latest features including Concurrent Rendering, Suspense, and improved performance
-- **TypeScript:** Type safety, better developer experience, and reduced runtime errors
-- **Why:** Industry standard for modern web development with excellent ecosystem support
+- **React 18:** Características más recientes incluyendo Renderizado Concurrente, Suspense y rendimiento mejorado
+- **TypeScript:** Seguridad de tipos, mejor experiencia de desarrollador y menos errores en tiempo de ejecución
+- **Por qué:** Estándar de la industria para desarrollo web moderno con excelente soporte del ecosistema
 
-#### **Vite (Build Tool)**
-- **Why Vite over Webpack/Create React App:**
-  - **Development Speed:** 10-100x faster HMR (Hot Module Replacement)
-  - **Build Performance:** Rollup-based production builds with tree shaking
-  - **ESM-first:** Native ES modules for better performance
-  - **Modern Tooling:** Built-in TypeScript, CSS preprocessing, and plugin ecosystem
-  - **Bundle Size:** Smaller bundle sizes with better optimization
+#### **Vite (Herramienta de Construcción)**
+- **Por qué Vite sobre Webpack/Create React App:**
+  - **Velocidad de Desarrollo:** 10-100x más rápido en HMR (Hot Module Replacement)
+  - **Rendimiento de Construcción:** Construcciones de producción basadas en Rollup con tree shaking
+  - **ESM-first:** Módulos ES nativos para mejor rendimiento
+  - **Herramientas Modernas:** TypeScript integrado, preprocesamiento CSS y ecosistema de plugins
+  - **Tamaño de Paquete:** Paquetes más pequeños con mejor optimización
 
-#### **Zustand (State Management)**
-- **Why Zustand over Redux/Context:**
-  - **Bundle Size:** 2KB vs Redux Toolkit's 50KB+
-  - **TypeScript:** First-class TypeScript support without additional setup
-  - **Simplicity:** No boilerplate code (actions, reducers, providers)
-  - **Performance:** Direct subscription model, no unnecessary re-renders
-  - **Developer Experience:** Intuitive API, easy to learn and maintain
+#### **Zustand (Gestión de Estado)**
+- **Por qué Zustand sobre Redux/Context:**
+  - **Tamaño de Paquete:** 2KB vs 50KB+ de Redux Toolkit
+  - **TypeScript:** Soporte de primera clase para TypeScript sin configuración adicional
+  - **Simplicidad:** Sin código boilerplate (acciones, reductores, proveedores)
+  - **Rendimiento:** Modelo de suscripción directa, sin re-renderizados innecesarios
+  - **Experiencia de Desarrollador:** API intuitiva, fácil de aprender y mantener
 
-#### **Styled-components (Styling)**
-- **Why Styled-components over CSS Modules/Tailwind:**
-  - **Component Co-location:** Styles live next to components for better maintainability
-  - **Dynamic Theming:** Runtime theme switching without CSS variables complexity
-  - **TypeScript Integration:** Full type safety for props and theme objects
-  - **No Naming Conflicts:** Automatic class name generation
-  - **Performance:** CSS-in-JS with zero runtime cost in production builds
+#### **Styled-components (Estilos)**
+- **Por qué Styled-components sobre CSS Modules/Tailwind:**
+  - **Co-localización de Componentes:** Los estilos viven junto a los componentes para mejor mantenibilidad
+  - **Temas Dinámicos:** Cambio de tema en tiempo de ejecución sin complejidad de variables CSS
+  - **Integración TypeScript:** Seguridad de tipos completa para props y objetos de tema
+  - **Sin Conflictos de Nombres:** Generación automática de nombres de clase
+  - **Rendimiento:** CSS-in-JS con costo de ejecución cero en construcciones de producción
 
-### **Specialized Libraries**
+### **Bibliotecas Especializadas**
 
-#### **@dnd-kit (Drag & Drop)**
-- **Why @dnd-kit over react-beautiful-dnd:**
-  - **Modern React:** Built for React 18+ with hooks support
-  - **Accessibility:** Built-in keyboard navigation and screen reader support
-  - **Flexibility:** Modular API for custom drag and drop behaviors
-  - **Performance:** Optimized for large lists with virtualization support
-  - **Maintenance:** Actively maintained with regular updates
+#### **@dnd-kit (Arrastrar y Soltar)**
+- **Por qué @dnd-kit sobre react-beautiful-dnd:**
+  - **React Moderno:** Construido para React 18+ con soporte de hooks
+  - **Accesibilidad:** Navegación por teclado y soporte de lectores de pantalla integrados
+  - **Flexibilidad:** API modular para comportamientos personalizados de arrastrar y soltar
+  - **Rendimiento:** Optimizado para listas grandes con soporte de virtualización
+  - **Mantenimiento:** Activamente mantenido con actualizaciones regulares
 
-#### **Recharts (Data Visualization)**
-- **Why Recharts over D3.js/Chart.js:**
-  - **React Integration:** Built specifically for React with hooks
-  - **TypeScript:** Full TypeScript support out of the box
-  - **Responsive:** Automatic responsive behavior for different screen sizes
-  - **Customizable:** Highly customizable with consistent API
-  - **Bundle Size:** Smaller bundle compared to D3.js
+#### **Recharts (Visualización de Datos)**
+- **Por qué Recharts sobre D3.js/Chart.js:**
+  - **Integración React:** Construido específicamente para React con hooks
+  - **TypeScript:** Soporte completo de TypeScript listo para usar
+  - **Responsivo:** Comportamiento responsivo automático para diferentes tamaños de pantalla
+  - **Personalizable:** Altamente personalizable con API consistente
+  - **Tamaño de Paquete:** Paquete más pequeño comparado con D3.js
 
-#### **Jest + React Testing Library (Testing)**
-- **Why this combination:**
-  - **Jest:** Industry standard test runner with excellent mocking capabilities
-  - **React Testing Library:** User-centric testing approach focusing on behavior
-  - **Integration:** Seamless integration with modern React development workflow
-  - **Performance:** Fast test execution with parallel processing
-  - **CI/CD:** Excellent support for continuous integration pipelines
+#### **Jest + React Testing Library (Pruebas)**
+- **Por qué esta combinación:**
+  - **Jest:** Ejecutor de pruebas estándar de la industria con excelentes capacidades de mocking
+  - **React Testing Library:** Enfoque de pruebas centrado en el usuario que se enfoca en el comportamiento
+  - **Integración:** Integración perfecta con el flujo de trabajo moderno de desarrollo React
+  - **Rendimiento:** Ejecución rápida de pruebas con procesamiento en paralelo
+  - **CI/CD:** Excelente soporte para pipelines de integración continua
 
-### **Development & Deployment**
+### **Desarrollo y Despliegue**
 
 #### **Docker + Docker Compose**
-- **Why Docker:**
-  - **Consistency:** Same environment across development, staging, and production
-  - **Isolation:** Containerized application with isolated dependencies
-  - **Scalability:** Easy horizontal scaling and load balancing
-  - **Deployment:** Simplified deployment process with container orchestration
-  - **Development:** Consistent development environment for all team members
+- **Por qué Docker:**
+  - **Consistencia:** Mismo entorno en desarrollo, staging y producción
+  - **Aislamiento:** Aplicación containerizada con dependencias aisladas
+  - **Escalabilidad:** Escalado horizontal fácil y balanceo de carga
+  - **Despliegue:** Proceso de despliegue simplificado con orquestación de contenedores
+  - **Desarrollo:** Entorno de desarrollo consistente para todos los miembros del equipo
 
-#### **ESLint + Prettier (Code Quality)**
-- **Why these tools:**
-  - **Code Consistency:** Enforce consistent coding style across the team
-  - **Error Prevention:** Catch potential bugs and code quality issues early
-  - **TypeScript Integration:** Full TypeScript support with strict rules
-  - **Auto-fixing:** Automatically fix many code quality issues
-  - **Team Collaboration:** Reduce code review time with consistent formatting
+#### **ESLint + Prettier (Calidad de Código)**
+- **Por qué estas herramientas:**
+  - **Consistencia de Código:** Aplicar estilo de codificación consistente en todo el equipo
+  - **Prevención de Errores:** Detectar posibles bugs y problemas de calidad de código temprano
+  - **Integración TypeScript:** Soporte completo de TypeScript con reglas estrictas
+  - **Auto-corrección:** Corregir automáticamente muchos problemas de calidad de código
+  - **Colaboración en Equipo:** Reducir tiempo de revisión de código con formato consistente
 
-### **Performance & Optimization**
+### **Rendimiento y Optimización**
 
-#### **React.lazy + Suspense (Code Splitting)**
-- **Benefits:**
-  - **Bundle Size:** Split code into smaller chunks for faster initial load
-  - **Performance:** Load components only when needed
-  - **User Experience:** Progressive loading with loading states
-  - **Caching:** Better browser caching with smaller chunks
+#### **React.lazy + Suspense (División de Código)**
+- **Beneficios:**
+  - **Tamaño de Paquete:** Dividir código en fragmentos más pequeños para carga inicial más rápida
+  - **Rendimiento:** Cargar componentes solo cuando se necesiten
+  - **Experiencia de Usuario:** Carga progresiva con estados de carga
+  - **Caché:** Mejor caché del navegador con fragmentos más pequeños
 
-#### **React.memo (Component Optimization)**
-- **Benefits:**
-  - **Re-render Prevention:** Prevent unnecessary component re-renders
-  - **Performance:** Optimize expensive components
-  - **Memory Usage:** Reduce memory footprint in large applications
-  - **User Experience:** Smoother interactions and animations
+#### **React.memo (Optimización de Componentes)**
+- **Beneficios:**
+  - **Prevención de Re-renderizado:** Prevenir re-renderizados innecesarios de componentes
+  - **Rendimiento:** Optimizar componentes costosos
+  - **Uso de Memoria:** Reducir huella de memoria en aplicaciones grandes
+  - **Experiencia de Usuario:** Interacciones y animaciones más suaves
 
-#### **Custom Hooks (Logic Reuse)**
-- **Benefits:**
-  - **DRY Principle:** Don't repeat yourself with reusable logic
-  - **Separation of Concerns:** Business logic separated from UI components
-  - **Testability:** Business logic can be tested independently
-  - **Composability:** Multiple hooks can be combined for complex behaviors
+#### **Hooks Personalizados (Reutilización de Lógica)**
+- **Beneficios:**
+  - **Principio DRY:** No repetirte con lógica reutilizable
+  - **Separación de Responsabilidades:** Lógica de negocio separada de componentes UI
+  - **Testabilidad:** La lógica de negocio puede probarse independientemente
+  - **Composabilidad:** Múltiples hooks pueden combinarse para comportamientos complejos
 
-## 🚀 Quick Start
+## 🚀 Inicio Rápido
 
-### Local Development
+### Desarrollo Local
 ```bash
-# Install dependencies
+# Instalar dependencias
 npm install
 
-# Start development server
+# Iniciar servidor de desarrollo
 npm run dev
 
-# Access at http://localhost:5173
+# Acceder en http://localhost:5173
 ```
 
 ### Docker
 ```bash
-# Development
+# Desarrollo
 docker-compose up --build
 
-# Access at http://localhost:3000
+# Acceder en http://localhost:3000
 ```
 
-## 📁 Project Structure
+## 📁 Estructura del Proyecto
 
 ```
 src/
 ├── components/
-│   ├── ui/           # Reusable UI components
-│   ├── kanban/       # Kanban-specific components
-│   ├── dashboard/    # Analytics components
-│   └── search/       # Search & filtering
-├── store/            # Zustand state management
-├── hooks/            # Custom React hooks
-├── utils/            # Utility functions
-├── styles/           # Global styles & theme
-└── types/            # TypeScript definitions
+│   ├── ui/           # Componentes UI reutilizables
+│   ├── kanban/       # Componentes específicos de Kanban
+│   ├── dashboard/    # Componentes de análisis
+│   └── search/       # Búsqueda y filtrado
+├── store/            # Gestión de estado Zustand
+├── hooks/            # Hooks personalizados de React
+├── utils/            # Funciones de utilidad
+├── styles/           # Estilos globales y tema
+└── types/            # Definiciones de TypeScript
 ```
 
-## 🧪 Testing
+## 🧪 Pruebas
 
 ```bash
-# Run tests
+# Ejecutar pruebas
 npm test
 
-# Run with coverage
+# Ejecutar con cobertura
 npm test -- --coverage
 
-# Watch mode
+# Modo de observación
 npm test -- --watch
 
-# Run specific test file
+# Ejecutar archivo de prueba específico
 npm test -- --testPathPatterns="Board.test.tsx"
 ```
 
-**Testing Results:** ✅ **571 tests passed, 54 test suites passed** - Comprehensive test coverage across all components, hooks, and utilities.
+**Resultados de Pruebas:** ✅ **571 pruebas pasaron, 54 suites de pruebas pasaron** - Cobertura integral de pruebas en todos los componentes, hooks y utilidades.
 
-**Testing Strategy:** Jest + React Testing Library for component and unit tests. Achieves 70%+ code coverage with focus on user behavior testing.
+**Estrategia de Pruebas:** Jest + React Testing Library para pruebas de componentes y unitarias. Logra 70%+ de cobertura de código con enfoque en pruebas de comportamiento del usuario.
 
-### **Test Categories:**
-- **Component Tests:** Individual component behavior and rendering
-- **Integration Tests:** End-to-end workflows and component interactions  
-- **Hook Tests:** Custom hook functionality and state management
-- **Utility Tests:** Pure function testing and data manipulation
-- **Performance Tests:** Fast execution with `.simple.test.tsx` variants
+### **Categorías de Pruebas:**
+- **Pruebas de Componentes:** Comportamiento y renderizado de componentes individuales
+- **Pruebas de Integración:** Flujos de trabajo de extremo a extremo e interacciones de componentes  
+- **Pruebas de Hooks:** Funcionalidad de hooks personalizados y gestión de estado
+- **Pruebas de Utilidades:** Pruebas de funciones puras y manipulación de datos
+- **Pruebas de Rendimiento:** Ejecución rápida con variantes `.simple.test.tsx`
 
-## 🏗️ Software Architecture
+## 🏗️ Arquitectura de Software
 
-### **🎯 Architectural Pattern: Layered Architecture + Component-Based Architecture**
+### **🎯 Patrón Arquitectónico: Arquitectura en Capas + Arquitectura Basada en Componentes**
 
 Este proyecto implementa una **arquitectura en capas híbrida** combinando:
 
-#### **1. 🏛️ Layered Architecture (Arquitectura en Capas)**
+#### **1. 🏛️ Arquitectura en Capas (Layered Architecture)**
 ```
 ┌─────────────────────────────────────────┐
-│           Presentation Layer            │ ← React Components, Pages
+│           Capa de Presentación          │ ← Componentes React, Páginas
 ├─────────────────────────────────────────┤
-│            Business Logic Layer         │ ← Custom Hooks, Store
+│           Capa de Lógica de Negocio     │ ← Hooks Personalizados, Store
 ├─────────────────────────────────────────┤
-│              Data Layer                 │ ← Zustand Store, localStorage
+│               Capa de Datos             │ ← Store Zustand, localStorage
 ├─────────────────────────────────────────┤
-│            Infrastructure Layer         │ ← Utils, External Libraries
+│           Capa de Infraestructura       │ ← Utils, Bibliotecas Externas
 └─────────────────────────────────────────┘
 ```
 
-#### **2. 🧩 Component-Based Architecture**
+#### **2. 🧩 Arquitectura Basada en Componentes**
 ```
-App (Root Component)
-├── Pages (Route Components)
+App (Componente Raíz)
+├── Pages (Componentes de Ruta)
 │   ├── KanbanPage
 │   └── DashboardPage
-├── Feature Components
-│   ├── kanban/ (Kanban-specific components)
-│   ├── dashboard/ (Analytics components)
-│   ├── search/ (Search functionality)
-│   └── ui/ (Reusable UI components)
-└── Layout Components
-    └── layout/ (Navigation, structure)
+├── Componentes de Características
+│   ├── kanban/ (componentes específicos de Kanban)
+│   ├── dashboard/ (componentes de análisis)
+│   ├── search/ (funcionalidad de búsqueda)
+│   └── ui/ (componentes UI reutilizables)
+└── Componentes de Layout
+    └── layout/ (navegación, estructura)
 ```
 
-### **📊 Detailed Architecture Layers**
+### **📊 Capas Detalladas de la Arquitectura**
 
-#### **🎨 Presentation Layer**
-- **React Components:** UI components with clear separation of concerns
-- **Styled Components:** Component-scoped styling with theme integration
-- **Pages:** Route-level components that orchestrate feature components
-- **Layout Components:** Navigation and structural components
+#### **🎨 Capa de Presentación**
+- **Componentes React:** Componentes UI con clara separación de responsabilidades
+- **Styled Components:** Estilos con alcance de componente e integración de tema
+- **Páginas:** Componentes a nivel de ruta que orquestan componentes de características
+- **Componentes de Layout:** Navegación y componentes estructurales
 
-#### **⚙️ Business Logic Layer**
-- **Custom Hooks:** Encapsulated business logic and state management
-- **Store (Zustand):** Centralized state management with persistence
-- **Service Layer:** Business rules and data transformation logic
-- **Event Handlers:** User interaction and business event processing
+#### **⚙️ Capa de Lógica de Negocio**
+- **Hooks Personalizados:** Lógica de negocio encapsulada y gestión de estado
+- **Store (Zustand):** Gestión centralizada de estado con persistencia
+- **Capa de Servicio:** Reglas de negocio y lógica de transformación de datos
+- **Manejadores de Eventos:** Interacción del usuario y procesamiento de eventos de negocio
 
-#### **💾 Data Layer**
-- **Zustand Store:** Application state management
-- **localStorage Integration:** Data persistence and hydration
-- **Mock Data:** Development and testing data
-- **Type Definitions:** Strongly typed data models
+#### **💾 Capa de Datos**
+- **Store Zustand:** Gestión del estado de la aplicación
+- **Integración localStorage:** Persistencia y hidratación de datos
+- **Datos Mock:** Datos de desarrollo y pruebas
+- **Definiciones de Tipos:** Modelos de datos fuertemente tipados
 
-#### **🔧 Infrastructure Layer**
-- **Utilities:** Pure functions and helper utilities
-- **External Libraries:** Third-party integrations (dnd-kit, recharts, etc.)
-- **Build Tools:** Vite, TypeScript, ESLint, Prettier
-- **Testing Infrastructure:** Jest, React Testing Library
+#### **🔧 Capa de Infraestructura**
+- **Utilidades:** Funciones puras y utilidades auxiliares
+- **Bibliotecas Externas:** Integraciones de terceros (dnd-kit, recharts, etc.)
+- **Herramientas de Construcción:** Vite, TypeScript, ESLint, Prettier
+- **Infraestructura de Pruebas:** Jest, React Testing Library
 
-### **🔄 Data Flow Architecture**
+### **🔄 Arquitectura de Flujo de Datos**
 
-#### **Unidirectional Data Flow**
+#### **Flujo de Datos Unidireccional**
 ```
-User Action → Component → Hook → Store → Component Re-render → UI Update
+Acción del Usuario → Componente → Hook → Store → Re-renderizado del Componente → Actualización UI
 ```
 
-#### **State Management Flow**
+#### **Flujo de Gestión de Estado**
 ```
 ┌─────────────┐    ┌──────────────┐    ┌─────────────┐
-│   Component │───▶│ Custom Hook  │───▶│ Zustand     │
-│             │    │              │    │ Store       │
+│   Componente│───▶│ Hook Personal│───▶│ Store       │
+│             │    │              │    │ Zustand     │
 └─────────────┘    └──────────────┘    └─────────────┘
        ▲                                        │
        │                                        ▼
 ┌─────────────┐    ┌──────────────┐    ┌─────────────┐
-│   UI Update │◀───│ State Change │◀───│ Action      │
+│Actualización│◀───│Cambio Estado │◀───│ Acción      │
+│     UI      │    │              │    │             │
 └─────────────┘    └──────────────┘    └─────────────┘
 ```
 
-### **🏗️ Architectural Patterns Implemented**
+### **🏗️ Patrones Arquitectónicos Implementados**
 
-#### **1. 🎭 Provider Pattern**
+#### **1. 🎭 Patrón Provider**
 ```typescript
 <ThemeProvider>
   <StyledThemeProviderWrapper>
@@ -434,9 +435,9 @@ User Action → Component → Hook → Store → Component Re-render → UI Upda
 </ThemeProvider>
 ```
 
-#### **2. 🏭 Factory Pattern**
+#### **2. 🏭 Patrón Factory**
 ```typescript
-// Component factory for creating consistent components
+// Factory de componentes para crear componentes consistentes
 const createTask = (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>): Task => ({
   ...task,
   id: generateId(),
@@ -445,19 +446,19 @@ const createTask = (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>): Task =>
 });
 ```
 
-#### **3. 🔄 Observer Pattern**
+#### **3. 🔄 Patrón Observer**
 ```typescript
-// Zustand store implements observer pattern
+// El store Zustand implementa el patrón observer
 const useKanbanStore = create<KanbanState & KanbanActions>()(
   persist((set, get) => ({
-    // State and actions that notify subscribers
+    // Estado y acciones que notifican a los suscriptores
   }))
 );
 ```
 
-#### **4. 🎯 Strategy Pattern**
+#### **4. 🎯 Patrón Strategy**
 ```typescript
-// Different strategies for data persistence
+// Diferentes estrategias para persistencia de datos
 interface StorageStrategy {
   getItem: (name: string) => any;
   setItem: (name: string, value: any) => void;
@@ -465,57 +466,57 @@ interface StorageStrategy {
 }
 ```
 
-#### **5. 🏗️ Builder Pattern**
+#### **5. 🏗️ Patrón Builder**
 ```typescript
-// Component composition builder
+// Constructor de composición de componentes
 const TaskCard = React.memo(({ task, onEdit, onDelete, onMove }) => {
-  // Component built with specific props and behaviors
+  // Componente construido con props y comportamientos específicos
 });
 ```
 
-### **📁 Directory Structure Architecture**
+### **📁 Arquitectura de Estructura de Directorios**
 
-#### **Domain-Driven Structure**
+#### **Estructura Orientada por Dominio**
 ```
 src/
-├── components/           # Presentation Layer
-│   ├── ui/              # Shared UI components
-│   ├── kanban/          # Kanban domain components
-│   ├── dashboard/       # Dashboard domain components
-│   ├── search/          # Search domain components
-│   └── layout/          # Layout components
-├── hooks/               # Business Logic Layer
-│   ├── useAutoSave.ts   # Auto-save business logic
-│   ├── useNotifications.ts # Notification business logic
-│   └── useKanbanStore.ts # Kanban business logic
-├── store/               # Data Layer
-│   ├── kanbanStore.ts   # Central state management
-│   └── utils/           # Store utilities
-├── pages/               # Route-level components
-├── utils/               # Infrastructure Layer
-├── types/               # Type definitions
-└── styles/              # Global styling
+├── components/           # Capa de Presentación
+│   ├── ui/              # Componentes UI compartidos
+│   ├── kanban/          # Componentes del dominio Kanban
+│   ├── dashboard/       # Componentes del dominio Dashboard
+│   ├── search/          # Componentes del dominio de búsqueda
+│   └── layout/          # Componentes de layout
+├── hooks/               # Capa de Lógica de Negocio
+│   ├── useAutoSave.ts   # Lógica de negocio de auto-guardado
+│   ├── useNotifications.ts # Lógica de negocio de notificaciones
+│   └── useKanbanStore.ts # Lógica de negocio de Kanban
+├── store/               # Capa de Datos
+│   ├── kanbanStore.ts   # Gestión centralizada de estado
+│   └── utils/           # Utilidades del store
+├── pages/               # Componentes a nivel de ruta
+├── utils/               # Capa de Infraestructura
+├── types/               # Definiciones de tipos
+└── styles/              # Estilos globales
 ```
 
-### **🔌 Integration Patterns**
+### **🔌 Patrones de Integración**
 
-#### **1. 🎣 Custom Hooks Pattern**
+#### **1. 🎣 Patrón de Hooks Personalizados**
 ```typescript
-// Business logic encapsulation
+// Encapsulación de lógica de negocio
 const useKanban = () => {
   const store = useKanbanStore();
   return {
     boards: store.boards,
     addTask: store.addTask,
     updateTask: store.updateTask,
-    // ... other actions
+    // ... otras acciones
   };
 };
 ```
 
-#### **2. 🎨 Higher-Order Components (HOC)**
+#### **2. 🎨 Componentes de Orden Superior (HOC)**
 ```typescript
-// Component enhancement
+// Mejora de componentes
 const withErrorBoundary = (Component) => {
   return (props) => (
     <ErrorBoundary>
@@ -525,9 +526,9 @@ const withErrorBoundary = (Component) => {
 };
 ```
 
-#### **3. 🧩 Compound Components**
+#### **3. 🧩 Componentes Compuestos**
 ```typescript
-// Component composition
+// Composición de componentes
 <Dashboard>
   <Dashboard.Filters />
   <Dashboard.Metrics />
@@ -535,18 +536,18 @@ const withErrorBoundary = (Component) => {
 </Dashboard>
 ```
 
-### **🚀 Performance Architecture**
+### **🚀 Arquitectura de Rendimiento**
 
-#### **Code Splitting Strategy**
+#### **Estrategia de División de Código**
 ```typescript
-// Lazy loading for performance
+// Carga diferida para rendimiento
 const KanbanPage = lazy(() => import('./pages/KanbanPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 ```
 
-#### **Virtualization Architecture**
+#### **Arquitectura de Virtualización**
 ```typescript
-// Performance optimization for large lists
+// Optimización de rendimiento para listas grandes
 const VirtualizedTaskList = ({ tasks }) => {
   return (
     <VirtualList
@@ -558,55 +559,55 @@ const VirtualizedTaskList = ({ tasks }) => {
 };
 ```
 
-#### **Memoization Strategy**
+#### **Estrategia de Memoización**
 ```typescript
-// Prevent unnecessary re-renders
+// Prevenir re-renderizados innecesarios
 const TaskCard = React.memo(({ task, onEdit, onDelete }) => {
-  // Component logic
+  // Lógica del componente
 });
 ```
 
-### **🔒 Security Architecture**
+### **🔒 Arquitectura de Seguridad**
 
-#### **Input Validation Layer**
+#### **Capa de Validación de Entrada**
 ```typescript
-// Data validation and sanitization
+// Validación y saneamiento de datos
 const validateTask = (task: Partial<Task>): boolean => {
   return task.title && task.title.length > 0 && task.title.length <= 100;
 };
 ```
 
-#### **Error Boundary Architecture**
+#### **Arquitectura de Límites de Error**
 ```typescript
-// Error isolation and recovery
+// Aislamiento y recuperación de errores
 <ErrorBoundary
   onError={(error, errorInfo) => {
-    console.error('Application Error:', error, errorInfo);
-    // Error reporting to monitoring service
+    console.error('Error de Aplicación:', error, errorInfo);
+    // Reporte de errores al servicio de monitoreo
   }}
 >
   <App />
 </ErrorBoundary>
 ```
 
-### **📊 Architecture Quality Metrics**
+### **📊 Métricas de Calidad de Arquitectura**
 
-#### **Coupling & Cohesion**
-- **Low Coupling:** Components depend on abstractions (hooks, props)
-- **High Cohesion:** Related functionality grouped in modules
-- **Dependency Inversion:** Components depend on interfaces, not implementations
+#### **Acoplamiento y Cohesión**
+- **Bajo Acoplamiento:** Los componentes dependen de abstracciones (hooks, props)
+- **Alta Cohesión:** Funcionalidad relacionada agrupada en módulos
+- **Inversión de Dependencias:** Los componentes dependen de interfaces, no de implementaciones
 
-#### **Scalability Indicators**
-- **Modular Design:** Easy to add new features without affecting existing code
-- **Component Reusability:** UI components can be reused across different contexts
-- **Hook Composition:** Business logic can be composed and reused
-- **Type Safety:** TypeScript ensures compile-time safety and better refactoring
+#### **Indicadores de Escalabilidad**
+- **Diseño Modular:** Fácil agregar nuevas características sin afectar código existente
+- **Reutilización de Componentes:** Los componentes UI pueden reutilizarse en diferentes contextos
+- **Composición de Hooks:** La lógica de negocio puede componerse y reutilizarse
+- **Seguridad de Tipos:** TypeScript asegura seguridad en tiempo de compilación y mejor refactorización
 
-#### **Maintainability Features**
-- **Clear Separation of Concerns:** Each layer has distinct responsibilities
-- **Consistent Patterns:** Similar problems solved with similar patterns
-- **Comprehensive Testing:** 571 tests ensure reliability and prevent regressions
-- **Documentation:** Clear architecture documentation and code comments
+#### **Características de Mantenibilidad**
+- **Separación Clara de Responsabilidades:** Cada capa tiene responsabilidades distintas
+- **Patrones Consistentes:** Problemas similares resueltos con patrones similares
+- **Pruebas Integrales:** 571 pruebas aseguran confiabilidad y previenen regresiones
+- **Documentación:** Documentación clara de arquitectura y comentarios de código
 
 ## 🏗️ Architecture & Design Patterns
 
@@ -880,142 +881,142 @@ const Analytics = lazy(() => import('./Analytics'));
 
 **This architecture ensures maintainable, scalable, and performant code while following React and TypeScript best practices.**
 
-## 📊 Performance
+## 📊 Rendimiento
 
-- **Code Splitting:** React.lazy() for route-based splitting
-- **Virtualization:** Efficient rendering of large task lists (50+ tasks)
-- **Memoization:** React.memo for expensive components
-- **Debouncing:** Optimized search and auto-save operations
-- **Bundle Optimization:** Vite's optimized build with tree shaking
-- **Caching:** Smart localStorage caching with persistence
+- **División de Código:** React.lazy() para división basada en rutas
+- **Virtualización:** Renderizado eficiente de listas grandes de tareas (50+ tareas)
+- **Memoización:** React.memo para componentes costosos
+- **Debouncing:** Operaciones de búsqueda y auto-guardado optimizadas
+- **Optimización de Paquetes:** Construcción optimizada de Vite con tree shaking
+- **Caché:** Caché inteligente de localStorage con persistencia
 
-## ♿ Accessibility
+## ♿ Accesibilidad
 
-- WCAG 2.1 AA compliant
-- Full keyboard navigation
-- Screen reader support
-- Proper ARIA labels
-- Focus management
+- Compatible con WCAG 2.1 AA
+- Navegación completa por teclado
+- Soporte para lectores de pantalla
+- Etiquetas ARIA apropiadas
+- Gestión de foco
 
-## 📄 License
+## 📄 Licencia
 
-MIT License - see [LICENSE](LICENSE) for details.
+Licencia MIT - ver [LICENSE](LICENSE) para más detalles.
 
-## 🎉 Project Status
+## 🎉 Estado del Proyecto
 
-### **✅ Current Status: Production Ready**
-- **✅ All Tests Passing:** 571 tests, 54 test suites
-- **✅ TypeScript:** Strict mode compliance with full type safety
-- **✅ Performance:** Optimized with code splitting, memoization, and virtualization
-- **✅ Accessibility:** WCAG 2.1 AA compliant with full keyboard navigation
-- **✅ Docker Ready:** Complete containerization with production configuration
-- **✅ Documentation:** Comprehensive README with architecture justifications
+### **✅ Estado Actual: Listo para Producción**
+- **✅ Todas las Pruebas Pasando:** 571 pruebas, 54 suites de pruebas
+- **✅ TypeScript:** Cumplimiento de modo estricto con seguridad de tipos completa
+- **✅ Rendimiento:** Optimizado con división de código, memoización y virtualización
+- **✅ Accesibilidad:** Compatible con WCAG 2.1 AA con navegación completa por teclado
+- **✅ Docker Listo:** Containerización completa con configuración de producción
+- **✅ Documentación:** README integral con justificaciones de arquitectura
 
-### **🚀 Key Achievements**
-- **Advanced Features:** Implemented 15+ new components beyond original requirements
-- **Enhanced UX:** @ mention system, context menus, advanced notifications
-- **Performance:** Virtual scrolling, auto-save, debounced operations
-- **Testing:** Comprehensive test suite with fast execution variants
-- **DevOps:** Complete Docker setup with hot reload and production config
+### **🚀 Logros Clave**
+- **Características Avanzadas:** Implementados 15+ nuevos componentes más allá de los requisitos originales
+- **UX Mejorada:** Sistema de menciones @, menús contextuales, notificaciones avanzadas
+- **Rendimiento:** Desplazamiento virtual, auto-guardado, operaciones con debounce
+- **Pruebas:** Suite de pruebas integral con variantes de ejecución rápida
+- **DevOps:** Configuración completa de Docker con recarga en caliente y configuración de producción
 
-### **📈 Metrics**
-- **Components:** 80+ React components with TypeScript
-- **Custom Hooks:** 12+ specialized hooks for business logic
-- **Test Coverage:** 70%+ with 571 passing tests
-- **Bundle Size:** Optimized with Vite and tree shaking
-- **Performance:** Sub-second load times with code splitting
+### **📈 Métricas**
+- **Componentes:** 80+ componentes React con TypeScript
+- **Hooks Personalizados:** 12+ hooks especializados para lógica de negocio
+- **Cobertura de Pruebas:** 70%+ con 571 pruebas pasando
+- **Tamaño de Paquete:** Optimizado con Vite y tree shaking
+- **Rendimiento:** Tiempos de carga sub-segundo con división de código
 
-## 🏛️ SOLID Principles Implementation
+## 🏛️ Implementación de Principios SOLID
 
-### **✅ Single Responsibility Principle (SRP)**
-- **Custom Hooks:** Each hook has a single responsibility
+### **✅ Principio de Responsabilidad Única (SRP)**
+- **Hooks Personalizados:** Cada hook tiene una sola responsabilidad
   ```typescript
-  // useNotifications.ts - Only handles notifications
-  // useDateUtils.ts - Only handles date formatting
-  // useAutoSave.ts - Only handles auto-saving logic
+  // useNotifications.ts - Solo maneja notificaciones
+  // useDateUtils.ts - Solo maneja formateo de fechas
+  // useAutoSave.ts - Solo maneja lógica de auto-guardado
   ```
-- **Components:** Each component has a clear, single purpose
+- **Componentes:** Cada componente tiene un propósito claro y único
   ```typescript
-  // TaskCard - Only displays task information
-  // Board - Only manages board layout and columns
-  // ArchivePanel - Only handles archived tasks
+  // TaskCard - Solo muestra información de tareas
+  // Board - Solo maneja layout de tablero y columnas
+  // ArchivePanel - Solo maneja tareas archivadas
   ```
-- **Utilities:** Each utility function has one specific job
+- **Utilidades:** Cada función de utilidad tiene un trabajo específico
   ```typescript
-  // getPriorityColor() - Only returns color based on priority
-  // generateId() - Only generates unique IDs
+  // getPriorityColor() - Solo devuelve color basado en prioridad
+  // generateId() - Solo genera IDs únicos
   ```
 
-### **✅ Open/Closed Principle (OCP)**
-- **Component Composition:** Components are open for extension via props
+### **✅ Principio Abierto/Cerrado (OCP)**
+- **Composición de Componentes:** Los componentes están abiertos para extensión vía props
   ```typescript
   interface TaskCardProps {
     task: Task;
-    onEdit?: (task: Task) => void;  // Extensible via props
+    onEdit?: (task: Task) => void;  // Extensible vía props
     onDelete?: (taskId: string) => void;
-    // ... more optional props for extension
+    // ... más props opcionales para extensión
   }
   ```
-- **Hook Composition:** Hooks can be extended without modification
+- **Composición de Hooks:** Los hooks pueden extenderse sin modificación
   ```typescript
-  // useKanbanStore can be extended with new actions
-  // without modifying existing code
+  // useKanbanStore puede extenderse con nuevas acciones
+  // sin modificar código existente
   ```
 
-### **✅ Liskov Substitution Principle (LSP)**
-- **Interface Consistency:** All components implementing interfaces are interchangeable
+### **✅ Principio de Sustitución de Liskov (LSP)**
+- **Consistencia de Interfaces:** Todos los componentes que implementan interfaces son intercambiables
   ```typescript
   interface TaskCardProps {
-    task: Task;  // Any Task implementation works
-    onEdit?: (task: Task) => void;  // Any compatible function works
+    task: Task;  // Cualquier implementación de Task funciona
+    onEdit?: (task: Task) => void;  // Cualquier función compatible funciona
   }
   ```
-- **Hook Interfaces:** All hook implementations follow consistent interfaces
+- **Interfaces de Hooks:** Todas las implementaciones de hooks siguen interfaces consistentes
 
-### **✅ Interface Segregation Principle (ISP)**
-- **Focused Interfaces:** Components only depend on what they need
+### **✅ Principio de Segregación de Interfaces (ISP)**
+- **Interfaces Enfocadas:** Los componentes solo dependen de lo que necesitan
   ```typescript
-  // TaskCard only needs specific props, not entire task object
+  // TaskCard solo necesita props específicos, no el objeto task completo
   interface TaskCardProps {
     task: Task;
     onEdit?: (task: Task) => void;
-    // ... only necessary props
+    // ... solo props necesarios
   }
   ```
-- **Hook Separation:** Different hooks for different concerns
+- **Separación de Hooks:** Diferentes hooks para diferentes responsabilidades
   ```typescript
-  // useNotifications - only notification logic
-  // useDateUtils - only date utilities
-  // useAutoSave - only auto-save logic
+  // useNotifications - solo lógica de notificaciones
+  // useDateUtils - solo utilidades de fecha
+  // useAutoSave - solo lógica de auto-guardado
   ```
 
-### **✅ Dependency Inversion Principle (DIP)**
-- **Dependency Injection:** Components depend on abstractions (props/interfaces)
+### **✅ Principio de Inversión de Dependencias (DIP)**
+- **Inyección de Dependencias:** Los componentes dependen de abstracciones (props/interfaces)
   ```typescript
   const TaskCard: React.FC<TaskCardProps> = ({
-    task, onEdit, onDelete, onMove  // Dependencies injected via props
+    task, onEdit, onDelete, onMove  // Dependencias inyectadas vía props
   }) => {
-    // Implementation depends on injected dependencies
+    // La implementación depende de dependencias inyectadas
   };
   ```
-- **Hook Abstraction:** Business logic abstracted into custom hooks
+- **Abstracción de Hooks:** Lógica de negocio abstraída en hooks personalizados
   ```typescript
-  // Components depend on hook abstractions, not concrete implementations
+  // Los componentes dependen de abstracciones de hooks, no de implementaciones concretas
   const { addTask, updateTask } = useKanbanStore();
   ```
 
-## 🧪 Test-Driven Development (TDD) Implementation
+## 🧪 Implementación de Desarrollo Dirigido por Pruebas (TDD)
 
-### **✅ TDD Methodology Applied**
-- **Test-First Approach:** Tests written before or alongside implementation
-- **Red-Green-Refactor Cycle:** Tests drive development cycles
-- **Comprehensive Coverage:** 571 tests covering all functionality
+### **✅ Metodología TDD Aplicada**
+- **Enfoque Test-First:** Pruebas escritas antes o junto con la implementación
+- **Ciclo Rojo-Verde-Refactor:** Las pruebas dirigen los ciclos de desarrollo
+- **Cobertura Integral:** 571 pruebas cubriendo toda la funcionalidad
 
-### **✅ Testing Strategy**
+### **✅ Estrategia de Pruebas**
 ```typescript
-// 1. Component Tests (70% of tests)
+// 1. Pruebas de Componentes (70% de las pruebas)
 describe('TaskCard', () => {
-  it('renders task information correctly', () => {
+  it('renderiza información de tarea correctamente', () => {
     // Arrange
     const mockTask = createMockTask();
     
@@ -1027,15 +1028,15 @@ describe('TaskCard', () => {
   });
 });
 
-// 2. Hook Tests (20% of tests)
+// 2. Pruebas de Hooks (20% de las pruebas)
 describe('useNotifications', () => {
-  it('adds notification to store', () => {
+  it('agrega notificación al store', () => {
     // Arrange
     const { result } = renderHook(() => useNotifications());
     
     // Act
     act(() => {
-      result.current.showNotification('Test message', 'success');
+      result.current.showNotification('Mensaje de prueba', 'success');
     });
     
     // Assert
@@ -1043,50 +1044,50 @@ describe('useNotifications', () => {
   });
 });
 
-// 3. Integration Tests (10% of tests)
-describe('Store Integration', () => {
-  it('should provide store data to components', () => {
-    // Test complete user workflows
+// 3. Pruebas de Integración (10% de las pruebas)
+describe('Integración de Store', () => {
+  it('debe proporcionar datos del store a los componentes', () => {
+    // Probar flujos de trabajo completos del usuario
   });
 });
 ```
 
-### **✅ Testing Patterns Used**
-- **AAA Pattern:** Arrange, Act, Assert for clear test structure
-- **Mock Strategy:** Comprehensive mocking for external dependencies
-- **User-Centric Testing:** Tests focus on user behavior, not implementation
-- **Test Isolation:** Each test is independent and isolated
+### **✅ Patrones de Pruebas Utilizados**
+- **Patrón AAA:** Arrange, Act, Assert para estructura clara de pruebas
+- **Estrategia de Mock:** Mocking integral para dependencias externas
+- **Pruebas Centradas en Usuario:** Las pruebas se enfocan en comportamiento del usuario, no en implementación
+- **Aislamiento de Pruebas:** Cada prueba es independiente y aislada
 
-### **✅ TDD Benefits Achieved**
-- **Better Design:** Tests force better component design
-- **Regression Prevention:** 571 tests prevent breaking changes
-- **Documentation:** Tests serve as living documentation
-- **Confidence:** High confidence in code changes
-- **Refactoring Safety:** Safe refactoring with test coverage
+### **✅ Beneficios TDD Logrados**
+- **Mejor Diseño:** Las pruebas fuerzan mejor diseño de componentes
+- **Prevención de Regresiones:** 571 pruebas previenen cambios que rompen funcionalidad
+- **Documentación:** Las pruebas sirven como documentación viva
+- **Confianza:** Alta confianza en cambios de código
+- **Seguridad de Refactorización:** Refactorización segura con cobertura de pruebas
 
-## 🎯 Architecture Quality Metrics
+## 🎯 Métricas de Calidad de Arquitectura
 
-### **SOLID Compliance: 95%**
-- ✅ SRP: All components and hooks have single responsibility
-- ✅ OCP: Extensible through props and composition
-- ✅ LSP: Consistent interfaces throughout
-- ✅ ISP: Focused, minimal interfaces
-- ✅ DIP: Dependency injection via props and hooks
+### **Cumplimiento SOLID: 95%**
+- ✅ SRP: Todos los componentes y hooks tienen responsabilidad única
+- ✅ OCP: Extensible a través de props y composición
+- ✅ LSP: Interfaces consistentes en todo el proyecto
+- ✅ ISP: Interfaces enfocadas y mínimas
+- ✅ DIP: Inyección de dependencias vía props y hooks
 
-### **TDD Implementation: 90%**
-- ✅ Test-First Development: Tests written before/alongside code
-- ✅ Red-Green-Refactor: Development driven by test cycles
-- ✅ Comprehensive Coverage: 571 tests, 54 test suites
-- ✅ User-Centric Testing: Focus on behavior, not implementation
-- ✅ Continuous Testing: Tests run on every change
+### **Implementación TDD: 90%**
+- ✅ Desarrollo Test-First: Pruebas escritas antes/junto con el código
+- ✅ Rojo-Verde-Refactor: Desarrollo dirigido por ciclos de pruebas
+- ✅ Cobertura Integral: 571 pruebas, 54 suites de pruebas
+- ✅ Pruebas Centradas en Usuario: Enfoque en comportamiento, no en implementación
+- ✅ Pruebas Continuas: Las pruebas se ejecutan en cada cambio
 
-### **Code Quality Indicators**
-- **TypeScript Strict Mode:** 100% type safety
-- **Component Separation:** Clear separation of concerns
-- **Hook Composition:** Reusable business logic
-- **Interface Design:** Minimal, focused interfaces
-- **Test Coverage:** 70%+ with behavioral focus
+### **Indicadores de Calidad de Código**
+- **Modo Estricto TypeScript:** 100% de seguridad de tipos
+- **Separación de Componentes:** Separación clara de responsabilidades
+- **Composición de Hooks:** Lógica de negocio reutilizable
+- **Diseño de Interfaces:** Interfaces mínimas y enfocadas
+- **Cobertura de Pruebas:** 70%+ con enfoque en comportamiento
 
 ---
 
-**Built with modern React practices, TypeScript for type safety, SOLID principles for maintainability, and TDD methodology for reliability.**
+**Construido con prácticas modernas de React, TypeScript para seguridad de tipos, principios SOLID para mantenibilidad, y metodología TDD para confiabilidad.**

@@ -63,7 +63,7 @@ const AddColumnForm: React.FC<AddColumnFormProps> = ({ onClose, editingColumn = 
       // Crear nueva columna con status único
       const newColumn = {
         title: formData.title.trim(),
-        status: `custom-${Date.now()}` as TaskStatus, // Status único para columnas personalizadas
+        status: `custom-${Date.now()}` as TaskStatus,
         color: formData.color,
         maxTasks: formData.maxTasks || undefined
       };
@@ -155,7 +155,7 @@ const AddColumnForm: React.FC<AddColumnFormProps> = ({ onClose, editingColumn = 
           {showColorPicker && (
             <div className="add-column-form__custom-color-picker">
               <div className="add-column-form__custom-color-header">
-                <span>🎨 Elige tu color</span>
+                <span>Elige tu color</span>
               </div>
               <div className="add-column-form__custom-color-body">
                 <input

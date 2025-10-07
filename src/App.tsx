@@ -50,9 +50,6 @@ function App() {
       onError={(error, errorInfo) => {
         // Log error para debugging
         console.error('Application Error:', error, errorInfo);
-        
-        // Aquí podrías enviar el error a un servicio de monitoreo
-        // como Sentry, LogRocket, etc.
       }}
     >
       <ThemeProvider>

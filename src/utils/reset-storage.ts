@@ -1,11 +1,3 @@
-/**
- * Script para resetear el localStorage y verificar que funciona correctamente
- * Ejecutar en la consola del navegador:
- * 
- * localStorage.clear()
- * location.reload()
- */
-
 export const resetStorage = () => {
   try {
     // Limpiar completamente el localStorage

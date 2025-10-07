@@ -47,7 +47,7 @@ const TimeInColumnsChart: React.FC<TimeInColumnsChartProps> = ({ tasks }) => {
       
       return {
         estado: statusLabels[status] || status,
-        tiempo: Math.round(avgTime * 10) / 10, // Redondear a 1 decimal
+        tiempo: Math.round(avgTime * 10) / 10,
         color: statusColors[status] || '#6b7280'
       };
     });

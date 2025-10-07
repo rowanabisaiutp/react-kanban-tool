@@ -1,7 +1,3 @@
-/**
- * Utilidades para manejo de almacenamiento con detección de errores de cuota
- */
-
 // Importar funciones de limpieza
 import { cleanAllData, cleanKanbanData } from './clean-project-data';
 import clearStorage from './clear-storage';

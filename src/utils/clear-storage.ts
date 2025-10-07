@@ -11,11 +11,5 @@ const clearStorage = (): void => {
   }
 };
 
-// ❌ DESACTIVADO - No ejecutar automáticamente
-// Solo debe ejecutarse cuando se llama manualmente
-// if (typeof window !== 'undefined') {
-//   clearStorage();
-// }
-
 export default clearStorage;
 

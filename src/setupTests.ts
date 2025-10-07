@@ -29,8 +29,8 @@ Object.defineProperty(window, 'matchMedia', {
     matches: false,
     media: query,
     onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
     addEventListener: jest.fn(),
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
@@ -91,8 +91,3 @@ global.TextDecoder = TextDecoder;
 const mockDate = new Date('2024-01-01T00:00:00Z');
 jest.spyOn(global, 'Date').mockImplementation(() => mockDate as any);
 global.Date.now = jest.fn(() => mockDate.getTime());
-
-// Mock global de styled-components - Comentado para usar mocks específicos
-// jest.mock('styled-components', () => {
-//   // Mock específico en cada archivo de test
-// });

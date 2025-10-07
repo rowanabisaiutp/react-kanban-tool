@@ -2,7 +2,6 @@
  * Script utilitario para limpiar completamente todos los datos del proyecto Kanban
  * Incluye localStorage, sessionStorage, y datos específicos de la aplicación
  */
-
 interface CleanupOptions {
   localStorage?: boolean;
   sessionStorage?: boolean;
@@ -12,7 +11,6 @@ interface CleanupOptions {
   backups?: boolean;
   tempData?: boolean;
 }
-
 interface CleanupResult {
   success: boolean;
   itemsRemoved: number;
@@ -319,28 +317,6 @@ const cleanThemeData = (): CleanupResult => {
   });
 };
 
-// ❌ DESACTIVADO - NO EJECUTAR AUTOMÁTICAMENTE
-// Este script estaba BORRANDO TODO el localStorage automáticamente
-// Solo debe ejecutarse cuando se llama manualmente desde DevTools o botones
-// if (typeof window !== 'undefined') {
-//   const urlParams = new URLSearchParams(window.location.search);
-//   const cleanupType = urlParams.get('cleanup');
-//   
-//   switch (cleanupType) {
-//     case 'kanban':
-//       cleanKanbanData();
-//       break;
-//     case 'theme':
-//       cleanThemeData();
-//       break;
-//     case 'all':
-//     default:
-//       cleanAllData();
-//       break;
-//   }
-// }
-
 export default cleanProjectData;
 export { cleanAllData, cleanKanbanData, cleanThemeData };
 export type { CleanupOptions, CleanupResult };
-
