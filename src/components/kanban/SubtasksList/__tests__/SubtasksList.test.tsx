@@ -1,18 +1,44 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../../../../styles/theme';
 import type { Subtask } from '../../../../types';
-import SubtasksList from '../SubtasksList';
+
+// Mock específico para componentes UI
+jest.mock('../../../../components/ui/Button/Button', () => {
+  return ({ children, onClick, ...props }: any) => (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
+  );
+});
+
+jest.mock('../../../../components/ui/Card/Card', () => {
+  return ({ children, ...props }: any) => (
+    <div {...props}>
+      {children}
+    </div>
+  );
+});
+
+jest.mock('../../../../components/ui/index', () => ({
+  Button: ({ children, onClick, ...props }: any) => (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
+  ),
+  Card: ({ children, ...props }: any) => (
+    <div {...props}>
+      {children}
+    </div>
+  ),
+}));
 
 // Mock de generateId
 jest.mock('../../../../utils/helpers', () => ({
   generateId: jest.fn(() => 'mock-id-123'),
 }));
 
-const renderWithTheme = (component: React.ReactElement) => {
-  return render(<ThemeProvider theme={theme}>{component}</ThemeProvider>);
-};
+// Importar el componente después de los mocks
+import SubtasksList from '../SubtasksList';
 
 describe('SubtasksList Unit Tests', () => {
   const mockSubtasks: Subtask[] = [
@@ -32,24 +58,24 @@ describe('SubtasksList Unit Tests', () => {
 
   describe('Rendering', () => {
     it('renders without crashing', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       expect(screen.getByText('Subtarea 1')).toBeInTheDocument();
     });
 
     it('renders all subtasks', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       expect(screen.getByText('Subtarea 1')).toBeInTheDocument();
       expect(screen.getByText('Subtarea 2')).toBeInTheDocument();
       expect(screen.getByText('Subtarea 3')).toBeInTheDocument();
     });
 
     it('renders empty list when no subtasks', () => {
-      renderWithTheme(<SubtasksList subtasks={[]} onUpdateSubtasks={jest.fn()} />);
+      render(<SubtasksList subtasks={[]} onUpdateSubtasks={jest.fn()} />);
       expect(screen.queryByText(/completadas/)).not.toBeInTheDocument();
     });
 
     it('applies completed class to finished subtasks', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { container } = render(<SubtasksList {...defaultProps} />);
       const completedText = container.querySelector('.subtasks-list__text--completed');
       expect(completedText).toBeInTheDocument();
       expect(completedText).toHaveTextContent('Subtarea 2');
@@ -58,12 +84,12 @@ describe('SubtasksList Unit Tests', () => {
 
   describe('Progress Bar', () => {
     it('shows progress bar when subtasks exist', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       expect(screen.getByText('1/3 completadas')).toBeInTheDocument();
     });
 
     it('calculates progress percentage correctly', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { container } = render(<SubtasksList {...defaultProps} />);
       const progressFill = container.querySelector('.subtasks-list__progress-fill');
       expect(progressFill).toHaveStyle({ width: '33.33333333333333%' });
     });
@@ -73,7 +99,7 @@ describe('SubtasksList Unit Tests', () => {
         { id: 'sub-1', title: 'Subtarea 1', completed: true, createdAt: new Date() },
         { id: 'sub-2', title: 'Subtarea 2', completed: true, createdAt: new Date() },
       ];
-      const { container } = renderWithTheme(
+      const { container } = render(
         <SubtasksList subtasks={allCompleted} onUpdateSubtasks={jest.fn()} />
       );
       expect(screen.getByText('2/2 completadas')).toBeInTheDocument();
@@ -86,7 +112,7 @@ describe('SubtasksList Unit Tests', () => {
         { id: 'sub-1', title: 'Subtarea 1', completed: false, createdAt: new Date() },
         { id: 'sub-2', title: 'Subtarea 2', completed: false, createdAt: new Date() },
       ];
-      const { container } = renderWithTheme(
+      const { container } = render(
         <SubtasksList subtasks={noneCompleted} onUpdateSubtasks={jest.fn()} />
       );
       expect(screen.getByText('0/2 completadas')).toBeInTheDocument();
@@ -95,14 +121,14 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('does not show progress bar when no subtasks', () => {
-      renderWithTheme(<SubtasksList subtasks={[]} onUpdateSubtasks={jest.fn()} />);
+      render(<SubtasksList subtasks={[]} onUpdateSubtasks={jest.fn()} />);
       expect(screen.queryByText(/completadas/)).not.toBeInTheDocument();
     });
   });
 
   describe('Toggle Subtask', () => {
     it('toggles subtask completion on checkbox click', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       const checkboxes = screen.getAllByRole('checkbox');
       fireEvent.click(checkboxes[0]);
 
@@ -114,7 +140,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('unchecks completed subtask', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       const checkboxes = screen.getAllByRole('checkbox');
       fireEvent.click(checkboxes[1]);
 
@@ -126,7 +152,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('shows correct checkbox states', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       const checkboxes = screen.getAllByRole('checkbox') as HTMLInputElement[];
       expect(checkboxes[0].checked).toBe(false);
       expect(checkboxes[1].checked).toBe(true);
@@ -136,18 +162,18 @@ describe('SubtasksList Unit Tests', () => {
 
   describe('Add Subtask', () => {
     it('shows add button when not adding', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       expect(screen.getByText('+ Agregar subtarea')).toBeInTheDocument();
     });
 
     it('shows input form when add button clicked', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       expect(screen.getByPlaceholderText('Nueva subtarea...')).toBeInTheDocument();
     });
 
     it('adds new subtask when clicking Agregar button', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       
       const input = screen.getByPlaceholderText('Nueva subtarea...');
@@ -167,7 +193,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('trims whitespace from new subtask title', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       
       const input = screen.getByPlaceholderText('Nueva subtarea...');
@@ -181,7 +207,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('does not add empty subtask', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       
       const input = screen.getByPlaceholderText('Nueva subtarea...');
@@ -192,7 +218,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('cancels adding when Cancelar button clicked', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       
       const input = screen.getByPlaceholderText('Nueva subtarea...');
@@ -204,7 +230,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('clears input after adding subtask', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       
       const input = screen.getByPlaceholderText('Nueva subtarea...') as HTMLInputElement;
@@ -217,7 +243,7 @@ describe('SubtasksList Unit Tests', () => {
 
   describe('Keyboard Handling', () => {
     it('adds subtask on Enter key', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       
       const input = screen.getByPlaceholderText('Nueva subtarea...');
@@ -230,7 +256,7 @@ describe('SubtasksList Unit Tests', () => {
     it('handles Escape key attempt (note: onKeyPress does not detect Escape in React)', () => {
       // Este test documenta que Escape no funciona con onKeyPress
       // Para que Escape funcione, el componente necesitaría usar onKeyDown
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       
       const input = screen.getByPlaceholderText('Nueva subtarea...');
@@ -247,7 +273,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('does not add on other keys', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
       
       const input = screen.getByPlaceholderText('Nueva subtarea...');
@@ -260,13 +286,13 @@ describe('SubtasksList Unit Tests', () => {
 
   describe('Delete Subtask', () => {
     it('shows delete button for each subtask when editable', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { container } = render(<SubtasksList {...defaultProps} />);
       const deleteButtons = container.querySelectorAll('.subtasks-list__delete');
       expect(deleteButtons).toHaveLength(3);
     });
 
     it('deletes subtask when delete button clicked', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { container } = render(<SubtasksList {...defaultProps} />);
       const deleteButtons = container.querySelectorAll('.subtasks-list__delete');
       fireEvent.click(deleteButtons[0]);
 
@@ -277,7 +303,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('removes correct subtask from list', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { container } = render(<SubtasksList {...defaultProps} />);
       const deleteButtons = container.querySelectorAll('.subtasks-list__delete');
       fireEvent.click(deleteButtons[1]);
 
@@ -290,18 +316,18 @@ describe('SubtasksList Unit Tests', () => {
 
   describe('Editable Mode', () => {
     it('hides add button when not editable', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} isEditable={false} />);
+      render(<SubtasksList {...defaultProps} isEditable={false} />);
       expect(screen.queryByText('+ Agregar subtarea')).not.toBeInTheDocument();
     });
 
     it('hides delete buttons when not editable', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} isEditable={false} />);
+      const { container } = render(<SubtasksList {...defaultProps} isEditable={false} />);
       const deleteButtons = container.querySelectorAll('.subtasks-list__delete');
       expect(deleteButtons).toHaveLength(0);
     });
 
     it('disables checkboxes when not editable', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} isEditable={false} />);
+      render(<SubtasksList {...defaultProps} isEditable={false} />);
       const checkboxes = screen.getAllByRole('checkbox') as HTMLInputElement[];
       checkboxes.forEach(checkbox => {
         expect(checkbox).toBeDisabled();
@@ -309,7 +335,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('allows toggling when editable (default)', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       const checkboxes = screen.getAllByRole('checkbox') as HTMLInputElement[];
       checkboxes.forEach(checkbox => {
         expect(checkbox).not.toBeDisabled();
@@ -317,7 +343,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('shows all edit controls when explicitly editable', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} isEditable={true} />);
+      const { container } = render(<SubtasksList {...defaultProps} isEditable={true} />);
       expect(screen.getByText('+ Agregar subtarea')).toBeInTheDocument();
       const deleteButtons = container.querySelectorAll('.subtasks-list__delete');
       expect(deleteButtons).toHaveLength(3);
@@ -329,7 +355,7 @@ describe('SubtasksList Unit Tests', () => {
       const singleSubtask: Subtask[] = [
         { id: 'sub-1', title: 'Solo una', completed: false, createdAt: new Date() },
       ];
-      renderWithTheme(<SubtasksList subtasks={singleSubtask} onUpdateSubtasks={jest.fn()} />);
+      render(<SubtasksList subtasks={singleSubtask} onUpdateSubtasks={jest.fn()} />);
       expect(screen.getByText('Solo una')).toBeInTheDocument();
       expect(screen.getByText('0/1 completadas')).toBeInTheDocument();
     });
@@ -339,7 +365,7 @@ describe('SubtasksList Unit Tests', () => {
       const subtasks: Subtask[] = [
         { id: 'sub-1', title: longTitle, completed: false, createdAt: new Date() },
       ];
-      renderWithTheme(<SubtasksList subtasks={subtasks} onUpdateSubtasks={jest.fn()} />);
+      render(<SubtasksList subtasks={subtasks} onUpdateSubtasks={jest.fn()} />);
       expect(screen.getByText(longTitle)).toBeInTheDocument();
     });
 
@@ -348,28 +374,26 @@ describe('SubtasksList Unit Tests', () => {
       const subtasks: Subtask[] = [
         { id: 'sub-1', title: specialTitle, completed: false, createdAt: new Date() },
       ];
-      renderWithTheme(<SubtasksList subtasks={subtasks} onUpdateSubtasks={jest.fn()} />);
+      render(<SubtasksList subtasks={subtasks} onUpdateSubtasks={jest.fn()} />);
       expect(screen.getByText(specialTitle)).toBeInTheDocument();
     });
 
     it('maintains state after prop updates', () => {
-      const { rerender } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { rerender } = render(<SubtasksList {...defaultProps} />);
       
       const updatedSubtasks = [...mockSubtasks, 
         { id: 'sub-4', title: 'Subtarea 4', completed: false, createdAt: new Date() }
       ];
       
       rerender(
-        <ThemeProvider theme={theme}>
-          <SubtasksList subtasks={updatedSubtasks} onUpdateSubtasks={defaultProps.onUpdateSubtasks} />
-        </ThemeProvider>
+        <SubtasksList subtasks={updatedSubtasks} onUpdateSubtasks={defaultProps.onUpdateSubtasks} />
       );
 
       expect(screen.getByText('Subtarea 4')).toBeInTheDocument();
     });
 
     it('handles rapid toggle clicks', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       const checkbox = screen.getAllByRole('checkbox')[0];
       
       fireEvent.click(checkbox);
@@ -380,7 +404,7 @@ describe('SubtasksList Unit Tests', () => {
     });
 
     it('handles adding multiple subtasks sequentially', () => {
-      renderWithTheme(<SubtasksList {...defaultProps} />);
+      render(<SubtasksList {...defaultProps} />);
       
       // Add first subtask
       fireEvent.click(screen.getByText('+ Agregar subtarea'));
@@ -394,18 +418,18 @@ describe('SubtasksList Unit Tests', () => {
 
   describe('CSS Classes', () => {
     it('applies correct base class', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { container } = render(<SubtasksList {...defaultProps} />);
       expect(container.querySelector('.subtasks-list')).toBeInTheDocument();
     });
 
     it('applies item class to each subtask', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { container } = render(<SubtasksList {...defaultProps} />);
       const items = container.querySelectorAll('.subtasks-list__item');
       expect(items).toHaveLength(3);
     });
 
     it('applies progress classes correctly', () => {
-      const { container } = renderWithTheme(<SubtasksList {...defaultProps} />);
+      const { container } = render(<SubtasksList {...defaultProps} />);
       expect(container.querySelector('.subtasks-list__progress')).toBeInTheDocument();
       expect(container.querySelector('.subtasks-list__progress-bar')).toBeInTheDocument();
       expect(container.querySelector('.subtasks-list__progress-fill')).toBeInTheDocument();

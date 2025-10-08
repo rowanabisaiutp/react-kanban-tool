@@ -1,8 +1,36 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../../../../styles/theme';
 import type { Column } from '../../../../types';
+
+// Mock específico para componentes UI
+jest.mock('../../../../components/ui/Button/Button', () => {
+  return ({ children, onClick, ...props }: any) => (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
+  );
+});
+
+jest.mock('../../../../components/ui/Card/Card', () => {
+  return ({ children, ...props }: any) => (
+    <div {...props}>
+      {children}
+    </div>
+  );
+});
+
+jest.mock('../../../../components/ui/index', () => ({
+  Button: ({ children, onClick, ...props }: any) => (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
+  ),
+  Card: ({ children, ...props }: any) => (
+    <div {...props}>
+      {children}
+    </div>
+  ),
+}));
 
 // Mocks
 const mockDeleteColumn = jest.fn();
@@ -23,15 +51,8 @@ jest.mock('../../../../hooks/useKanbanHook', () => ({
   })
 }));
 
+// Importar el componente después de los mocks
 import DeleteColumnModal from '../DeleteColumnModal';
-
-const renderWithTheme = (component: React.ReactElement) => {
-  return render(
-    <ThemeProvider theme={theme}>
-      {component}
-    </ThemeProvider>
-  );
-};
 
 describe('DeleteColumnModal', () => {
   const mockOnClose = jest.fn();
@@ -78,7 +99,7 @@ describe('DeleteColumnModal', () => {
   });
 
   it('renders modal with title and warning message', () => {
-    renderWithTheme(<DeleteColumnModal {...defaultProps} />);
+    render(<DeleteColumnModal {...defaultProps} />);
     
     expect(screen.getByRole('heading', { name: 'Eliminar Columna' })).toBeInTheDocument();
     expect(screen.getByText(/Esta acción no se puede deshacer/)).toBeInTheDocument();
@@ -86,7 +107,7 @@ describe('DeleteColumnModal', () => {
   });
 
   it('does not render when closed or column is null', () => {
-    const { rerender } = renderWithTheme(<DeleteColumnModal {...defaultProps} isOpen={false} />);
+    const { rerender } = render(<DeleteColumnModal {...defaultProps} isOpen={false} />);
     expect(screen.queryByRole('heading', { name: 'Eliminar Columna' })).not.toBeInTheDocument();
 
     rerender(<DeleteColumnModal {...defaultProps} column={null} />);
@@ -94,7 +115,7 @@ describe('DeleteColumnModal', () => {
   });
 
   it('shows empty column info and handles delete', async () => {
-    renderWithTheme(<DeleteColumnModal {...defaultProps} />);
+    render(<DeleteColumnModal {...defaultProps} />);
     
     expect(screen.getByText(/Esta columna está vacía/)).toBeInTheDocument();
     
@@ -106,7 +127,7 @@ describe('DeleteColumnModal', () => {
   });
 
   it('shows tasks info and column selector for columns with tasks', () => {
-    renderWithTheme(<DeleteColumnModal {...defaultProps} column={columnWithTasks} />);
+    render(<DeleteColumnModal {...defaultProps} column={columnWithTasks} />);
     
     expect(screen.getByText(/Esta columna contiene/)).toBeInTheDocument();
     expect(screen.getByText(/¿A qué columna quieres mover las tareas?/)).toBeInTheDocument();
@@ -114,21 +135,21 @@ describe('DeleteColumnModal', () => {
   });
 
   it('handles cancel button click', () => {
-    renderWithTheme(<DeleteColumnModal {...defaultProps} />);
+    render(<DeleteColumnModal {...defaultProps} />);
     
     fireEvent.click(screen.getByRole('button', { name: 'Cancelar' }));
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 
   it('disables delete button when tasks exist but no destination selected', () => {
-    renderWithTheme(<DeleteColumnModal {...defaultProps} column={columnWithTasks} />);
+    render(<DeleteColumnModal {...defaultProps} column={columnWithTasks} />);
     
     const deleteButton = screen.getByRole('button', { name: 'Eliminar Columna' });
     expect(deleteButton).toBeDisabled();
   });
 
   it('enables delete button when destination column is selected', () => {
-    renderWithTheme(<DeleteColumnModal {...defaultProps} column={columnWithTasks} />);
+    render(<DeleteColumnModal {...defaultProps} column={columnWithTasks} />);
     
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'col-2' } });
     const deleteButton = screen.getByRole('button', { name: 'Eliminar Columna' });
@@ -136,7 +157,7 @@ describe('DeleteColumnModal', () => {
   });
 
   it('applies correct CSS class', () => {
-    const { container } = renderWithTheme(<DeleteColumnModal {...defaultProps} />);
+    const { container } = render(<DeleteColumnModal {...defaultProps} />);
     expect(container.querySelector('.delete-column-modal')).toBeInTheDocument();
   });
 });

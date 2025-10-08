@@ -1,18 +1,38 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../../../../styles/theme';
 
-import DeleteBoardModal from '../DeleteBoardModal';
-
-// Wrapper con ThemeProvider
-const renderWithTheme = (component: React.ReactElement) => {
-  return render(
-    <ThemeProvider theme={theme}>
-      {component}
-    </ThemeProvider>
+// Mock específico para componentes UI
+jest.mock('../../../../components/ui/Button/Button', () => {
+  return ({ children, onClick, ...props }: any) => (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
   );
-};
+});
+
+jest.mock('../../../../components/ui/Card/Card', () => {
+  return ({ children, ...props }: any) => (
+    <div {...props}>
+      {children}
+    </div>
+  );
+});
+
+jest.mock('../../../../components/ui/index', () => ({
+  Button: ({ children, onClick, ...props }: any) => (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
+  ),
+  Card: ({ children, ...props }: any) => (
+    <div {...props}>
+      {children}
+    </div>
+  ),
+}));
+
+// Importar el componente después de los mocks
+import DeleteBoardModal from '../DeleteBoardModal';
 
 describe('DeleteBoardModal Simple Tests', () => {
   const mockOnClose = jest.fn();
@@ -30,20 +50,20 @@ describe('DeleteBoardModal Simple Tests', () => {
   });
 
   it('renders modal when open', () => {
-    renderWithTheme(<DeleteBoardModal {...defaultProps} />);
+    render(<DeleteBoardModal {...defaultProps} />);
     
     expect(screen.getByRole('heading', { name: 'Eliminar Tablero' })).toBeInTheDocument();
   });
 
   it('displays board title and warning message', () => {
-    renderWithTheme(<DeleteBoardModal {...defaultProps} />);
+    render(<DeleteBoardModal {...defaultProps} />);
     
     expect(screen.getByText('"Test Board"')).toBeInTheDocument();
     expect(screen.getByText(/Esta acción no se puede deshacer/)).toBeInTheDocument();
   });
 
   it('handles cancel and confirm button clicks', () => {
-    renderWithTheme(<DeleteBoardModal {...defaultProps} />);
+    render(<DeleteBoardModal {...defaultProps} />);
     
     fireEvent.click(screen.getByRole('button', { name: 'Cancelar' }));
     expect(mockOnClose).toHaveBeenCalledTimes(1);
@@ -54,13 +74,13 @@ describe('DeleteBoardModal Simple Tests', () => {
   });
 
   it('does not render when closed', () => {
-    renderWithTheme(<DeleteBoardModal {...defaultProps} isOpen={false} />);
+    render(<DeleteBoardModal {...defaultProps} isOpen={false} />);
     
     expect(screen.queryByRole('heading', { name: 'Eliminar Tablero' })).not.toBeInTheDocument();
   });
 
   it('applies correct CSS class', () => {
-    const { container } = renderWithTheme(<DeleteBoardModal {...defaultProps} />);
+    const { container } = render(<DeleteBoardModal {...defaultProps} />);
     expect(container.querySelector('.delete-board-modal')).toBeInTheDocument();
   });
 });

@@ -91,3 +91,56 @@ global.TextDecoder = TextDecoder;
 const mockDate = new Date('2024-01-01T00:00:00Z');
 jest.spyOn(global, 'Date').mockImplementation(() => mockDate as any);
 global.Date.now = jest.fn(() => mockDate.getTime());
+
+// Mock global de styled-components más robusto
+jest.mock('styled-components', () => {
+  const React = require('react');
+  
+  const createStyledComponent = (tag: string) => {
+    return (_template: TemplateStringsArray, ..._interpolations: any[]) => {
+      return ({ children, ...props }: any) => {
+        return React.createElement(tag, {
+          ...props,
+          'data-testid': props['data-testid'] || `styled-${tag}`,
+        }, children);
+      };
+    };
+  };
+
+  // Crear un objeto que responda a cualquier propiedad
+  const styled = new Proxy({} as any, {
+    get: (_target, prop) => {
+      if (typeof prop === 'string') {
+        return createStyledComponent(prop);
+      }
+      return undefined;
+    },
+    has: () => true,
+    ownKeys: () => [],
+  });
+
+  return {
+    default: styled,
+    ThemeProvider: ({ children }: any) => children,
+    keyframes: (_template: TemplateStringsArray) => 'mock-keyframes',
+    css: (_template: TemplateStringsArray, ..._interpolations: any[]) => 'mock-css',
+    useTheme: () => ({
+      colors: {
+        surface: '#ffffff',
+        border: '#e5e7eb',
+        primary: '#3b82f6',
+        text: '#1f2937',
+        background: '#f9fafb',
+      },
+      borderRadius: {
+        lg: '8px',
+        md: '6px',
+        sm: '4px',
+      },
+      boxShadow: {
+        sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+        md: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+      },
+    }),
+  };
+});
