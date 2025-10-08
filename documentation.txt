@@ -1,0 +1,186 @@
+Kanban Project Management Tool - Technical
+Requirements Document
+Project Overview
+Develop a modern, feature-rich Kanban board application using React and TypeScript that
+demonstrates senior-level frontend development skills. The application should provide an
+intuitive project management experience with drag-and-drop functionality, comprehensive task
+tracking, and insightful analytics.
+Important: It is crucial to submit the project within the specified timeframe, even if not all
+features/requirements are fully implemented. While more features and polish are always better,
+timely delivery and demonstrating what you can accomplish within constraints is equally
+important for evaluation.
+Technical Stack Requirements
+Core Technologies
+- Framework: React 18+ with TypeScript
+- State Management: Zustand or Redux (candidate's choice, but must justify the
+decision)
+- Styling: Custom styled-components (no UI libraries like Material-UI or Ant Design)
+- Testing: Cypress (preferred) or Jest/React Testing Library if unfamiliar with Cypress
+- Build Tool: Vite
+Helpful Libraries (Optional - Use Any Alternative if Unfamiliar)
+- react-beautiful-dnd or @dnd-kit for drag-and-drop functionality
+- recharts or chart.js for data visualization
+- date-fns or dayjs for date manipulation
+- react-hook-form or formik for form management (optional)
+Functional Requirements
+1. Board Management
+- Users can create multiple boards (e.g., "Personal", "Work", "Side Project")
+- Each board should have a unique identifier and name
+- Ability to switch between boards
+- Delete boards (with confirmation dialog)
+- Edit board names
+2. Column Management
+- Default columns: "To Do", "In Progress", "Done"
+- Add custom columns to any board
+- Rename columns inline
+- Delete columns (with option to move tasks to another column)
+- Reorder columns via drag-and-drop
+3. Task Management
+Task Properties
+- Title (required, max 100 characters)
+- Description (optional, supports markdown preview)
+- Priority: Low, Medium, High, Urgent
+- Due Date (optional)
+- Labels/Tags (multiple, custom colors)
+- Time Tracking:
+- Created timestamp
+- Updated timestamp
+- Completed timestamp
+- Subtasks (checklist items within a task)
+- Estimated hours (optional)
+Task Operations
+- Create tasks with validation
+- Edit all task properties
+- Delete tasks (with confirmation)
+- Drag tasks between columns
+- Drag to reorder within columns
+- Quick actions menu (right-click or three-dot menu)
+- Duplicate task functionality
+- Archive completed tasks
+4. Task Creation Form
+- Modal or slide-out panel
+- Field validation:
+- Title: Required, 3-100 characters
+- Description: Optional, max 1000 characters
+- Due date: Cannot be in the past
+- Estimated hours: Positive number only
+- Real-time validation feedback
+- Clear error messages
+- Save and create another option
+5. Dashboard Analytics
+Create a dedicated dashboard view showing:
+- Tasks Completed Over Time: Line/Bar chart showing completed tasks per day for the
+last 7 days
+- Tasks by Status: Pie chart showing distribution across columns
+- Average Time in Column: How long tasks spend in each column
+- Productivity Metrics:
+- Tasks completed today/this week
+- Average tasks completed per day
+- Overdue tasks count
+- Team Velocity (if time estimates are used)
+- Filter by date range and board
+6. Search and Filtering
+- Global search across all tasks
+- Filter by:
+- Board
+- Priority
+- Labels
+- Due date range
+- Assignee (even if single-user, prepare the data structure)
+- Sort by: Created date, Due date, Priority, Title
+- Clear all filters option
+7. Theme Management
+- Light and dark themes
+- Theme toggle in the UI
+- Persist theme preference in localStorage
+- Smooth transition between themes
+- Proper color contrast ratios for accessibility
+Non-Functional Requirements
+1. Performance
+- Implement React.lazy() and Suspense for route-based code splitting
+- Lazy load the dashboard/analytics module
+- Virtualize long lists if board has 50+ tasks
+- Optimize re-renders using React.memo where appropriate
+- Debounce search inputs
+2. State Management Architecture
+- Clear separation of concerns
+- Properly typed state and actions
+- Optimistic updates for better UX
+- Handle loading and error states globally
+- Implement proper data normalization
+3. Styling Requirements
+- Create a consistent design system with styled-components
+- Include:
+- Typography scale
+- Color palette for both themes
+- Spacing system (4px/8px base)
+- Reusable styled components (Button, Card, Input, etc.)
+- Responsive design (mobile, tablet, desktop)
+- Smooth animations for:
+- Drag and drop
+- Theme switching
+- Modal/panel transitions
+- Task state changes
+4. Data Persistence
+- Use localStorage or IndexedDB
+- Auto-save functionality (with debouncing)
+- Export/Import board data as JSON
+- Handle storage quota exceeded errors
+5. Accessibility
+- Keyboard navigation support
+- ARIA labels for interactive elements
+- Focus management in modals
+- Screen reader friendly
+- Minimum WCAG 2.1 AA compliance
+6. Testing Requirements
+Priority: Component and Unit Tests (Required)
+- Component tests for:
+- Task creation form with validation
+- Drag and drop operations (can be mocked)
+- Column management
+- Theme switching
+- Unit tests for:
+- State management logic
+- Utility functions
+- Custom hooks
+Integration Tests (Optional)
+- Complete task lifecycle
+- Board switching and data persistence
+- Search and filter functionality
+Testing Framework Options:
+- Preferred: Cypress for component testing
+- Alternative: Jest + React Testing Library if unfamiliar with Cypress
+- Achieve at least 70% code coverage
+Deliverables
+1. Source Code
+- Well-structured React TypeScript application
+- Clear folder structure following best practices
+- Comprehensive type definitions
+- No use of any types without justification
+- docker-compose.yml file for quick project setup and development
+2. Documentation
+- README.md with:
+- Setup instructions
+- Architecture decisions and justifications
+- State management approach explanation
+- Performance optimization strategies used
+- Inline code comments for complex logic
+3. Testing
+- Component and unit test suite (Cypress preferred, Jest acceptable)
+- Integration tests (optional)
+- Instructions for running tests
+- Test coverage report
+4. Demo
+- Sample data to demonstrate features
+- Quick video walkthrough (optional but appreciated)
+- Local setup via docker-compose for easy evaluation
+Timeline
+- Duration: 10-15 days from assignment
+- Questions: Candidates can ask clarifying questions within the first 2 days
+- Submission: Via GitHub repository with clear commit history
+Notes for Candidates
+- Focus on demonstrating senior-level decision-making
+- Write code as if it's for a production application
+- Document any assumptions made
+- Explain trade-offs in your implementation choices
+- Feel free to add creative features that enhance the user experience

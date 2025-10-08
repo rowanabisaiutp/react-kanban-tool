@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/26</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/26</span>
             </div>
         
             
@@ -158,29 +158,35 @@
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
 <a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -254,6 +260,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+<span class="cstat-no" title="statement not covered" >import { CheckCircle, XCircle, AlertTriangle, Info, X } from 'lucide-react';</span>
 <span class="cstat-no" title="statement not covered" >import { useNotificationSystem } from '../../../hooks/useNotifications';</span>
 <span class="cstat-no" title="statement not covered" >import './NotificationSystem.css';</span>
 &nbsp;
@@ -276,12 +283,14 @@ const NotificationItem: React.FC&lt;NotificationProps&gt; = <span class="cstat-n
   };
 &nbsp;
   const getIcon = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+    const iconProps = <span class="cstat-no" title="statement not covered" >{ size: 20, className: 'notification__icon-svg' };</span>
+    
 <span class="cstat-no" title="statement not covered" >    switch (notification.type) {</span>
-      case 'success': <span class="cstat-no" title="statement not covered" >return '✅';</span>
-      case 'error': <span class="cstat-no" title="statement not covered" >return '❌';</span>
-      case 'warning': <span class="cstat-no" title="statement not covered" >return '⚠️';</span>
-      case 'info': <span class="cstat-no" title="statement not covered" >return 'ℹ️';</span>
-      default: <span class="cstat-no" title="statement not covered" >return 'ℹ️';</span>
+      case 'success': <span class="cstat-no" title="statement not covered" >return &lt;CheckCircle {...iconProps} /&gt;;</span>
+      case 'error': <span class="cstat-no" title="statement not covered" >return &lt;XCircle {...iconProps} /&gt;;</span>
+      case 'warning': <span class="cstat-no" title="statement not covered" >return &lt;AlertTriangle {...iconProps} /&gt;;</span>
+      case 'info': <span class="cstat-no" title="statement not covered" >return &lt;Info {...iconProps} /&gt;;</span>
+      default: <span class="cstat-no" title="statement not covered" >return &lt;Info {...iconProps} /&gt;;</span>
     }
   };
 &nbsp;
@@ -319,7 +328,7 @@ const NotificationItem: React.FC&lt;NotificationProps&gt; = <span class="cstat-n
         onClick={handleClose}
         aria-label="Cerrar notificación"
       &gt;
-        ✕
+        &lt;X size={16} /&gt;
       &lt;/button&gt;
     &lt;/div&gt;
   );
@@ -355,7 +364,7 @@ const NotificationSystem: React.FC = <span class="cstat-no" title="statement not
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-05T07:16:07.298Z
+                at 2025-10-08T01:14:44.441Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

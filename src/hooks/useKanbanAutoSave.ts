@@ -1,7 +1,7 @@
 import React from 'react';
 import { useKanban } from '../store/kanbanStore';
 import { useKanbanAutoSave } from './useAutoSave';
-import { useNotificationSystem } from './useNotifications';
+// import { useNotificationSystem } from './useNotifications'; // No se usa actualmente
 
 /**
  * Hook especializado para auto-save de datos del Kanban
@@ -9,7 +9,7 @@ import { useNotificationSystem } from './useNotifications';
  */
 export const useKanbanAutoSaveIntegration = (enabled: boolean = true) => {
   const { boards, currentBoard } = useKanban();
-  const { showError } = useNotificationSystem();
+  // const { showError } = useNotificationSystem(); // No se usa actualmente
 
   // Datos a observar para cambios (sin lastModified que cambia en cada render)
   const kanbanData = React.useMemo(() => ({

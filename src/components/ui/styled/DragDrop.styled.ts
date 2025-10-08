@@ -6,10 +6,10 @@ const dragEnter = keyframes`
   100% { transform: scale(1.02); }
 `;
 
-const dragExit = keyframes`
-  0% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-`;
+// const dragExit = keyframes`
+//   0% { transform: scale(1.02); }
+//   100% { transform: scale(1); }
+// `; // No se usa actualmente
 
 const dropZonePulse = keyframes`
   0%, 100% { 

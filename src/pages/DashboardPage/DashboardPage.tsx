@@ -182,7 +182,7 @@ const DashboardContent: React.FC = () => {
             <div className="dashboard-page__user-list">
               <h3>Miembros del Equipo</h3>
               <div className="dashboard-page__users-grid">
-                {['Ana García', 'Carlos López', 'María Rodríguez', 'Luis Martínez', 'Sofia Chen', 'Diego Fernández', 'Elena Ruiz', 'Pablo Torres'].map((user, index) => (
+                {['Ana García', 'Carlos López', 'María Rodríguez', 'Luis Martínez', 'Sofia Chen', 'Diego Fernández', 'Elena Ruiz', 'Pablo Torres'].map((user) => (
                   <div key={user} className="dashboard-page__user-item">
                     <UserAvatar userName={user} size="md" />
                     <div className="dashboard-page__user-info">

@@ -36,7 +36,7 @@ const Column: React.FC<ColumnProps> = memo(({
   onMoveTask,
   onDuplicateTask,
   onArchiveTask,
-  onReassignTask,
+  // onReassignTask, // No se usa actualmente
   onAddComment,
   onUpdateComment,
   onDeleteComment,
@@ -184,7 +184,7 @@ const Column: React.FC<ColumnProps> = memo(({
                   onMove={onMoveTask}
                   onDuplicate={onDuplicateTask}
                   onArchive={onArchiveTask}
-                  onReassign={onReassignTask}
+                  // onReassign={onReassignTask} // Prop no existe en DraggableTaskProps
                   onAddComment={onAddComment}
                   onUpdateComment={onUpdateComment}
                   onDeleteComment={onDeleteComment}
