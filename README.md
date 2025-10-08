@@ -134,7 +134,3 @@ Acción del Usuario → Componente → Hook → Store → Re-renderizado del Com
 - **Rendimiento:** Desplazamiento virtual, auto-guardado, operaciones optimizadas
 - **Pruebas:** Suite de pruebas integral con cobertura completa
 - **DevOps:** Configuración completa de Docker
-
-## Licencia
-
-Licencia MIT - ver [LICENSE](LICENSE) para más detalles.
