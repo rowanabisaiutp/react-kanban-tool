@@ -84,7 +84,6 @@ npm test -- --coverage
 npm test -- --watch
 ```
 
-**Resultados de Pruebas:** ✅ **549 pruebas pasaron, 53 suites de pruebas pasaron** - Cobertura integral de pruebas en todos los componentes, hooks y utilidades.
 
 ## Arquitectura
 
