@@ -223,9 +223,9 @@ export const useColorContrast = () => {
     const getLuminance = (color: string) => {
       // Convertir hex a RGB
       const hex = color.replace('#', '');
-      const r = parseInt(hex.substr(0, 2), 16) / 255;
-      const g = parseInt(hex.substr(2, 2), 16) / 255;
-      const b = parseInt(hex.substr(4, 2), 16) / 255;
+      const r = parseInt(hex.slice(0, 2), 16) / 255;
+      const g = parseInt(hex.slice(2, 4), 16) / 255;
+      const b = parseInt(hex.slice(4, 6), 16) / 255;
 
       // Aplicar gamma correction
       const [rs, gs, bs] = [r, g, b].map(c => 

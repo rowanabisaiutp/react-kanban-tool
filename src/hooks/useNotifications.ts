@@ -12,15 +12,17 @@ interface Notification {
 
 interface NotificationStore {
   notifications: Notification[];
+  timers: Map<string, NodeJS.Timeout>;
   addNotification: (notification: Omit<Notification, 'id'>) => void;
   removeNotification: (id: string) => void;
   clearAllNotifications: () => void;
 }
 
-const useNotificationStore = create<NotificationStore>((set) => ({
+const useNotificationStore = create<NotificationStore>((set, get) => ({
   notifications: [],
+  timers: new Map(),
   addNotification: (notification) => {
-    const id = Math.random().toString(36).substr(2, 9);
+    const id = crypto.randomUUID();
     const newNotification = { ...notification, id };
     
     set((state) => ({
@@ -29,20 +31,44 @@ const useNotificationStore = create<NotificationStore>((set) => ({
 
     // Auto-remove after duration
     if (notification.duration) {
-      setTimeout(() => {
-        set((state) => ({
-          notifications: state.notifications.filter(n => n.id !== id)
-        }));
+      const timer = setTimeout(() => {
+        set((state) => {
+          const timers = new Map(state.timers);
+          timers.delete(id);
+          return {
+            notifications: state.notifications.filter(n => n.id !== id),
+            timers
+          };
+        });
       }, notification.duration);
+      
+      set((state) => {
+        const timers = new Map(state.timers);
+        timers.set(id, timer);
+        return { timers };
+      });
     }
   },
   removeNotification: (id) => {
-    set((state) => ({
-      notifications: state.notifications.filter(n => n.id !== id)
-    }));
+    const state = get();
+    const timer = state.timers.get(id);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    
+    set((state) => {
+      const timers = new Map(state.timers);
+      timers.delete(id);
+      return {
+        notifications: state.notifications.filter(n => n.id !== id),
+        timers
+      };
+    });
   },
   clearAllNotifications: () => {
-    set({ notifications: [] });
+    const state = get();
+    state.timers.forEach(timer => clearTimeout(timer));
+    set({ notifications: [], timers: new Map() });
   }
 }));
 

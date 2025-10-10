@@ -120,8 +120,6 @@ export const safeGetItem = (key: string): { success: boolean; data?: string; err
  */
 export const cleanupOldData = async (): Promise<{ success: boolean; freedSpace: number }> => {
   try {
-    console.log('🧹 Iniciando limpieza automática de datos...');
-    
     // Usar la función de limpieza de Kanban existente
     const result = cleanKanbanData();
     
@@ -131,7 +129,6 @@ export const cleanupOldData = async (): Promise<{ success: boolean; freedSpace: 
     };
 
   } catch (error) {
-    console.error('Error durante limpieza:', error);
     return { success: false, freedSpace: 0 };
   }
 };
@@ -141,11 +138,9 @@ export const cleanupOldData = async (): Promise<{ success: boolean; freedSpace: 
  */
 export const performFullCleanup = (): { success: boolean; details: any } => {
   try {
-    console.log('🧹 Iniciando limpieza completa del proyecto...');
     const result = cleanAllData();
     return { success: result.success, details: result };
   } catch (error) {
-    console.error('Error en limpieza completa:', error);
     return { success: false, details: null };
   }
 };
@@ -155,11 +150,9 @@ export const performFullCleanup = (): { success: boolean; details: any } => {
  */
 export const performKanbanCleanup = (): { success: boolean; details: any } => {
   try {
-    console.log('🗂️ Iniciando limpieza de datos Kanban...');
     const result = cleanKanbanData();
     return { success: result.success, details: result };
   } catch (error) {
-    console.error('Error en limpieza Kanban:', error);
     return { success: false, details: null };
   }
 };
@@ -169,11 +162,9 @@ export const performKanbanCleanup = (): { success: boolean; details: any } => {
  */
 export const performThemeCleanup = (): { success: boolean } => {
   try {
-    console.log('🎨 Limpiando configuración de tema...');
     clearTheme();
     return { success: true };
   } catch (error) {
-    console.error('Error limpiando tema:', error);
     return { success: false };
   }
 };
@@ -183,11 +174,9 @@ export const performThemeCleanup = (): { success: boolean } => {
  */
 export const performStorageCleanup = (): { success: boolean } => {
   try {
-    console.log('🗑️ Limpiando localStorage completo...');
     clearStorage();
     return { success: true };
   } catch (error) {
-    console.error('Error limpiando storage:', error);
     return { success: false };
   }
 };
@@ -219,7 +208,6 @@ export const getStorageUsage = (): StorageInfo => {
       percentage: Math.min(percentage, 100),
     };
   } catch (error) {
-    console.error('Error calculando uso de almacenamiento:', error);
     return {
       used: 0,
       available: 0,
@@ -245,7 +233,6 @@ export const compressData = (data: any): string => {
     // Remover espacios y saltos de línea innecesarios
     return JSON.stringify(data, null, 0);
   } catch (error) {
-    console.error('Error comprimiendo datos:', error);
     return JSON.stringify(data);
   }
 };
@@ -257,7 +244,6 @@ export const decompressData = (compressedData: string): any => {
   try {
     return JSON.parse(compressedData);
   } catch (error) {
-    console.error('Error descomprimiendo datos:', error);
     throw new Error('Datos corruptos o incompatibles');
   }
 };
@@ -286,7 +272,6 @@ export const createSafetyBackup = async (data: any): Promise<{ success: boolean;
     
     return { success: false };
   } catch (error) {
-    console.error('Error creando backup de seguridad:', error);
     return { success: false };
   }
 };
@@ -305,7 +290,6 @@ export const restoreFromSafetyBackup = (backupKey: string): { success: boolean; 
     
     return { success: false };
   } catch (error) {
-    console.error('Error restaurando backup de seguridad:', error);
     return { success: false };
   }
 };

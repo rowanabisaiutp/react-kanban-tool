@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useKanbanFilters } from '../../../hooks/useUnifiedFilters';
 import SearchBar from '../SearchBar';
-import FilterPanel from '../FilterPanel';
 import './SearchInterface.css';
+
+// Lazy loading de FilterPanel (componente pesado de 315+ líneas)
+const FilterPanel = lazy(() => import('../FilterPanel'));
 
 interface SearchInterfaceProps {
   className?: string;
@@ -52,10 +54,14 @@ const SearchInterface: React.FC<SearchInterfaceProps> = ({ className = "" }) => 
         </div>
       </div>
 
-      <FilterPanel 
-        isOpen={isFilterPanelOpen} 
-        onClose={handleFilterClose} 
-      />
+      {isFilterPanelOpen && (
+        <Suspense fallback={<div style={{ padding: '20px', textAlign: 'center' }}>Cargando filtros...</div>}>
+          <FilterPanel 
+            isOpen={isFilterPanelOpen} 
+            onClose={handleFilterClose} 
+          />
+        </Suspense>
+      )}
     </div>
   );
 };

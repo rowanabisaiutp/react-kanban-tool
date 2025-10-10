@@ -3,6 +3,7 @@ export default {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   testTimeout: 15000, // Aumentar timeout para tests complejos
+  maxWorkers: '50%', // Limitar workers para reducir problemas de sincronización
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',

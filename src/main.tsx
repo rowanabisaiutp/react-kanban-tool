@@ -2,19 +2,18 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
+import { logger } from './utils/logger'
 
 // Funciones de debug para localStorage (solo en desarrollo)
 if (import.meta.env.DEV) {
   import('./utils/reset-storage');
 }
 
-// Log inmediato para verificar que la consola funciona
-console.log('🔥🔥🔥 PROYECTO KANBAN CARGADO 🔥🔥🔥');
-console.log('📅 Fecha:', new Date().toLocaleString('es-ES'));
-console.log('🌐 URL:', window.location.href);
-console.log('👤 User Agent:', navigator.userAgent);
-console.log('💾 LocalStorage disponible:', typeof localStorage !== 'undefined');
-console.log('FIN DEL LOG DE CARGA ');
+// Log de inicio (solo en desarrollo)
+logger.info('🔥 PROYECTO KANBAN CARGADO');
+logger.debug('📅 Fecha:', new Date().toLocaleString('es-ES'));
+logger.debug('🌐 URL:', window.location.href);
+logger.debug('💾 LocalStorage disponible:', typeof localStorage !== 'undefined');
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

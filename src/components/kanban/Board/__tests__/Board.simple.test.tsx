@@ -139,7 +139,8 @@ describe('Board Simple Tests', () => {
     
     expect(screen.getByTestId('dnd-context')).toBeInTheDocument();
     expect(screen.getByTestId('sortable-context')).toBeInTheDocument();
-    expect(screen.getByTestId('data-manager')).toBeInTheDocument();
+    // DataManager ahora es lazy y solo se renderiza cuando se abre
+    expect(screen.queryByTestId('data-manager')).not.toBeInTheDocument();
   });
 
   it('renders columns', () => {

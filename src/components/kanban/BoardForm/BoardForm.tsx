@@ -3,6 +3,7 @@ import { useKanban } from '../../../hooks/useKanbanHook';
 import type { Board } from '../../../types';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
+import { logger } from '../../../utils/logger';
 import './BoardForm.css';
 
 interface BoardFormProps {
@@ -103,7 +104,7 @@ const BoardForm: React.FC<BoardFormProps> = ({ board, onClose }) => {
 
       onClose();
     } catch (error) {
-      console.error('Error al guardar tablero:', error);
+      logger.error('Error al guardar tablero:', error);
     } finally {
       setIsSubmitting(false);
     }

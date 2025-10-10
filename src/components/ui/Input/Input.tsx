@@ -44,8 +44,8 @@ const Input: React.FC<InputProps> = ({
   helperText,
   autocomplete
 }) => {
-  // Generar ID único si no se proporciona
-  const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+  // Generar ID único si no se proporciona usando crypto.randomUUID()
+  const inputId = id || `input-${crypto.randomUUID()}`;
   const errorId = `${inputId}-error`;
   const helperId = `${inputId}-helper`;
 

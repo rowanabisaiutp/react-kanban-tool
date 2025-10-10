@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useDebouncedCallback } from './useDebounce';
+import { logger } from '../utils/logger';
 
 /**
  * Hook para implementar auto-save con debouncing
@@ -30,9 +31,9 @@ export const useAutoSave = <T>(
       isSavingRef.current = true;
       await saveFunction(dataToSave);
       lastSavedRef.current = dataToSave;
-      console.log('✅ Auto-save completado:', new Date().toISOString());
+      logger.debug('✅ Auto-save completado:', new Date().toISOString());
     } catch (error) {
-      console.error('❌ Error en auto-save:', error);
+      logger.error('Error en auto-save:', error);
       // Aquí se podría implementar un sistema de reintentos o notificaciones
     } finally {
       isSavingRef.current = false;
@@ -57,9 +58,9 @@ export const useAutoSave = <T>(
       isSavingRef.current = true;
       await saveFunction(data);
       lastSavedRef.current = data;
-      console.log('💾 Guardado forzado completado:', new Date().toISOString());
+      logger.debug('💾 Guardado forzado completado:', new Date().toISOString());
     } catch (error) {
-      console.error('❌ Error en guardado forzado:', error);
+      logger.error('Error en guardado forzado:', error);
       throw error;
     } finally {
       isSavingRef.current = false;
@@ -100,12 +101,12 @@ export const useKanbanAutoSave = (data: any, enabled: boolean = true) => {
       });
       
       localStorage.setItem('kanban-auto-save', serializedData);
-      console.log('💾 Datos guardados en localStorage:', {
+      logger.debug('💾 Datos guardados en localStorage:', {
         boards: dataToSave.boards?.length || 0,
         timestamp: new Date().toISOString()
       });
     } catch (error) {
-      console.error('❌ Error guardando en localStorage:', error);
+      logger.error('Error guardando en localStorage:', error);
       throw error;
     }
   }, []);

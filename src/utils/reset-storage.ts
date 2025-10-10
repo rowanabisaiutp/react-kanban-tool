@@ -1,13 +1,15 @@
+import { logger } from './logger';
+
 export const resetStorage = () => {
   try {
     // Limpiar completamente el localStorage
     localStorage.clear();
-    console.log('✅ LocalStorage limpiado correctamente');
+    logger.info('✅ LocalStorage limpiado correctamente');
     
     // Recargar la página
     window.location.reload();
   } catch (error) {
-    console.error('❌ Error al limpiar localStorage:', error);
+    logger.error('❌ Error al limpiar localStorage:', error);
   }
 };
 
@@ -17,17 +19,17 @@ export const verifyStorage = () => {
     
     if (kanbanData) {
       const parsed = JSON.parse(kanbanData);
-      console.log('📦 Datos en localStorage:', {
+      logger.debug('📦 Datos en localStorage:', {
         boards: parsed.state?.boards?.length || 0,
         currentBoard: parsed.state?.currentBoard?.title || 'Ninguno'
       });
       return parsed;
     } else {
-      console.log('⚠️ No hay datos en localStorage');
+      logger.debug('⚠️ No hay datos en localStorage');
       return null;
     }
   } catch (error) {
-    console.error('❌ Error al verificar localStorage:', error);
+    logger.error('❌ Error al verificar localStorage:', error);
     return null;
   }
 };

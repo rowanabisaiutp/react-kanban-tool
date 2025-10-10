@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { logger } from '../utils/logger';
 
 /**
  * Hook simple para manejar actualizaciones en tiempo real
@@ -7,7 +8,7 @@ import { useCallback } from 'react';
 export const useRealtimeUpdates = () => {
   // Función para notificar cambios a otros componentes
   const notifyChange = useCallback((changeType: string, data?: any) => {
-    console.log(`🔄 Notificación de cambio: ${changeType}`, data);
+    logger.debug(`🔄 Notificación de cambio: ${changeType}`, data);
     
     // Crear evento personalizado para notificar cambios
     const event = new CustomEvent('kanban-update', {

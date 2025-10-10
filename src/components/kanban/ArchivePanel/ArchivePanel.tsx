@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Archive, Clock, User } from 'lucide-react';
 import { useKanbanStore } from '../../../store/useKanbanStore';
 import { useDateUtils } from '../../../hooks/useDateUtils';
+import { logger } from '../../../utils/logger';
 import './ArchivePanel.css';
 
 interface ArchivePanelProps {
@@ -28,14 +29,14 @@ const ArchivePanel: React.FC<ArchivePanelProps> = ({ isOpen, onClose }) => {
   // Función para restaurar una tarea
   const handleRestoreTask = (taskId: string) => {
     restoreTask(taskId);
-    console.log('Tarea restaurada:', taskId);
+    logger.debug('Tarea restaurada:', taskId);
   };
 
   // Función para eliminar permanentemente una tarea
   const handleDeletePermanently = (taskId: string) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar permanentemente esta tarea? Esta acción no se puede deshacer.')) {
       deleteArchivedTask(taskId);
-      console.log('Tarea eliminada permanentemente:', taskId);
+      logger.debug('Tarea eliminada permanentemente:', taskId);
     }
   };
 

@@ -1,0 +1,16 @@
+10. No hay lazy loading de componentes pesados
+Solo las páginas tienen lazy loading, pero componentes grandes como TaskDetailModal deberían cargarse lazy.
+
+📋 Recomendaciones Específicas
+Alta Prioridad:
+✅ Eliminar console.logs y crear sistema de logging
+✅ Usar crypto.randomUUID() para IDs
+✅ Refactorizar el store para eliminar duplicación
+✅ Dividir TaskCard en componentes más pequeños
+✅ Configurar tree-shaking para date-fns
+Media Prioridad:
+✅ Implementar lazy loading para modales grandes
+✅ Simplificar mocks de tests
+✅ Extraer utility classes o migrar a TailwindCSS
+✅ Centralizar lógica de parseo de fechas
+✅ Reemplazar .substr() por .slice()

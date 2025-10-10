@@ -1,3 +1,5 @@
+import { logger } from './logger';
+
 /**
  * Script utilitario para limpiar completamente todos los datos del proyecto Kanban
  * Incluye localStorage, sessionStorage, y datos específicos de la aplicación
@@ -76,11 +78,11 @@ const cleanProjectData = (options: CleanupOptions = {}): CleanupResult => {
         }
       });
 
-      console.log(`🧹 ${storageName} limpiado: ${storageResult.items} elementos, ${(storageResult.space / 1024).toFixed(2)} KB liberados`);
+      logger.debug(`🧹 ${storageName} limpiado: ${storageResult.items} elementos, ${(storageResult.space / 1024).toFixed(2)} KB liberados`);
       
     } catch (error) {
       const errorMsg = `Error limpiando ${storageName}: ${error}`;
-      console.error(`❌ ${errorMsg}`);
+      logger.error(`❌ ${errorMsg}`);
       result.errors.push(errorMsg);
       result.success = false;
     }
@@ -170,7 +172,7 @@ const cleanProjectData = (options: CleanupOptions = {}): CleanupResult => {
     });
 
     result.details.kanbanData = { items: kanbanItems, space: kanbanSpace };
-    console.log(`🗂️ Datos Kanban limpiados: ${kanbanItems} elementos, ${(kanbanSpace / 1024).toFixed(2)} KB liberados`);
+    logger.debug(`🗂️ Datos Kanban limpiados: ${kanbanItems} elementos, ${(kanbanSpace / 1024).toFixed(2)} KB liberados`);
   }
 
   // 4. Limpiar datos de tema
@@ -189,7 +191,7 @@ const cleanProjectData = (options: CleanupOptions = {}): CleanupResult => {
     });
 
     result.details.themeData = { items: themeItems, space: themeSpace };
-    console.log(`🎨 Datos de tema limpiados: ${themeItems} elementos, ${(themeSpace / 1024).toFixed(2)} KB liberados`);
+    logger.debug(`🎨 Datos de tema limpiados: ${themeItems} elementos, ${(themeSpace / 1024).toFixed(2)} KB liberados`);
   }
 
   // 5. Limpiar preferencias de usuario
@@ -208,7 +210,7 @@ const cleanProjectData = (options: CleanupOptions = {}): CleanupResult => {
     });
 
     result.details.userPreferences = { items: preferenceItems, space: preferenceSpace };
-    console.log(`👤 Preferencias de usuario limpiadas: ${preferenceItems} elementos, ${(preferenceSpace / 1024).toFixed(2)} KB liberados`);
+    logger.debug(`👤 Preferencias de usuario limpiadas: ${preferenceItems} elementos, ${(preferenceSpace / 1024).toFixed(2)} KB liberados`);
   }
 
   // 6. Limpiar backups
@@ -228,7 +230,7 @@ const cleanProjectData = (options: CleanupOptions = {}): CleanupResult => {
     });
 
     result.details.backups = { items: backupItems, space: backupSpace };
-    console.log(`💾 Backups limpiados: ${backupItems} elementos, ${(backupSpace / 1024).toFixed(2)} KB liberados`);
+    logger.debug(`💾 Backups limpiados: ${backupItems} elementos, ${(backupSpace / 1024).toFixed(2)} KB liberados`);
   }
 
   // 7. Limpiar datos temporales
@@ -248,7 +250,7 @@ const cleanProjectData = (options: CleanupOptions = {}): CleanupResult => {
     });
 
     result.details.tempData = { items: tempItems, space: tempSpace };
-    console.log(`🗑️ Datos temporales limpiados: ${tempItems} elementos, ${(tempSpace / 1024).toFixed(2)} KB liberados`);
+    logger.debug(`🗑️ Datos temporales limpiados: ${tempItems} elementos, ${(tempSpace / 1024).toFixed(2)} KB liberados`);
   }
 
   // Calcular totales
@@ -264,20 +266,20 @@ const cleanProjectData = (options: CleanupOptions = {}): CleanupResult => {
 
   // Resultado final
   if (result.success) {
-    console.log('\n✅ ¡Limpieza completada exitosamente!');
-    console.log(`📊 Total de elementos removidos: ${result.itemsRemoved}`);
-    console.log(`💾 Espacio total liberado: ${(result.spaceFreed / 1024).toFixed(2)} KB`);
-    console.log(`📉 localStorage: ${(beforeLocalStorageSize / 1024).toFixed(2)} KB → ${(afterLocalStorageSize / 1024).toFixed(2)} KB`);
-    console.log(`📉 sessionStorage: ${(beforeSessionStorageSize / 1024).toFixed(2)} KB → ${(afterSessionStorageSize / 1024).toFixed(2)} KB`);
+    logger.info('✅ ¡Limpieza completada exitosamente!');
+    logger.debug(`📊 Total de elementos removidos: ${result.itemsRemoved}`);
+    logger.debug(`💾 Espacio total liberado: ${(result.spaceFreed / 1024).toFixed(2)} KB`);
+    logger.debug(`📉 localStorage: ${(beforeLocalStorageSize / 1024).toFixed(2)} KB → ${(afterLocalStorageSize / 1024).toFixed(2)} KB`);
+    logger.debug(`📉 sessionStorage: ${(beforeSessionStorageSize / 1024).toFixed(2)} KB → ${(afterSessionStorageSize / 1024).toFixed(2)} KB`);
     
     if (result.errors.length > 0) {
-      console.log(`⚠️ Se encontraron ${result.errors.length} errores menores durante la limpieza`);
+      logger.warn(`⚠️ Se encontraron ${result.errors.length} errores menores durante la limpieza`);
     }
   } else {
-    console.log('\n❌ La limpieza se completó con errores');
-    console.log(`📊 Elementos removidos: ${result.itemsRemoved}`);
-    console.log(`💾 Espacio liberado: ${(result.spaceFreed / 1024).toFixed(2)} KB`);
-    console.log(`❌ Errores encontrados: ${result.errors.length}`);
+    logger.error('❌ La limpieza se completó con errores');
+    logger.debug(`📊 Elementos removidos: ${result.itemsRemoved}`);
+    logger.debug(`💾 Espacio liberado: ${(result.spaceFreed / 1024).toFixed(2)} KB`);
+    logger.error(`❌ Errores encontrados: ${result.errors.length}`);
   }
 
   return result;
@@ -285,13 +287,13 @@ const cleanProjectData = (options: CleanupOptions = {}): CleanupResult => {
 
 // Función para limpieza completa (todas las opciones)
 const cleanAllData = (): CleanupResult => {
-  console.log('🧹 Iniciando limpieza completa de datos del proyecto...\n');
+  logger.info('🧹 Iniciando limpieza completa de datos del proyecto');
   return cleanProjectData();
 };
 
 // Función para limpieza selectiva
 const cleanKanbanData = (): CleanupResult => {
-  console.log('🗂️ Limpiando solo datos de Kanban...\n');
+  logger.info('🗂️ Limpiando solo datos de Kanban');
   return cleanProjectData({
     localStorage: false,
     sessionStorage: false,
@@ -305,7 +307,7 @@ const cleanKanbanData = (): CleanupResult => {
 
 // Función para limpieza de solo tema
 const cleanThemeData = (): CleanupResult => {
-  console.log('🎨 Limpiando solo datos de tema...\n');
+  logger.info('🎨 Limpiando solo datos de tema');
   return cleanProjectData({
     localStorage: false,
     sessionStorage: false,

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useKanbanStore } from '../../store/useKanbanStore';
+import { logger } from '../../utils/logger';
 import { UnifiedFilterProvider, useKanbanFilters } from '../../hooks/useUnifiedFilters';
 import { Board, BoardSelector, DeleteBoardModal, ArchivePanel } from '../../components/kanban';
 import { SearchInterface } from '../../components/search';
@@ -7,8 +8,10 @@ import { UserAvatar } from '../../components/ui';
 import { teamMembersDetailed } from '../../data/mockData';
 import Button from '../../components/ui/Button';
 import Modal from '../../components/ui/Modal';
-import AddColumnForm from '../../components/kanban/AddColumnForm';
 import './KanbanPage.css';
+
+// Lazy loading de AddColumnForm
+const AddColumnForm = lazy(() => import('../../components/kanban/AddColumnForm'));
 
 // Componente interno que usa los filtros de Kanban
 const KanbanContent: React.FC = () => {
@@ -53,8 +56,7 @@ const KanbanContent: React.FC = () => {
   // Función para mostrar/ocultar tareas archivadas
   const handleShowArchived = () => {
     setShowArchived(!showArchived);
-    // Aquí podrías agregar lógica adicional para cargar las tareas archivadas
-    console.log('Mostrando tareas archivadas:', !showArchived);
+    logger.debug('Mostrando tareas archivadas:', !showArchived);
   };
 
 
@@ -134,7 +136,9 @@ const KanbanContent: React.FC = () => {
         onClose={() => setShowAddColumn(false)}
         title="Agregar Nueva Columna"
       >
-        <AddColumnForm onClose={() => setShowAddColumn(false)} />
+        <Suspense fallback={<div style={{ padding: '40px', textAlign: 'center' }}>Cargando formulario...</div>}>
+          <AddColumnForm onClose={() => setShowAddColumn(false)} />
+        </Suspense>
       </Modal>
 
       {/* Modal para confirmar eliminación de tablero */}

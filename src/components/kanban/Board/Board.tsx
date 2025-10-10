@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, memo, useCallback, useMemo, useEffect, lazy, Suspense } from 'react';
 import { DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors, rectIntersection, type DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, horizontalListSortingStrategy } from '@dnd-kit/sortable';
 import type { Board as BoardType, Task, TaskStatus } from '../../../types';
@@ -10,12 +10,38 @@ import { useRealtimeUpdates } from '../../../hooks/useRealtimeUpdates';
 import { NoResults } from '../../search';
 import DraggableColumn from '../DraggableColumn';
 import Modal from '../../ui/Modal';
-import AddColumnForm from '../AddColumnForm';
-import TaskForm from '../TaskForm';
-import TaskDetailModal from '../TaskDetailModal';
-import DeleteColumnModal from '../DeleteColumnModal';
-import DataManager from '../../ui/DataManager';
 import './Board.css';
+
+// Lazy loading de componentes pesados para mejor performance
+const TaskForm = lazy(() => import('../TaskForm'));
+const TaskDetailModal = lazy(() => import('../TaskDetailModal'));
+const AddColumnForm = lazy(() => import('../AddColumnForm'));
+const DeleteColumnModal = lazy(() => import('../DeleteColumnModal'));
+const DataManager = lazy(() => import('../../ui/DataManager'));
+
+// Componente de loading simple para los modales
+const ModalLoader = () => (
+  <div style={{ 
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    padding: '60px',
+    minHeight: '200px' 
+  }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        width: '40px', 
+        height: '40px', 
+        border: '4px solid #f3f3f3',
+        borderTop: '4px solid #3498db',
+        borderRadius: '50%',
+        animation: 'spin 1s linear infinite',
+        margin: '0 auto 16px'
+      }} />
+      <p style={{ color: '#666' }}>Cargando...</p>
+    </div>
+  </div>
+);
 
 interface BoardProps {
   board: BoardType;
@@ -320,7 +346,9 @@ const Board: React.FC<BoardProps> = ({ board }) => {
               </button>
             </div>
             <div className="filter-panel__content">
-              <AddColumnForm onClose={() => setModalState(prev => ({ ...prev, showAddColumn: false }))} />
+              <Suspense fallback={<ModalLoader />}>
+                <AddColumnForm onClose={() => setModalState(prev => ({ ...prev, showAddColumn: false }))} />
+              </Suspense>
             </div>
           </div>
         </div>
@@ -336,41 +364,45 @@ const Board: React.FC<BoardProps> = ({ board }) => {
           title="Agregar Nueva Tarea"
           size="xl"
         >
-          <TaskForm 
-            onClose={() => {
-              setModalState(prev => ({ ...prev, showAddTask: false }));
-              setTaskColumnId(null);
-            }}
-            columnStatus={board.columns.find(col => col.id === taskColumnId)?.status || 'todo'}
-            columnId={taskColumnId}
-          />
+          <Suspense fallback={<ModalLoader />}>
+            <TaskForm 
+              onClose={() => {
+                setModalState(prev => ({ ...prev, showAddTask: false }));
+                setTaskColumnId(null);
+              }}
+              columnStatus={board.columns.find(col => col.id === taskColumnId)?.status || 'todo'}
+              columnId={taskColumnId}
+            />
+          </Suspense>
         </Modal>
       )}
 
-      {/* Modal de detalles de tarea */}
+      {/* Modal de detalles de tarea con lazy loading */}
       {modalState.showTaskDetail && currentViewingTask && (
-        <TaskDetailModal
-          isOpen={modalState.showTaskDetail}
-          onClose={() => {
-            setModalState(prev => ({ ...prev, showTaskDetail: false }));
-            setViewingTask(null);
-            setViewingTaskId(null);
-          }}
-          task={currentViewingTask}
-          onEdit={(task) => {
-            setViewingTask(null);
-            setViewingTaskId(null);
-            setEditingTask(task);
-            setModalState(prev => ({ ...prev, showTaskDetail: false, showEditTask: true }));
-          }}
-          onMarkComplete={handleMarkComplete}
-          onUpdateSubtask={handleUpdateSubtask}
-          onSubtaskChanges={handleSubtaskChanges}
-          onAddComment={addComment}
-          onUpdateComment={updateComment}
-          onDeleteComment={deleteComment}
-          onCommentChanges={handleCommentChanges}
-        />
+        <Suspense fallback={<ModalLoader />}>
+          <TaskDetailModal
+            isOpen={modalState.showTaskDetail}
+            onClose={() => {
+              setModalState(prev => ({ ...prev, showTaskDetail: false }));
+              setViewingTask(null);
+              setViewingTaskId(null);
+            }}
+            task={currentViewingTask}
+            onEdit={(task) => {
+              setViewingTask(null);
+              setViewingTaskId(null);
+              setEditingTask(task);
+              setModalState(prev => ({ ...prev, showTaskDetail: false, showEditTask: true }));
+            }}
+            onMarkComplete={handleMarkComplete}
+            onUpdateSubtask={handleUpdateSubtask}
+            onSubtaskChanges={handleSubtaskChanges}
+            onAddComment={addComment}
+            onUpdateComment={updateComment}
+            onDeleteComment={deleteComment}
+            onCommentChanges={handleCommentChanges}
+          />
+        </Suspense>
       )}
 
       {modalState.showEditTask && editingTask && (
@@ -383,14 +415,16 @@ const Board: React.FC<BoardProps> = ({ board }) => {
           title="Editar Tarea"
           size="xl"
         >
-          <TaskForm 
-            onClose={() => {
-              setModalState(prev => ({ ...prev, showEditTask: false }));
-              setEditingTask(null);
-            }}
-            editingTask={editingTask}
-            columnId={findColumnByTaskId(board.columns, editingTask.id)?.id}
-          />
+          <Suspense fallback={<ModalLoader />}>
+            <TaskForm 
+              onClose={() => {
+                setModalState(prev => ({ ...prev, showEditTask: false }));
+                setEditingTask(null);
+              }}
+              editingTask={editingTask}
+              columnId={findColumnByTaskId(board.columns, editingTask.id)?.id}
+            />
+          </Suspense>
         </Modal>
       )}
 
@@ -418,34 +452,42 @@ const Board: React.FC<BoardProps> = ({ board }) => {
               </button>
             </div>
             <div className="filter-panel__content">
-              <AddColumnForm
-                onClose={() => {
-                  setModalState(prev => ({ ...prev, showEditColumn: false }));
-                  setEditingColumn(null);
-                }}
-                editingColumn={editingColumn}
-              />
+              <Suspense fallback={<ModalLoader />}>
+                <AddColumnForm
+                  onClose={() => {
+                    setModalState(prev => ({ ...prev, showEditColumn: false }));
+                    setEditingColumn(null);
+                  }}
+                  editingColumn={editingColumn}
+                />
+              </Suspense>
             </div>
           </div>
         </div>
       )}
 
       {modalState.showDeleteColumn && deletingColumn && (
-        <DeleteColumnModal
-          isOpen={modalState.showDeleteColumn}
-          onClose={() => {
-            setModalState(prev => ({ ...prev, showDeleteColumn: false }));
-            setDeletingColumn(null);
-          }}
-          column={deletingColumn}
-        />
+        <Suspense fallback={<ModalLoader />}>
+          <DeleteColumnModal
+            isOpen={modalState.showDeleteColumn}
+            onClose={() => {
+              setModalState(prev => ({ ...prev, showDeleteColumn: false }));
+              setDeletingColumn(null);
+            }}
+            column={deletingColumn}
+          />
+        </Suspense>
       )}
 
       {/* Data Manager Modal */}
-      <DataManager
-        isOpen={modalState.showDataManager}
-        onClose={() => setModalState(prev => ({ ...prev, showDataManager: false }))}
-      />
+      {modalState.showDataManager && (
+        <Suspense fallback={<ModalLoader />}>
+          <DataManager
+            isOpen={modalState.showDataManager}
+            onClose={() => setModalState(prev => ({ ...prev, showDataManager: false }))}
+          />
+        </Suspense>
+      )}
 
       {/* Auto-save Indicator */}
       {showIndicator && (

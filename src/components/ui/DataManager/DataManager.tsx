@@ -8,6 +8,7 @@ import {
   type StorageInfo 
 } from '../../../utils/storageManager';
 import { useNotificationSystem } from '../../../hooks/useNotifications';
+import { logger } from '../../../utils/logger';
 import './DataManager.css';
 
 interface DataManagerProps {
@@ -60,7 +61,7 @@ const DataManager: React.FC<DataManagerProps> = ({ isOpen, onClose }) => {
       }
     } catch (error) {
       showError('Error de limpieza', 'Error inesperado durante la limpieza');
-      console.error('Error limpiando:', error);
+      logger.error('Error limpiando:', error);
     } finally {
       setIsCleaning(false);
     }

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useDashboardFilters } from '../../../hooks/useUnifiedFilters';
-import DashboardFilters from '../DashboardFilters';
 import './DashboardFilterInterface.css';
+
+// Lazy loading de DashboardFilters (componente de 242 líneas)
+const DashboardFilters = lazy(() => import('../DashboardFilters'));
 
 interface DashboardFilterInterfaceProps {
   className?: string;
@@ -52,10 +54,14 @@ const DashboardFilterInterface: React.FC<DashboardFilterInterfaceProps> = ({ cla
         </div>
       </div>
 
-      <DashboardFilters 
-        isOpen={isFilterPanelOpen} 
-        onClose={handleFilterClose} 
-      />
+      {isFilterPanelOpen && (
+        <Suspense fallback={<div style={{ padding: '20px', textAlign: 'center' }}>Cargando filtros...</div>}>
+          <DashboardFilters 
+            isOpen={isFilterPanelOpen} 
+            onClose={handleFilterClose} 
+          />
+        </Suspense>
+      )}
     </div>
   );
 };

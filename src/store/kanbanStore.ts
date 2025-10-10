@@ -5,6 +5,7 @@ import type { Board, Task, TaskStatus, Column } from '../types';
 import { generateId } from '../utils/helpers';
 import { mockBoards } from '../data/mockData';
 import { safeSetItem, handleStorageError } from '../utils/storageManager';
+import { logger } from '../utils/logger';
 
 // Estado del store
 interface KanbanState {
@@ -103,6 +104,15 @@ const updateBoards = (boards: Board[], boardId: string, updater: (board: Board) 
 const updateColumns = (columns: Column[], updater: (column: Column) => Column): Column[] =>
   columns.map(updater);
 
+// Helper para sincronizar currentBoard después de actualizar boards
+// Esto elimina la duplicación de código en todas las acciones
+const syncCurrentBoard = (get: any, set: any, currentBoardId: string) => {
+  const updatedBoard = get().boards.find((b: Board) => b.id === currentBoardId);
+  if (updatedBoard) {
+    set({ currentBoard: updatedBoard });
+  }
+};
+
 // Store principal
 export const useKanbanStore = create<KanbanState & KanbanActions>()(
   persist(
@@ -175,12 +185,11 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
       addTask: (task, columnId) => {
         const { boards, currentBoard } = get();
         if (!currentBoard) {
-          console.error('❌ No hay currentBoard al agregar tarea');
+          logger.error('No hay currentBoard al agregar tarea');
           return;
         }
 
         const newTask = createTask(task);
-        // console.log('➕ Agregando tarea:', newTask.title, 'a columna:', columnId);
         
         set({
           boards: updateBoards(boards, currentBoard.id, board => ({
@@ -194,23 +203,15 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
-        
-        // console.log('✅ Tarea agregada. Total boards:', get().boards.length);
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       updateTask: (taskId, updates) => {
         const { boards, currentBoard } = get();
         if (!currentBoard) {
-          console.error('❌ No hay currentBoard al actualizar tarea');
+          logger.error('No hay currentBoard al actualizar tarea');
           return;
         }
-
-        // console.log('✏️ Actualizando tarea:', taskId);
 
         set({
           boards: updateBoards(boards, currentBoard.id, board => ({
@@ -225,11 +226,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       // Funciones para comentarios
@@ -264,11 +261,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       updateComment: (taskId, commentId, content) => {
@@ -298,11 +291,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       deleteComment: (taskId, commentId) => {
@@ -328,21 +317,15 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       deleteTask: (taskId) => {
         const { boards, currentBoard } = get();
         if (!currentBoard) {
-          console.error('❌ No hay currentBoard al eliminar tarea');
+          logger.error('No hay currentBoard al eliminar tarea');
           return;
         }
-
-        // console.log('🗑️ Eliminando tarea:', taskId);
 
         set({
           boards: updateBoards(boards, currentBoard.id, board => ({
@@ -355,11 +338,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       moveTask: (taskId, newStatus, newIndex) => {
@@ -399,11 +378,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           })
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       duplicateTask: (task) => {
@@ -436,11 +411,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       archiveTask: (taskId) => {
@@ -467,11 +438,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       restoreTask: (taskId) => {
@@ -498,11 +465,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       deleteArchivedTask: (taskId) => {
@@ -520,23 +483,18 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       // Column management
       addColumn: (column) => {
         const { boards, currentBoard } = get();
         if (!currentBoard) {
-          console.error('❌ No hay currentBoard al agregar columna');
+          logger.error('No hay currentBoard al agregar columna');
           return;
         }
 
         const newColumn = { ...column, id: generateId(), tasks: [] };
-        // console.log('➕ Agregando columna:', newColumn.title);
 
         set({
           boards: updateBoards(boards, currentBoard.id, board => ({
@@ -546,11 +504,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       updateColumn: (columnId, updates) => {
@@ -567,11 +521,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       deleteColumn: (columnId) => {
@@ -586,11 +536,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       deleteColumnWithMove: (columnId, moveToColumnId) => {
@@ -626,11 +572,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           })
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       reorderColumns: (columnIds) => {
@@ -647,11 +589,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
 
       reorderTasks: (columnId, taskIds) => {
@@ -675,11 +613,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           }))
         });
 
-        // Actualizar currentBoard
-        const updatedBoard = get().boards.find(b => b.id === currentBoard.id);
-        if (updatedBoard) {
-          set({ currentBoard: updatedBoard });
-        }
+        syncCurrentBoard(get, set, currentBoard.id);
       },
     }),
     {
@@ -691,46 +625,34 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
       onRehydrateStorage: () => (state) => {
         // Deserializar fechas cuando se cargan los datos del localStorage
         if (state) {
-          // console.log('🔄 Rehidratando store...');
           state.boards = deserializeDates(state.boards);
           
           // Reconstruir currentBoard desde boards usando el ID guardado
           const currentBoardId = (state as any).currentBoardId;
           if (currentBoardId && state.boards.length > 0) {
             state.currentBoard = state.boards.find(b => b.id === currentBoardId) || state.boards[0];
-            // console.log('✅ CurrentBoard restaurado:', state.currentBoard.title);
           } else if (state.boards.length > 0) {
             state.currentBoard = state.boards[0];
-            // console.log('✅ CurrentBoard establecido al primero:', state.currentBoard.title);
           }
           
           // Solo cargar datos mock si NO hay datos en absoluto (primera vez)
           if (state.boards.length === 0) {
-            // console.log('🎨 Cargando datos mock por primera vez...');
             state.setBoards(mockBoards);
-          } else {
-            // console.log('✅ Datos cargados desde localStorage:', state.boards.length, 'boards');
           }
         }
       },
       storage: {
         getItem: (name) => {
           try {
-            // console.log('📖 Leyendo desde localStorage...', name);
             const value = localStorage.getItem(name);
             if (value) {
               const parsed = JSON.parse(value);
-              // console.log('✅ Datos leídos:', {
-              //   boards: parsed.state?.boards?.length || 0,
-              //   hasCurrentBoard: !!parsed.state?.currentBoard
-              // });
               return parsed;
             } else {
-              // console.log('⚠️ No hay datos guardados en localStorage');
               return null;
             }
           } catch (error) {
-            console.error('❌ Error reading from localStorage:', error);
+            logger.error('Error reading from localStorage:', error);
             const storageError = handleStorageError(error as Error);
             if (storageError.type === 'CORRUPTED') {
               localStorage.removeItem(name);
@@ -740,15 +662,13 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
         },
         setItem: async (name, value) => {
           try {
-            // console.log('💾 Guardando en localStorage...', name);
             const result = await safeSetItem(name, JSON.stringify(value));
             if (!result.success && result.error) {
-              console.error('❌ Storage error:', result.error.message);
+              logger.error('Storage error:', result.error.message);
               throw new Error(result.error.message);
             }
-            // console.log('✅ Datos guardados exitosamente en localStorage');
           } catch (error) {
-            console.error('❌ Error writing to localStorage:', error);
+            logger.error('Error writing to localStorage:', error);
             throw error;
           }
         },
@@ -756,7 +676,7 @@ export const useKanbanStore = create<KanbanState & KanbanActions>()(
           try {
             localStorage.removeItem(name);
           } catch (error) {
-            console.error('Error removing from localStorage:', error);
+            logger.error('Error removing from localStorage:', error);
           }
         }
       }

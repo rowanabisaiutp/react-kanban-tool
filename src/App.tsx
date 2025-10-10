@@ -5,9 +5,10 @@ import { StyledThemeProviderWrapper } from './hooks/useStyledTheme';
 import { GlobalStyle } from './styles/GlobalStyle';
 import ErrorBoundary from './components/ui/ErrorBoundary';
 import NotificationSystem from './components/ui/NotificationSystem';
+import { logger } from './utils/logger';
 
 // Log de inicio de App
-console.log('🚀 APP INICIANDO...');
+logger.info('🚀 APP INICIANDO...');
 
 // Lazy loading de páginas para code splitting
 const KanbanPage = lazy(() => import('./pages/KanbanPage'));
@@ -49,7 +50,7 @@ function App() {
     <ErrorBoundary
       onError={(error, errorInfo) => {
         // Log error para debugging
-        console.error('Application Error:', error, errorInfo);
+        logger.error('Application Error:', error, errorInfo);
       }}
     >
       <ThemeProvider>

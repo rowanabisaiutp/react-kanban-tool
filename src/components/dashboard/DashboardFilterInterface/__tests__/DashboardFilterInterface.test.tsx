@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // Mocks
@@ -72,14 +72,17 @@ describe('DashboardFilterInterface', () => {
     expect(screen.getByText('Limpiar Filtros')).toBeInTheDocument();
   });
 
-  it('toggles filter panel on button click', () => {
+  it('toggles filter panel on button click', async () => {
     render(<DashboardFilterInterface />);
     const toggleBtn = screen.getByRole('button', { name: /filtros de analíticas/i });
     
     expect(screen.queryByTestId('dashboard-filters')).not.toBeInTheDocument();
     
     fireEvent.click(toggleBtn);
-    expect(screen.getByTestId('dashboard-filters')).toBeInTheDocument();
+    // Esperar a que el componente lazy se cargue
+    await waitFor(() => {
+      expect(screen.getByTestId('dashboard-filters')).toBeInTheDocument();
+    });
     expect(toggleBtn).toHaveClass('dashboard-filter-interface__filter-btn--active');
     
     fireEvent.click(toggleBtn);

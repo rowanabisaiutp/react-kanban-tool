@@ -1,0 +1,907 @@
+PS C:\Users\rense\OneDrive\Desktop\react-kanban-tool> npm test
+
+> kanban-project@0.0.0 test
+> jest
+
+ PASS  src/__tests__/integration.simple.test.tsx (199.289 s)
+ PASS  src/components/kanban/TaskContextMenu/__tests__/TaskContextMenu.test.tsx (276.215 s)
+ PASS  src/components/kanban/SubtasksList/__tests__/SubtasksList.test.tsx (277.447 s)
+ PASS  src/components/search/FilterPanel/__tests__/FilterPanel.simple.test.tsx (79.65 s)
+ PASS  src/components/kanban/VirtualizedTaskList/__tests__/VirtualizedTaskList.test.tsx (7.916 s)
+ PASS  src/utils/__tests__/helpers.test.ts (308.569 s)
+ PASS  src/components/search/SearchInterface/__tests__/SearchInterface.simple.test.tsx (57.75 s)
+ PASS  src/components/layout/Navbar/__tests__/Navbar.simple.test.tsx (87.049 s)
+ PASS  src/components/kanban/TaskDetailModal/__tests__/TaskDetailModal.test.tsx (85.267 s)
+ PASS  src/store/__tests__/kanbanStore.test.ts (72.635 s)
+ PASS  src/components/kanban/DraggableTask/__tests__/DraggableTask.test.tsx (39.07 s)
+ PASS  src/components/search/SearchBar/__tests__/SearchBar.simple.test.tsx (14.322 s)
+ PASS  src/components/dashboard/DashboardFilters/__tests__/DashboardFilters.test.tsx (5.123 s)
+ PASS  src/components/kanban/TaskCard/__tests__/TaskCard.test.tsx (100.027 s)
+ PASS  src/components/search/NoResults/__tests__/NoResults.test.tsx (6.362 s)
+ PASS  src/__tests__/integration.test.tsx (81.499 s)
+ PASS  src/components/kanban/MarkdownPreview/__tests__/MarkdownPreview.test.tsx (5.379 s)
+ PASS  src/components/kanban/DeleteColumnModal/__tests__/DeleteColumnModal.test.tsx (7.369 s)
+ PASS  src/components/ui/__tests__/Select.simple.test.tsx
+ PASS  src/components/kanban/EditableColumnTitle/__tests__/EditableColumnTitle.test.tsx
+ FAIL  src/components/kanban/Board/__tests__/Board.test.tsx (71.114 s)
+  ● Board › renders add column button and handles click
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="add-column-form"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="board"
+        >
+          <div
+            class="board__content"
+          >
+            <div
+              data-testid="dnd-context"
+            >
+              <div
+                data-testid="sortable-context"
+              >
+                <div
+                  class="board__columns"
+                >
+                  <div
+                    data-column-id="col-1"
+                    data-testid="draggable-column"
+                  >
+                    Por Hacer
+                  </div>
+                  <div
+                    data-column-id="col-2"
+                    data-testid="draggable-column"
+                  >
+                    En Progreso
+                  </div>
+                  <div
+                    data-column-id="col-3"
+                    data-testid="draggable-column"
+                  >
+                    Terminado
+                  </div>
+                  <div
+                    class="add-column-card"
+                  >
+                    <div
+                      class="add-column-card__content"
+                    >
+                      <div
+                        class="add-column-card__icon"
+                      >
+                        +
+                      </div>
+                      <div
+                        class="add-column-card__text"
+                      >
+                        Agregar Columna
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="filter-panel-overlay"
+          >
+            <div
+              class="filter-panel"
+            >
+              <div
+                class="filter-panel__header"
+              >
+                <h3>
+                  <span>
+                    ➕
+                  </span>
+                  Agregar Nueva Columna
+                </h3>
+                <button
+                  class="filter-panel__close"
+                  title="Cerrar"
+                >
+                  ✕
+                </button>
+              </div>
+              <div
+                class="filter-panel__content"
+              >
+                <div
+                  style="display: flex; justify-content: center; align-items: center; padding: 60px; min-height: 200px;"
+                >
+                  <div
+                    style="text-align: center;"
+                  >
+                    <div
+                      style="width: 40px; height: 40px; border: 4px solid rgb(243, 243, 243); border-top: 4px solid rgb(52, 152, 219); border-radius: 50%; animation: spin 1s linear infinite; margin: 0px auto 16px;"
+                    />
+                    <p
+                      style="color: rgb(102, 102, 102);"
+                    >
+                      Cargando...
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      167 |
+      168 |     fireEvent.click(addColumnButton);
+    > 169 |     expect(screen.getByTestId('add-column-form')).toBeInTheDocument();
+          |                   ^
+      170 |     expect(screen.getByTestId('add-column-form')).toBeInTheDocument();
+      171 |   });
+      172 |
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/kanban/Board/__tests__/Board.test.tsx:169:19)
+
+  ● Board › renders data manager
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="data-manager"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="board"
+        >
+          <div
+            class="board__content"
+          >
+            <div
+              data-testid="dnd-context"
+            >
+              <div
+                data-testid="sortable-context"
+              >
+                <div
+                  class="board__columns"
+                >
+                  <div
+                    data-column-id="col-1"
+                    data-testid="draggable-column"
+                  >
+                    Por Hacer
+                  </div>
+                  <div
+                    data-column-id="col-2"
+                    data-testid="draggable-column"
+                  >
+                    En Progreso
+                  </div>
+                  <div
+                    data-column-id="col-3"
+                    data-testid="draggable-column"
+                  >
+                    Terminado
+                  </div>
+                  <div
+                    class="add-column-card"
+                  >
+                    <div
+                      class="add-column-card__content"
+                    >
+                      <div
+                        class="add-column-card__icon"
+                      >
+                        +
+                      </div>
+                      <div
+                        class="add-column-card__text"
+                      >
+                        Agregar Columna
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      173 |   it('renders data manager', () => {
+      174 |     render(<Board board={mockBoard} />);
+    > 175 |     expect(screen.getByTestId('data-manager')).toBeInTheDocument();
+          |                   ^
+      176 |   });
+      177 |
+      178 |   it('handles empty board', () => {
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/kanban/Board/__tests__/Board.test.tsx:175:19)
+
+ PASS  src/components/kanban/TaskForm/__tests__/TaskForm.test.tsx (173.04 s)
+ PASS  src/components/ui/__tests__/Modal.simple.test.tsx (85.93 s)
+ PASS  src/components/ui/__tests__/Checkbox.simple.test.tsx (8.167 s)
+ PASS  src/components/ui/__tests__/Input.simple.test.tsx (25.445 s)
+ PASS  src/components/dashboard/TasksCompletedChart/__tests__/TasksCompletedChart.test.tsx
+ PASS  src/components/kanban/BoardForm/__tests__/BoardForm.test.tsx (68.391 s)
+ PASS  src/components/dashboard/TimeInColumnsChart/__tests__/TimeInColumnsChart.test.tsx (96.197 s)
+ PASS  src/hooks/__tests__/useNotifications.test.ts (29.875 s)
+ FAIL  src/components/dashboard/DashboardFilterInterface/__tests__/DashboardFilterInterface.test.tsx (69.394 s)
+  ● DashboardFilterInterface › toggles filter panel on button click
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="dashboard-filters"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="dashboard-filter-interface "
+        >
+          <div
+            class="dashboard-filter-interface__controls"
+          >
+            <div
+              class="dashboard-filter-interface__title"
+            >
+              <h3>
+                Filtros de Analíticas
+              </h3>
+              <p>
+                Personaliza qué datos se muestran en los gráficos
+              </p>
+            </div>
+            <div
+              class="dashboard-filter-interface__actions"
+            >
+              <button
+                class="dashboard-filter-interface__filter-btn dashboard-filter-interface__filter-btn--active"
+                title="Configurar filtros de analíticas"
+              >
+                <span
+                  class="dashboard-filter-interface__filter-icon"
+                >
+                  📊
+                </span>
+                Filtros de Analíticas
+              </button>
+            </div>
+          </div>
+          <div
+            style="padding: 20px; text-align: center;"
+          >
+            Cargando filtros...
+          </div>
+        </div>
+      </div>
+    </body>
+
+      80 |
+      81 |     fireEvent.click(toggleBtn);
+    > 82 |     expect(screen.getByTestId('dashboard-filters')).toBeInTheDocument();
+         |                   ^
+      83 |     expect(toggleBtn).toHaveClass('dashboard-filter-interface__filter-btn--active');
+      84 |     
+      85 |     fireEvent.click(toggleBtn);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/dashboard/DashboardFilterInterface/__tests__/DashboardFilterInterface.test.tsx:82:19)
+
+ PASS  src/components/kanban/DraggableTask/__tests__/DraggableTask.simple.test.tsx
+ PASS  src/components/dashboard/MetricsCards/__tests__/MetricsCards.test.tsx (7.032 s)
+ PASS  src/components/dashboard/TasksByStatusChart/__tests__/TasksByStatusChart.test.tsx
+ PASS  src/components/kanban/DraggableColumn/__tests__/DraggableColumn.test.tsx (55.838 s)
+ PASS  src/components/kanban/DeleteColumnModal/__tests__/DeleteColumnModal.simple.test.tsx (7.613 s)
+ FAIL  src/components/kanban/Board/__tests__/Board.simple.test.tsx (96.624 s)
+  ● Board Simple Tests › renders board structure
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="data-manager"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="board"
+        >
+          <div
+            class="board__content"
+          >
+            <div
+              data-testid="dnd-context"
+            >
+              <div
+                data-testid="sortable-context"
+              >
+                <div
+                  class="board__columns"
+                >
+                  <div
+                    data-testid="draggable-column"
+                  >
+                    Por Hacer
+                  </div>
+                  <div
+                    data-testid="draggable-column"
+                  >
+                    En Progreso
+                  </div>
+                  <div
+                    data-testid="draggable-column"
+                  >
+                    Terminado
+                  </div>
+                  <div
+                    class="add-column-card"
+                  >
+                    <div
+                      class="add-column-card__content"
+                    >
+                      <div
+                        class="add-column-card__icon"
+                      >
+                        +
+                      </div>
+                      <div
+                        class="add-column-card__text"
+                      >
+                        Agregar Columna
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      140 |     expect(screen.getByTestId('dnd-context')).toBeInTheDocument();
+      141 |     expect(screen.getByTestId('sortable-context')).toBeInTheDocument();
+    > 142 |     expect(screen.getByTestId('data-manager')).toBeInTheDocument();
+          |                   ^
+      143 |   });
+      144 |
+      145 |   it('renders columns', () => {
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/kanban/Board/__tests__/Board.simple.test.tsx:142:19)
+
+ PASS  src/components/dashboard/TimeInColumnsChart/__tests__/TimeInColumnsChart.simple.test.tsx (14.247 s)
+ PASS  src/components/ui/__tests__/Card.simple.test.tsx
+ PASS  src/hooks/__tests__/useAutoSave.test.ts (56.613 s)
+  ● Console
+
+    console.debug
+      ✅ Auto-save completado: 2024-01-01T00:00:00.000Z
+
+      at Object.debug (src/utils/logger.ts:35:15)
+
+    console.debug
+      ✅ Auto-save completado: 2025-10-10T17:18:06.739Z
+
+      at Object.debug (src/utils/logger.ts:35:15)
+
+    console.debug
+      ✅ Auto-save completado: 2025-10-10T17:18:07.856Z
+
+      at Object.debug (src/utils/logger.ts:35:15)
+
+    console.debug
+      ✅ Auto-save completado: 2025-10-10T17:18:07.935Z
+
+      at Object.debug (src/utils/logger.ts:35:15)
+
+ PASS  src/components/kanban/DraggableColumn/__tests__/DraggableColumn.simple.test.tsx
+ PASS  src/components/kanban/BoardSelector/__tests__/BoardSelector.test.tsx (76.533 s)
+ PASS  src/hooks/__tests__/useTheme.test.tsx
+ PASS  src/components/kanban/DeleteBoardModal/__tests__/DeleteBoardModal.test.tsx (9.331 s)
+ PASS  src/components/dashboard/TasksByStatusChart/__tests__/TasksByStatusChart.simple.test.tsx (5.63 s)
+ PASS  src/components/dashboard/TasksCompletedChart/__tests__/TasksCompletedChart.simple.test.tsx
+ PASS  src/components/ui/__tests__/Button.simple.test.tsx (11.795 s)
+ PASS  src/components/dashboard/DashboardFilters/__tests__/DashboardFilters.simple.test.tsx
+ PASS  src/components/kanban/DeleteBoardModal/__tests__/DeleteBoardModal.simple.test.tsx
+ PASS  src/components/kanban/AddColumnForm/__tests__/AddColumnForm.test.tsx
+ PASS  src/components/dashboard/MetricsCards/__tests__/MetricsCards.simple.test.tsx
+ PASS  src/components/kanban/Column/__tests__/Column.test.tsx (103.27 s)
+ PASS  src/components/kanban/AddColumnForm/__tests__/AddColumnForm.simple.test.tsx (17.452 s)
+ PASS  src/components/kanban/BoardForm/__tests__/BoardForm.simple.test.tsx (52.368 s)
+ PASS  src/__tests__/setup.test.ts
+ PASS  src/components/kanban/BoardSelector/__tests__/BoardSelector.simple.test.tsx (89.478 s)
+ FAIL  src/components/dashboard/DashboardFilterInterface/__tests__/DashboardFilterInterface.simple.test.tsx (83.074 s)
+  ● DashboardFilterInterface Simple Tests › toggles filter panel
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="dashboard-filters"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="dashboard-filter-interface "
+        >
+          <div
+            class="dashboard-filter-interface__controls"
+          >
+            <div
+              class="dashboard-filter-interface__title"
+            >
+              <h3>
+                Filtros de Analíticas
+              </h3>
+              <p>
+                Personaliza qué datos se muestran en los gráficos
+              </p>
+            </div>
+            <div
+              class="dashboard-filter-interface__actions"
+            >
+              <button
+                class="dashboard-filter-interface__filter-btn dashboard-filter-interface__filter-btn--active"
+                title="Configurar filtros de analíticas"
+              >
+                <span
+                  class="dashboard-filter-interface__filter-icon"
+                >
+                  📊
+                </span>
+                Filtros de Analíticas
+              </button>
+            </div>
+          </div>
+          <div
+            style="padding: 20px; text-align: center;"
+          >
+            Cargando filtros...
+          </div>
+        </div>
+      </div>
+    </body>
+
+      45 |
+      46 |     fireEvent.click(button);
+    > 47 |     expect(screen.getByTestId('dashboard-filters')).toBeInTheDocument();
+         |                   ^
+      48 |     
+      49 |     fireEvent.click(button);
+      50 |     expect(screen.queryByTestId('dashboard-filters')).not.toBeInTheDocument();
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/dashboard/DashboardFilterInterface/__tests__/DashboardFilterInterface.simple.test.tsx:47:19)     
+
+ PASS  src/components/kanban/ArchivePanel/__tests__/ArchivePanel.test.tsx (60.6 s)
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+
+Summary of all failing tests
+ FAIL  src/components/kanban/Board/__tests__/Board.test.tsx (71.114 s)
+  ● Board › renders add column button and handles click
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="add-column-form"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="board"
+        >
+          <div
+            class="board__content"
+          >
+            <div
+              data-testid="dnd-context"
+            >
+              <div
+                data-testid="sortable-context"
+              >
+                <div
+                  class="board__columns"
+                >
+                  <div
+                    data-column-id="col-1"
+                    data-testid="draggable-column"
+                  >
+                    Por Hacer
+                  </div>
+                  <div
+                    data-column-id="col-2"
+                    data-testid="draggable-column"
+                  >
+                    En Progreso
+                  </div>
+                  <div
+                    data-column-id="col-3"
+                    data-testid="draggable-column"
+                  >
+                    Terminado
+                  </div>
+                  <div
+                    class="add-column-card"
+                  >
+                    <div
+                      class="add-column-card__content"
+                    >
+                      <div
+                        class="add-column-card__icon"
+                      >
+                        +
+                      </div>
+                      <div
+                        class="add-column-card__text"
+                      >
+                        Agregar Columna
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="filter-panel-overlay"
+          >
+            <div
+              class="filter-panel"
+            >
+              <div
+                class="filter-panel__header"
+              >
+                <h3>
+                  <span>
+                    ➕
+                  </span>
+                  Agregar Nueva Columna
+                </h3>
+                <button
+                  class="filter-panel__close"
+                  title="Cerrar"
+                >
+                  ✕
+                </button>
+              </div>
+              <div
+                class="filter-panel__content"
+              >
+                <div
+                  style="display: flex; justify-content: center; align-items: center; padding: 60px; min-height: 200px;"
+                >
+                  <div
+                    style="text-align: center;"
+                  >
+                    <div
+                      style="width: 40px; height: 40px; border: 4px solid rgb(243, 243, 243); border-top: 4px solid rgb(52, 152, 219); border-radius: 50%; animation: spin 1s linear infinite; margin: 0px auto 16px;"
+                    />
+                    <p
+                      style="color: rgb(102, 102, 102);"
+                    >
+                      Cargando...
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      167 |
+      168 |     fireEvent.click(addColumnButton);
+    > 169 |     expect(screen.getByTestId('add-column-form')).toBeInTheDocument();
+          |                   ^
+      170 |     expect(screen.getByTestId('add-column-form')).toBeInTheDocument();
+      171 |   });
+      172 |
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/kanban/Board/__tests__/Board.test.tsx:169:19)
+
+  ● Board › renders data manager
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="data-manager"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="board"
+        >
+          <div
+            class="board__content"
+          >
+            <div
+              data-testid="dnd-context"
+            >
+              <div
+                data-testid="sortable-context"
+              >
+                <div
+                  class="board__columns"
+                >
+                  <div
+                    data-column-id="col-1"
+                    data-testid="draggable-column"
+                  >
+                    Por Hacer
+                  </div>
+                  <div
+                    data-column-id="col-2"
+                    data-testid="draggable-column"
+                  >
+                    En Progreso
+                  </div>
+                  <div
+                    data-column-id="col-3"
+                    data-testid="draggable-column"
+                  >
+                    Terminado
+                  </div>
+                  <div
+                    class="add-column-card"
+                  >
+                    <div
+                      class="add-column-card__content"
+                    >
+                      <div
+                        class="add-column-card__icon"
+                      >
+                        +
+                      </div>
+                      <div
+                        class="add-column-card__text"
+                      >
+                        Agregar Columna
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      173 |   it('renders data manager', () => {
+      174 |     render(<Board board={mockBoard} />);
+    > 175 |     expect(screen.getByTestId('data-manager')).toBeInTheDocument();
+          |                   ^
+      176 |   });
+      177 |
+      178 |   it('handles empty board', () => {
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/kanban/Board/__tests__/Board.test.tsx:175:19)
+
+ FAIL  src/components/dashboard/DashboardFilterInterface/__tests__/DashboardFilterInterface.test.tsx (69.394 s)
+  ● DashboardFilterInterface › toggles filter panel on button click
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="dashboard-filters"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="dashboard-filter-interface "
+        >
+          <div
+            class="dashboard-filter-interface__controls"
+          >
+            <div
+              class="dashboard-filter-interface__title"
+            >
+              <h3>
+                Filtros de Analíticas
+              </h3>
+              <p>
+                Personaliza qué datos se muestran en los gráficos
+              </p>
+            </div>
+            <div
+              class="dashboard-filter-interface__actions"
+            >
+              <button
+                class="dashboard-filter-interface__filter-btn dashboard-filter-interface__filter-btn--active"
+                title="Configurar filtros de analíticas"
+              >
+                <span
+                  class="dashboard-filter-interface__filter-icon"
+                >
+                  ��
+                </span>
+                Filtros de Analíticas
+              </button>
+            </div>
+          </div>
+          <div
+            style="padding: 20px; text-align: center;"
+          >
+            Cargando filtros...
+          </div>
+        </div>
+      </div>
+    </body>
+
+      80 |     
+      81 |     fireEvent.click(toggleBtn);
+    > 82 |     expect(screen.getByTestId('dashboard-filters')).toBeInTheDocument();
+         |                   ^
+      83 |     expect(toggleBtn).toHaveClass('dashboard-filter-interface__filter-btn--active');
+      84 |     
+      85 |     fireEvent.click(toggleBtn);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/dashboard/DashboardFilterInterface/__tests__/DashboardFilterInterface.test.tsx:82:19)
+
+ FAIL  src/components/kanban/Board/__tests__/Board.simple.test.tsx (96.624 s)
+  ● Board Simple Tests › renders board structure
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="data-manager"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="board"
+        >
+          <div
+            class="board__content"
+          >
+            <div
+              data-testid="dnd-context"
+            >
+              <div
+                data-testid="sortable-context"
+              >
+                <div
+                  class="board__columns"
+                >
+                  <div
+                    data-testid="draggable-column"
+                  >
+                    Por Hacer
+                  </div>
+                  <div
+                    data-testid="draggable-column"
+                  >
+                    En Progreso
+                  </div>
+                  <div
+                    data-testid="draggable-column"
+                  >
+                    Terminado
+                  </div>
+                  <div
+                    class="add-column-card"
+                  >
+                    <div
+                      class="add-column-card__content"
+                    >
+                      <div
+                        class="add-column-card__icon"
+                      >
+                        +
+                      </div>
+                      <div
+                        class="add-column-card__text"
+                      >
+                        Agregar Columna
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      140 |     expect(screen.getByTestId('dnd-context')).toBeInTheDocument();
+      141 |     expect(screen.getByTestId('sortable-context')).toBeInTheDocument();
+    > 142 |     expect(screen.getByTestId('data-manager')).toBeInTheDocument();
+          |                   ^
+      143 |   });
+      144 |
+      145 |   it('renders columns', () => {
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/kanban/Board/__tests__/Board.simple.test.tsx:142:19)
+
+ FAIL  src/components/dashboard/DashboardFilterInterface/__tests__/DashboardFilterInterface.simple.test.tsx (83.074 s)
+  ● DashboardFilterInterface Simple Tests › toggles filter panel
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="dashboard-filters"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="dashboard-filter-interface "
+        >
+          <div
+            class="dashboard-filter-interface__controls"
+          >
+            <div
+              class="dashboard-filter-interface__title"
+            >
+              <h3>
+                Filtros de Analíticas
+              </h3>
+              <p>
+                Personaliza qué datos se muestran en los gráficos
+              </p>
+            </div>
+            <div
+              class="dashboard-filter-interface__actions"
+            >
+              <button
+                class="dashboard-filter-interface__filter-btn dashboard-filter-interface__filter-btn--active"
+                title="Configurar filtros de analíticas"
+              >
+                <span
+                  class="dashboard-filter-interface__filter-icon"
+                >
+                  ��
+                </span>
+                Filtros de Analíticas
+              </button>
+            </div>
+          </div>
+          <div
+            style="padding: 20px; text-align: center;"
+          >
+            Cargando filtros...
+          </div>
+        </div>
+      </div>
+    </body>
+
+      45 |
+      46 |     fireEvent.click(button);
+    > 47 |     expect(screen.getByTestId('dashboard-filters')).toBeInTheDocument();
+         |                   ^
+      48 |     
+      49 |     fireEvent.click(button);
+      50 |     expect(screen.queryByTestId('dashboard-filters')).not.toBeInTheDocument();
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/components/dashboard/DashboardFilterInterface/__tests__/DashboardFilterInterface.simple.test.tsx:47:19)
+
+
+Test Suites: 4 failed, 53 passed, 57 total
+Tests:       5 failed, 579 passed, 584 total
+Snapshots:   0 total
+Time:        863.526 s
+Ran all test suites.Ahora me da este error que e

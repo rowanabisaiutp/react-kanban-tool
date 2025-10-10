@@ -10,10 +10,22 @@ import {
 } from 'date-fns';
 import { es } from 'date-fns/locale';
 import type { TaskStatus, TaskPriority, Task, Column } from '../types';
+import { logger } from './logger';
 
-// Generar ID único
+// Generar ID único usando crypto.randomUUID() (más seguro y estándar)
 export const generateId = (): string => {
-  return Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+  // Usar la API nativa de crypto para generar UUIDs seguros
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  
+  // Fallback para entornos que no soportan crypto.randomUUID()
+  // (aunque todos los navegadores modernos lo soportan)
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
 };
 
 // Generar color para etiquetas basado en el texto
@@ -53,7 +65,7 @@ export const formatRelativeDate = (date: Date | string): string => {
       locale: es 
     });
   } catch (error) {
-    console.error('Error formateando fecha:', error);
+    logger.error('Error formateando fecha:', error);
     return 'Fecha inválida';
   }
 };
@@ -69,7 +81,7 @@ export const formatFullDate = (date: Date | string): string => {
     
     return format(dateObj, 'dd/MM/yyyy HH:mm', { locale: es });
   } catch (error) {
-    console.error('Error formateando fecha completa:', error);
+    logger.error('Error formateando fecha completa:', error);
     return 'Fecha inválida';
   }
 };
@@ -85,7 +97,7 @@ export const formatShortDate = (date: Date | string): string => {
     
     return format(dateObj, 'dd/MM/yyyy', { locale: es });
   } catch (error) {
-    console.error('Error formateando fecha corta:', error);
+    logger.error('Error formateando fecha corta:', error);
     return 'Fecha inválida';
   }
 };
@@ -213,7 +225,7 @@ export const getStatusText = (status: TaskStatus): string => {
 // Truncar texto
 export const truncateText = (text: string, maxLength: number): string => {
   if (text.length <= maxLength) return text;
-  return text.substr(0, maxLength) + '...';
+  return text.slice(0, maxLength) + '...';
 };
 
 // Tipo para filtros de búsqueda

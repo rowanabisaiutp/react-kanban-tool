@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const { containerRef, focusFirstElement } = useFocusManagement(isOpen);
   const { announce } = useScreenReaderAnnouncements();
-  const modalId = useRef(`modal-${Math.random().toString(36).substr(2, 9)}`);
+  const modalId = useRef(`modal-${crypto.randomUUID()}`);
 
   const hasOpenedRef = useRef(false);
 
