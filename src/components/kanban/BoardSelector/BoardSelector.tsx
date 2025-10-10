@@ -10,9 +10,10 @@ interface BoardSelectorProps {
   className?: string;
   onDeleteBoard?: (boardId: string) => void;
   onShowArchived?: () => void;
+  onClose?: () => void; // Para cerrar el drawer en mobile
 }
 
-const BoardSelector: React.FC<BoardSelectorProps> = ({ className = '', onDeleteBoard, onShowArchived }) => {
+const BoardSelector: React.FC<BoardSelectorProps> = ({ className = '', onDeleteBoard, onShowArchived, onClose }) => {
   const { boards, currentBoard, setCurrentBoard } = useKanbanStore();
   const { isDark, toggleTheme } = useTheme();
   const [showBoardForm, setShowBoardForm] = useState(false);
@@ -22,6 +23,8 @@ const BoardSelector: React.FC<BoardSelectorProps> = ({ className = '', onDeleteB
   const handleBoardSelect = (board: typeof currentBoard) => {
     if (board) {
       setCurrentBoard(board);
+      // Cerrar drawer en mobile después de seleccionar
+      onClose?.();
     }
   };
 
@@ -76,6 +79,16 @@ const BoardSelector: React.FC<BoardSelectorProps> = ({ className = '', onDeleteB
     <div className={`board-selector ${className}`}>
       <div className="board-selector__header">
         <h3 className="board-selector__title">Tableros</h3>
+        {/* Botón de cerrar para mobile */}
+        {onClose && (
+          <button 
+            className="board-selector__close-button"
+            onClick={onClose}
+            aria-label="Cerrar menú"
+          >
+            ✕
+          </button>
+        )}
       </div>
       
       <div className="board-selector__content">

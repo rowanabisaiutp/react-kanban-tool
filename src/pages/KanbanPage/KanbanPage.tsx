@@ -21,6 +21,7 @@ const KanbanContent: React.FC = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deletingBoardId, setDeletingBoardId] = useState<string | null>(null);
   const [showArchived, setShowArchived] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Si no hay tablero actual, usar el primero disponible
   React.useEffect(() => {
@@ -73,15 +74,34 @@ const KanbanContent: React.FC = () => {
 
   return (
     <div className="kanban-page">
-      <div className="kanban-page__sidebar">
+      {/* Backdrop para cerrar el drawer en mobile */}
+      {isSidebarOpen && (
+        <div 
+          className="kanban-page__drawer-backdrop"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar - drawer en mobile, sticky en desktop */}
+      <div className={`kanban-page__sidebar ${isSidebarOpen ? 'kanban-page__sidebar--open' : ''}`}>
         <BoardSelector 
           onDeleteBoard={handleDeleteBoard} 
           onShowArchived={handleShowArchived}
+          onClose={() => setIsSidebarOpen(false)}
         />
       </div>
       
       <div className="kanban-page__main">
         <div className="kanban-page__header">
+          {/* Botón hamburguesa para mobile */}
+          <button 
+            className="kanban-page__menu-button"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            aria-label="Abrir menú de tableros"
+          >
+            <span className="kanban-page__menu-icon">☰</span>
+          </button>
+
           <div className="kanban-page__title-section">
             <h1 className="kanban-page__title">Kanban Board</h1>
             <p className="kanban-page__subtitle">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import './Input.css';
 
 interface InputProps {
@@ -44,8 +44,8 @@ const Input: React.FC<InputProps> = ({
   helperText,
   autocomplete
 }) => {
-  // Generar ID único si no se proporciona usando crypto.randomUUID()
-  const inputId = id || `input-${crypto.randomUUID()}`;
+  const reactId = useId();
+  const inputId = id || `input-${reactId}`;
   const errorId = `${inputId}-error`;
   const helperId = `${inputId}-helper`;
 

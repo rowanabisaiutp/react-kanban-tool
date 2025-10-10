@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useId } from 'react';
 import type { ModalProps } from '../../../types';
 import { useFocusManagement } from '../../../hooks/useFocusManagement';
 import { useScreenReaderAnnouncements } from '../../../hooks/useFocusManagement';
@@ -15,7 +15,8 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const { containerRef, focusFirstElement } = useFocusManagement(isOpen);
   const { announce } = useScreenReaderAnnouncements();
-  const modalId = useRef(`modal-${crypto.randomUUID()}`);
+  const reactId = useId();
+  const modalId = useRef(`modal-${reactId}`);
 
   const hasOpenedRef = useRef(false);
 

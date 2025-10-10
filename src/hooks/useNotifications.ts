@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { useCallback } from 'react';
+import { generateId } from '../utils/helpers';
 
 interface Notification {
   id: string;
@@ -22,7 +23,7 @@ const useNotificationStore = create<NotificationStore>((set, get) => ({
   notifications: [],
   timers: new Map(),
   addNotification: (notification) => {
-    const id = crypto.randomUUID();
+    const id = generateId();
     const newNotification = { ...notification, id };
     
     set((state) => ({
