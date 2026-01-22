@@ -13,6 +13,12 @@ export default defineConfig({
     },
   },
 
+  preview: {
+    host: '0.0.0.0',
+    port: 4173,
+    allowedHosts: ['kanban-tool.fly.dev', 'react-kanban-tool.fly.dev'],
+  },
+
   build: {
     // Optimizaciones de producción
     target: 'esnext',
