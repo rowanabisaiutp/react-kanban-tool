@@ -1,0 +1,101 @@
+PS C:\Users\rowan\react-kanban-tool> flyctl logs --app react-kanban-tool
+2026-01-22T22:28:36Z app[7840412ce79518] ams [info] INFO Starting clean up.
+2026-01-22T22:28:36Z app[7840412ce79518] ams [info][  447.544750] reboot: Restarting system
+2026-01-22T22:28:37Z app[7840412ce79518] ams [info]2026-01-22T22:28:37.506692312 [01KFKX5PR7QTVAT8Q6S4GQ3ZG9:main] Running Firecracker v1.12.1
+2026-01-22T22:28:37Z app[7840412ce79518] ams [info]2026-01-22T22:28:37.506897810 [01KFKX5PR7QTVAT8Q6S4GQ3ZG9:main] Listening on API socket ("/fc.sock").
+2026-01-22T22:28:38Z app[7840412ce79518] ams [info] INFO Starting init (commit: 6f59af0a)...
+2026-01-22T22:28:38Z app[7840412ce79518] ams [info] INFO Preparing to run: `docker-entrypoint.sh sh -c npm run preview -- --host 0.0.0.0 --port ${PORT:-4173}` as root
+2026-01-22T22:28:38Z app[7840412ce79518] ams [info] INFO [fly api proxy] listening at /.fly/api
+2026-01-22T22:28:38Z runner[7840412ce79518] ams [info]Machine created and started in 4.351s
+2026-01-22T22:28:38Z health[7840412ce79518] ams [error]Health check 'servicecheck-00-tcp-4173' on port 4173 has failed. Your app is not responding properly. Services exposed on ports [80, 443] will have intermittent failures until the health check passes.
+2026-01-22T22:28:38Z app[7840412ce79518] ams [info]2026/01/22 22:28:38 INFO SSH listening listen_address=[fdaa:39:b835:a7b:446:fbc:b662:2]:22
+2026-01-22T22:28:39Z app[7840412ce79518] ams [info]> kanban-project@0.0.0 preview
+2026-01-22T22:28:39Z app[7840412ce79518] ams [info]> vite preview --host 0.0.0.0 --port 4173
+2026-01-22T22:28:40Z app[7840412ce79518] ams [info]  ➜  Local:   http://localhost:4173/
+2026-01-22T22:28:40Z app[7840412ce79518] ams [info]  ➜  Network: http://172.19.105.82:4173/
+2026-01-22T22:28:40Z app[7840412ce79518] ams [info]  ➜  Network: http://172.19.105.83:4173/
+2026-01-22T22:28:40Z health[7840412ce79518] ams [info]Health check 'servicecheck-00-tcp-4173' on port 4173 is now passing.
+2026-01-22T22:30:28Z runner[2867034f9167d8] ams [info]Pulling container image registry.fly.io/react-kanban-tool@sha256:10f94b3ff46398f3b6639c841fe899944ae35c3e9e8af2ff124545dde4c90cb5
+2026-01-22T22:30:28Z runner[2867034f9167d8] ams [info]Container image registry.fly.io/react-kanban-tool@sha256:10f94b3ff46398f3b6639c841fe899944ae35c3e9e8af2ff124545dde4c90cb5 already prepared
+2026-01-22T22:30:29Z runner[2867034f9167d8] ams [info]Configuring firecracker
+2026-01-22T22:30:29Z app[2867034f9167d8] ams [info] INFO Sending signal SIGINT to main child process w/ PID 640
+2026-01-22T22:30:29Z app[2867034f9167d8] ams [info] INFO Main child exited with signal (with signal 'SIGINT', core dumped? false)
+2026-01-22T22:30:29Z app[2867034f9167d8] ams [info] INFO Starting clean up.
+2026-01-22T22:30:29Z app[2867034f9167d8] ams [info][  128.170521] reboot: Restarting system
+2026-01-22T22:30:30Z app[2867034f9167d8] ams [info]2026-01-22T22:30:30.782365853 [01KFKX9631HGRVQYSA5MSM6R73:main] Running Firecracker v1.12.1
+2026-01-22T22:30:30Z app[2867034f9167d8] ams [info]2026-01-22T22:30:30.782568687 [01KFKX9631HGRVQYSA5MSM6R73:main] Listening on API socket ("/fc.sock").
+2026-01-22T22:30:31Z app[2867034f9167d8] ams [info] INFO Starting init (commit: 6f59af0a)...
+2026-01-22T22:30:31Z app[2867034f9167d8] ams [info] INFO Preparing to run: `docker-entrypoint.sh sh -c npm run preview -- --host 0.0.0.0 --port ${PORT:-4173}` as root
+2026-01-22T22:30:31Z app[2867034f9167d8] ams [info] INFO [fly api proxy] listening at /.fly/api
+2026-01-22T22:30:32Z runner[2867034f9167d8] ams [info]Machine created and started in 3.5s
+2026-01-22T22:30:32Z health[2867034f9167d8] ams [error]Health check 'servicecheck-00-tcp-4173' on port 4173 has failed. Your app is not responding properly. Services exposed on ports [80, 443] will have intermittent failures until the health check passes.
+2026-01-22T22:30:32Z app[2867034f9167d8] ams [info]2026/01/22 22:30:32 INFO SSH listening listen_address=[fdaa:39:b835:a7b:32b:c387:cced:2]:22
+2026-01-22T22:30:33Z app[2867034f9167d8] ams [info]> kanban-project@0.0.0 preview
+2026-01-22T22:30:33Z app[2867034f9167d8] ams [info]> vite preview --host 0.0.0.0 --port 4173
+2026-01-22T22:30:33Z app[2867034f9167d8] ams [info]  ➜  Local:   http://localhost:4173/
+2026-01-22T22:30:33Z app[2867034f9167d8] ams [info]  ➜  Network: http://172.19.116.154:4173/
+2026-01-22T22:30:33Z app[2867034f9167d8] ams [info]  ➜  Network: http://172.19.116.155:4173/
+2026-01-22T22:30:34Z health[2867034f9167d8] ams [info]Health check 'servicecheck-00-tcp-4173' on port 4173 is now passing.
+2026-01-22T22:30:44Z runner[7840412ce79518] ams [info]Pulling container image registry.fly.io/react-kanban-tool@sha256:10f94b3ff46398f3b6639c841fe899944ae35c3e9e8af2ff124545dde4c90cb5
+2026-01-22T22:30:44Z runner[7840412ce79518] ams [info]Container image registry.fly.io/react-kanban-tool@sha256:10f94b3ff46398f3b6639c841fe899944ae35c3e9e8af2ff124545dde4c90cb5 already prepared
+2026-01-22T22:30:45Z runner[7840412ce79518] ams [info]Configuring firecracker
+2026-01-22T22:30:45Z app[7840412ce79518] ams [info] INFO Sending signal SIGINT to main child process w/ PID 641
+2026-01-22T22:30:45Z app[7840412ce79518] ams [info] INFO Main child exited with signal (with signal 'SIGINT', core dumped? false)
+2026-01-22T22:30:45Z app[7840412ce79518] ams [info] INFO Starting clean up.
+2026-01-22T22:30:45Z app[7840412ce79518] ams [info][  128.150428] reboot: Restarting system
+2026-01-22T22:30:46Z app[7840412ce79518] ams [info]2026-01-22T22:30:46.698219794 [01KFKX9P0NHGNZ66NQXJ3B85N4:main] Running Firecracker v1.12.1
+2026-01-22T22:30:46Z app[7840412ce79518] ams [info]2026-01-22T22:30:46.698430612 [01KFKX9P0NHGNZ66NQXJ3B85N4:main] Listening on API socket ("/fc.sock").
+2026-01-22T22:30:47Z app[7840412ce79518] ams [info] INFO Starting init (commit: 6f59af0a)...
+2026-01-22T22:30:47Z app[7840412ce79518] ams [info] INFO Preparing to run: `docker-entrypoint.sh sh -c npm run preview -- --host 0.0.0.0 --port ${PORT:-4173}` as root
+2026-01-22T22:30:47Z app[7840412ce79518] ams [info] INFO [fly api proxy] listening at /.fly/api
+2026-01-22T22:30:47Z runner[7840412ce79518] ams [info]Machine created and started in 3.28s
+2026-01-22T22:30:48Z app[7840412ce79518] ams [info]2026/01/22 22:30:48 INFO SSH listening listen_address=[fdaa:39:b835:a7b:446:fbc:b662:2]:22
+2026-01-22T22:30:48Z health[7840412ce79518] ams [error]Health check 'servicecheck-00-tcp-4173' on port 4173 has failed. Your app is not responding properly. Services exposed on ports [80, 443] will have intermittent failures until the health check passes.
+2026-01-22T22:30:49Z app[7840412ce79518] ams [info]> kanban-project@0.0.0 preview
+2026-01-22T22:30:49Z app[7840412ce79518] ams [info]> vite preview --host 0.0.0.0 --port 4173
+2026-01-22T22:30:49Z app[7840412ce79518] ams [info]  ➜  Local:   http://localhost:4173/
+2026-01-22T22:30:49Z app[7840412ce79518] ams [info]  ➜  Network: http://172.19.105.82:4173/
+2026-01-22T22:30:49Z app[7840412ce79518] ams [info]  ➜  Network: http://172.19.105.83:4173/
+2026-01-22T22:30:50Z health[7840412ce79518] ams [info]Health check 'servicecheck-00-tcp-4173' on port 4173 is now passing.
+2026-01-22T22:38:33Z runner[7840412ce79518] ams [info]Pulling container image registry.fly.io/react-kanban-tool@sha256:bb2b9ada8cefa427fcb3a675025ca7f1b62e3c45955b6fb9b6e7b762776f5df9
+2026-01-22T22:38:43Z runner[7840412ce79518] ams [info]Successfully prepared image registry.fly.io/react-kanban-tool@sha256:bb2b9ada8cefa427fcb3a675025ca7f1b62e3c45955b6fb9b6e7b762776f5df9 (9.789735961s)
+2026-01-22T22:38:44Z runner[7840412ce79518] ams [info]Configuring firecracker
+2026-01-22T22:38:44Z app[7840412ce79518] ams [info] INFO Sending signal SIGINT to main child process w/ PID 642
+2026-01-22T22:38:44Z app[7840412ce79518] ams [info] INFO Main child exited with signal (with signal 'SIGINT', core dumped? false)
+2026-01-22T22:38:44Z app[7840412ce79518] ams [info] INFO Starting clean up.
+2026-01-22T22:38:44Z app[7840412ce79518] ams [info][  477.601234] reboot: Restarting system
+2026-01-22T22:38:45Z app[7840412ce79518] ams [info]2026-01-22T22:38:45.352005651 [01KFKXR091Q560KCANA1HFDAWJ:main] Running Firecracker v1.12.1
+2026-01-22T22:38:45Z app[7840412ce79518] ams [info]2026-01-22T22:38:45.352188389 [01KFKXR091Q560KCANA1HFDAWJ:main] Listening on API socket ("/fc.sock").
+2026-01-22T22:38:46Z app[7840412ce79518] ams [info] INFO Starting init (commit: 6f59af0a)...
+2026-01-22T22:38:46Z app[7840412ce79518] ams [info] INFO Preparing to run: `docker-entrypoint.sh sh -c npm run preview -- --host 0.0.0.0 --port ${PORT:-4173}` as root
+2026-01-22T22:38:46Z app[7840412ce79518] ams [info] INFO [fly api proxy] listening at /.fly/api
+2026-01-22T22:38:46Z runner[7840412ce79518] ams [info]Machine created and started in 12.584s
+2026-01-22T22:38:46Z health[7840412ce79518] ams [error]Health check 'servicecheck-00-tcp-4173' on port 4173 has failed. Your app is not responding properly. Services exposed on ports [80, 443] will have intermittent failures until the health check passes.
+2026-01-22T22:38:46Z app[7840412ce79518] ams [info]2026/01/22 22:38:46 INFO SSH listening listen_address=[fdaa:39:b835:a7b:446:fbc:b662:2]:22
+2026-01-22T22:38:47Z app[7840412ce79518] ams [info]> kanban-project@0.0.0 preview
+2026-01-22T22:38:47Z app[7840412ce79518] ams [info]> vite preview --host 0.0.0.0 --port 4173 --host 0.0.0.0 --port 4173
+2026-01-22T22:38:48Z app[7840412ce79518] ams [info]  ➜  Local:   http://localhost:4173/
+2026-01-22T22:38:48Z app[7840412ce79518] ams [info]  ➜  Network: http://172.19.105.82:4173/
+2026-01-22T22:38:48Z app[7840412ce79518] ams [info]  ➜  Network: http://172.19.105.83:4173/
+2026-01-22T22:38:48Z health[7840412ce79518] ams [info]Health check 'servicecheck-00-tcp-4173' on port 4173 is now passing.
+2026-01-22T22:39:00Z runner[2867034f9167d8] ams [info]Pulling container image registry.fly.io/react-kanban-tool@sha256:bb2b9ada8cefa427fcb3a675025ca7f1b62e3c45955b6fb9b6e7b762776f5df9
+2026-01-22T22:39:08Z runner[2867034f9167d8] ams [info]Successfully prepared image registry.fly.io/react-kanban-tool@sha256:bb2b9ada8cefa427fcb3a675025ca7f1b62e3c45955b6fb9b6e7b762776f5df9 (8.687447651s)
+2026-01-22T22:39:09Z runner[2867034f9167d8] ams [info]Configuring firecracker
+2026-01-22T22:39:09Z app[2867034f9167d8] ams [info] INFO Sending signal SIGINT to main child process w/ PID 641
+2026-01-22T22:39:10Z app[2867034f9167d8] ams [info] INFO Main child exited with signal (with signal 'SIGINT', core dumped? false)
+2026-01-22T22:39:10Z app[2867034f9167d8] ams [info] INFO Starting clean up.
+2026-01-22T22:39:10Z app[2867034f9167d8] ams [info][  519.647996] reboot: Restarting system
+2026-01-22T22:39:11Z app[2867034f9167d8] ams [info]2026-01-22T22:39:11.513107730 [01KFKXRT1YJF0PMQWEM9GHT0CB:main] Running Firecracker v1.12.1
+2026-01-22T22:39:11Z app[2867034f9167d8] ams [info]2026-01-22T22:39:11.513316515 [01KFKXRT1YJF0PMQWEM9GHT0CB:main] Listening on API socket ("/fc.sock").
+2026-01-22T22:39:12Z app[2867034f9167d8] ams [info] INFO Starting init (commit: 6f59af0a)...
+2026-01-22T22:39:12Z app[2867034f9167d8] ams [info] INFO Preparing to run: `docker-entrypoint.sh sh -c npm run preview -- --host 0.0.0.0 --port ${PORT:-4173}` as root
+2026-01-22T22:39:12Z app[2867034f9167d8] ams [info] INFO [fly api proxy] listening at /.fly/api
+2026-01-22T22:39:12Z runner[2867034f9167d8] ams [info]Machine created and started in 12.401s
+2026-01-22T22:39:12Z app[2867034f9167d8] ams [info]2026/01/22 22:39:12 INFO SSH listening listen_address=[fdaa:39:b835:a7b:32b:c387:cced:2]:22
+2026-01-22T22:39:13Z health[2867034f9167d8] ams [error]Health check 'servicecheck-00-tcp-4173' on port 4173 has failed. Your app is not responding properly. Services exposed on ports [80, 443] will have intermittent failures until the health check passes.
+2026-01-22T22:39:13Z app[2867034f9167d8] ams [info]> kanban-project@0.0.0 preview
+2026-01-22T22:39:13Z app[2867034f9167d8] ams [info]> vite preview --host 0.0.0.0 --port 4173 --host 0.0.0.0 --port 4173
+2026-01-22T22:39:14Z app[2867034f9167d8] ams [info]  ➜  Local:   http://localhost:4173/
+2026-01-22T22:39:14Z app[2867034f9167d8] ams [info]  ➜  Network: http://172.19.116.154:4173/
+2026-01-22T22:39:14Z app[2867034f9167d8] ams [info]  ➜  Network: http://172.19.116.155:4173/
+2026-01-22T22:39:15Z health[2867034f9167d8] ams [info]Health check 'servicecheck-00-tcp-4173' on port 4173 is now passing.
